@@ -148,14 +148,6 @@ namespace ThinkSharp.FormulaParsing.Test
         {
             var parser = FormulaParser.Create();
 
-            var parser2 = FormulaParser
-                .CreateBuilder()
-                .ConfigureFunctions(functions => functions.Add("max", (a, b) => Math.Max(a, b)))
-                .Build();
-
-            parser2.Evaluate("1 + max(2, 4)");
-
-
             var result = parser.Parse("2 * pi").Value as FormulaNode;
             Assert.AreEqual("2 * pi", result.FormulaText);
         }
