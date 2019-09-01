@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>ThinkSharp.FormulaParser</AssemblyName>
+    <RootNamespace>ThinkSharp.FormulaParsing</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Jan-Niklas Schäfer</Authors>
+    <Company>ThinkSharp</Company>
+    <Description>A formula parser with fluent API that allows parsing and evaluation of mathematically formulas. Features: functions, constants, variables, scientific numbers, focus on customization and flexibility.</Description>
+    <Copyright>© 2019 Jan-Niklas Schäfer</Copyright>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+    <FileVersion>0.1.0.0</FileVersion>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageReleaseNotes>0.1 Initial Version</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/JanDotNet/ThinkSharp.FormulaParser</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Version>0.1.0</Version>
+    <PackageLicenseExpression></PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ANTLR\.antlr\**" />
+    <EmbeddedResource Remove="ANTLR\.antlr\**" />
+    <None Remove="ANTLR\.antlr\**" />
+    <None Include="..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Antlr4.Runtime.Standard" Version="4.7.2" />
+  </ItemGroup>
+
+</Project>
