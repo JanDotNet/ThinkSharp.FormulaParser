@@ -2,7 +2,7 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/l3aagqmbfmgxwv3t?svg=true)](https://ci.appveyor.com/project/JanDotNet/thinksharp-licensing)
 [![NuGet](https://img.shields.io/nuget/v/ThinkSharp.FormulaParser.svg)](https://www.nuget.org/packages/ThinkSharp.FormulaParser/)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.TXT)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.txt)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MSBFDUU5UUQZL)
 ## Introduction
 
