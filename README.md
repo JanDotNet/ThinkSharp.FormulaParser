@@ -32,17 +32,17 @@ ThinkSharp.FormulaParser can be installed via [Nuget](https://www.nuget.org/pack
     var parser = FormulaParser.Create();
     
     // Parsing a simple mathematical formula
-    var result1 = parser.Evaluat("1+1").Value; // result1 = 2.0
+    var result1 = parser.Evaluate("1+1").Value; // result1 = 2.0
     
     // Usage of variables
     var variables = new Dictionary<string, double> { ["x"] = 2.0 };
-    var result2 = parser.Evaluat("1+x", variables).Value; // result2 = 3.0
+    var result2 = parser.Evaluate("1+x", variables).Value; // result2 = 3.0
     
     // Usage of functions
-    var result3 = parser.Evaluat("1+min(3,4)").Value; // result2 = 4.0
+    var result3 = parser.Evaluate("1+min(3,4)").Value; // result2 = 4.0
     
     // Handle errors
-    var parsingResult = parser.Evaluat("2*?");
+    var parsingResult = parser.Evaluate("2*?");
     if (!parsingResult.Success) Console.WriteLine(parsingResult.Error); // "column 2: token recognition error at: '?'"
 
 #### Usage
