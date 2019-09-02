@@ -166,9 +166,17 @@ namespace ThinkSharp.FormulaParsing.ANTLR
                 parameters.Add(this.Visit(exp));
             }
 
-            if (!this.configuration.IsFunctionNameValidationDisabled && !this.configuration.HasFunction(functionName, parameters.Count))
+            if (!this.configuration.IsFunctionNameValidationDisabled)
             {
-                ParsingException.ThrowUnknownFunctionException(functionNameToken);
+                if (!this.configuration.HasFunction(functionName))
+                {
+                    ParsingException.ThrowUnknownFunctionException(functionNameToken);
+                }
+
+                if (!this.configuration.HasFunction(functionName, parameters.Count))
+                {
+                    ParsingException.ThrowFunctionArgumentCountDoesNotExistException(functionNameToken, parameters.Count);
+                }
             }
 
             return new FunctionNode(functionName, parameters.ToArray());

@@ -22,6 +22,8 @@ namespace ThinkSharp.FormulaParsing
 
         bool IsFunctionNameValidationDisabled { get; }
 
+        bool HasFunction(string name);
+
         bool HasFunction(string name, int argumentCount);
 
         bool HasConstant(string name);

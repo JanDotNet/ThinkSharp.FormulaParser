@@ -35,6 +35,8 @@ namespace ThinkSharp.FormulaParsing
 
         public bool HasFunction(string name, int argumentCount) => this.configuration.HasFunction(name, argumentCount);
 
+        public bool HasFunction(string name) => this.configuration.HasFunction(name);
+
         public bool HasVariable(string variable) => this.varialeNames.Contains(variable);
     }
 }

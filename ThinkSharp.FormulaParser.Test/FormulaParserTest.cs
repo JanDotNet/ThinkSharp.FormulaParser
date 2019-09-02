@@ -194,9 +194,15 @@ namespace ThinkSharp.FormulaParsing.Test
         }
 
         [TestMethod]
-        public void TestFunctionFunctionWithoutParameters()
+        public void TestRxistingFunctionWithoutParameters()
         {
-            AssertFailure("column 0: Unknown function 'min'.", "min()");
+            AssertFailure("column 0: There is no function 'min' that takes 0 argument(s).", "min()");
+        }
+
+        [TestMethod]
+        public void TestNotExistingFunction()
+        {
+            AssertFailure("column 0: Unknown function 'moep'.", "moep()");
         }
 
         [TestMethod]

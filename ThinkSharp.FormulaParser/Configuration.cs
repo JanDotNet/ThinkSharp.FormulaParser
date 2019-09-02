@@ -38,6 +38,7 @@ namespace ThinkSharp.FormulaParsing
             (this as IConfigureFunctions).Add("sin", u => Math.Sin(u));
             (this as IConfigureFunctions).Add("cos", u => Math.Cos(u));
             (this as IConfigureFunctions).Add("tan", u => Math.Tan(u));
+            (this as IConfigureFunctions).Add("sqrt", u => Math.Sqrt(u));
 
             (this as IConfigureConstants).Add("pi", Math.PI);
             (this as IConfigureConstants).Add("e", Math.E);
@@ -73,6 +74,17 @@ namespace ThinkSharp.FormulaParsing
             }
 
             return false;
+        }
+
+        bool IConfiguration.HasFunction(string name)
+        {
+            return this.functionsArgs0.ContainsKey(name)
+                   || this.functionsArgs1.ContainsKey(name)
+                   || this.functionsArgs2.ContainsKey(name)
+                   || this.functionsArgs3.ContainsKey(name)
+                   || this.functionsArgs4.ContainsKey(name)
+                   || this.functionsArgs5.ContainsKey(name)
+                   || this.functionsArgsN.ContainsKey(name);                    
         }
 
         private bool MatchFunction0To5(string name, int argumentCount)

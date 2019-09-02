@@ -32,6 +32,7 @@ namespace ThinkSharp.FormulaParsing.Test
             Assert.AreEqual(Math.Sin(3), parser.Evaluate("sin(3)").Value);
             Assert.AreEqual(Math.Cos(3), parser.Evaluate("cos(3)").Value);
             Assert.AreEqual(Math.Tan(3), parser.Evaluate("tan(3)").Value);
+            Assert.AreEqual(Math.Sqrt(3), parser.Evaluate("sqrt(3)").Value);
         }
 
         [TestMethod]
