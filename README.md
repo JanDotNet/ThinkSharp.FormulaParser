@@ -9,15 +9,15 @@
 
 **ThinkSharp.FormulaParser** is a simple library with fluent API for parsing and evaluating mathematical formulas.
 
-Mathematical functions can be parsed to a parsing tree (hereinafter called "parsing") or directly evaluated to a numeric value (hereinafter called "evaluating").
+Mathematical formulas can be parsed to a parsing tree (hereinafter called "parsing") or directly evaluated to a numeric value (hereinafter called "evaluating").
 
 The following features are supported
-* Basic Mathematical Operations: +, -, /, *, ^, ( .. ), scientific notation (3e2 = 300)
+* Basic mathematical operations: +, -, /, *, ^, ( .. ), scientific notation (3e2 = 300)
 * Variables: Detect variables on parsing or use a dictionary to provide variables for evaluation.
 * Constants: Use build-in constants (pi, e) or define your own. Constants are available independent of the provided variables.
 * Functions: Use build-in functions (sqrt, sum, rnd, abs, log, ln, sin, cos, tan, min, max) or define your own.
 * Error Handling: The parser provides an expressive error message in case of invalid formulas.
-* Customizable: The parser may be configured to disable features and add custom functions / constants.
+* Customization: The parser may be configured to disable features and add custom functions / constants.
 
 ## Installation
 
