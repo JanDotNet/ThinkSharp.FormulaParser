@@ -48,7 +48,6 @@ ThinkSharp.FormulaParser can be installed via [Nuget](https://www.nuget.org/pack
 
 #### Creating and evaluating a parsing tree
 
-    // The simples way to create a formula parser is the static method 'Create'. 
     var parser = FormulaParser.Create();
     var variables = new Dictionary<string, double> { ["x"] = 2.0 };
 
