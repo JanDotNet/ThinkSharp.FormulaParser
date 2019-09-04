@@ -91,7 +91,7 @@ ThinkSharp.FormulaParser can be installed via [Nuget](https://www.nuget.org/pack
 
             // define functions with specified number of parameters (1-5 parameters are supported)
             functions.Add("celsiusToFarenheit", celsius => celsius * 1.8 + 32);
-            functions.Add("fahrenheitToCelsius", farenheit => (farenheit - 32) * 5 / 9);
+            functions.Add("fahrenheitToCelsius", fahrenheit => (fahrenheit - 32) * 5 / 9);
             functions.Add("p1_plus_p2_plus_p3", (p1, p2, p3) => p1 + p2 + p3);
         }).Build();
 
