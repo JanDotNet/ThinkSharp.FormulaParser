@@ -9,15 +9,15 @@
 
 **ThinkSharp.FormulaParser** is a simple library with fluent API for parsing and evaluating mathematical formulas.
 
-Mathematical functions can be parsed to a parsing tree (hereinafter called "parsing") or directly evaluated to a numeric value (hereinafter called "evaluating").
+Mathematical formulas can be parsed to a parsing tree (hereinafter called "parsing") or directly evaluated to a numeric value (hereinafter called "evaluating").
 
 The following features are supported
-* Basic Mathematical Operations: +, -, /, *, ^, ( .. ), scientific notation (3e2 = 300)
+* Basic mathematical operations: +, -, /, *, ^, ( .. ), scientific notation (3e2 = 300)
 * Variables: Detect variables on parsing or use a dictionary to provide variables for evaluation.
 * Constants: Use build-in constants (pi, e) or define your own. Constants are available independent of the provided variables.
 * Functions: Use build-in functions (sqrt, sum, rnd, abs, log, ln, sin, cos, tan, min, max) or define your own.
 * Error Handling: The parser provides an expressive error message in case of invalid formulas.
-* Customizable: The parser may be configured to disable features and add custom functions / constants.
+* Customization: The parser may be configured to disable features and add custom functions / constants.
 
 ## Installation
 
@@ -48,7 +48,6 @@ ThinkSharp.FormulaParser can be installed via [Nuget](https://www.nuget.org/pack
 
 #### Creating and evaluating a parsing tree
 
-    // The simples way to create a formula parser is the static method 'Create'. 
     var parser = FormulaParser.Create();
     var variables = new Dictionary<string, double> { ["x"] = 2.0 };
 
@@ -92,7 +91,7 @@ ThinkSharp.FormulaParser can be installed via [Nuget](https://www.nuget.org/pack
 
             // define functions with specified number of parameters (1-5 parameters are supported)
             functions.Add("celsiusToFarenheit", celsius => celsius * 1.8 + 32);
-            functions.Add("fahrenheitToCelsius", farenheit => (farenheit - 32) * 5 / 9);
+            functions.Add("fahrenheitToCelsius", fahrenheit => (fahrenheit - 32) * 5 / 9);
             functions.Add("p1_plus_p2_plus_p3", (p1, p2, p3) => p1 + p2 + p3);
         }).Build();
 
