@@ -1,0 +1,848 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkSharp.FormulaParser</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkSharp.FormulaParsing.FormulaParser">
+            <summary>
+            The <see cref="T:ThinkSharp.FormulaParsing.FormulaParser"/> class provides static methods for creating <see cref="T:ThinkSharp.FormulaParsing.IFormulaParser"/> instances.
+            Use the method <see cref="M:ThinkSharp.FormulaParsing.FormulaParser.Create"/> to create a <see cref="T:ThinkSharp.FormulaParsing.IFormulaParser"/> with default configuration.
+            Use the method <see cref="M:ThinkSharp.FormulaParsing.FormulaParser.CreateBuilder"/> to create a <see cref="T:ThinkSharp.FormulaParsing.IFormulaParserBuilder"/> that allows to configure the <see cref="T:ThinkSharp.FormulaParsing.IFormulaParser"/> instance.
+            </summary>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.FormulaParser.Create">
+            <summary>
+            Creates a new <see cref="T:ThinkSharp.FormulaParsing.IFormulaParser"/> with its default configuration.
+            </summary>
+            <returns>
+            A new <see cref="T:ThinkSharp.FormulaParsing.IFormulaParser"/> with its default configuration.
+            </returns>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.FormulaParser.CreateBuilder">
+            <summary>
+            Creates a <see cref="T:ThinkSharp.FormulaParsing.IFormulaParserBuilder"/> that allows to configure the <see cref="T:ThinkSharp.FormulaParsing.IFormulaParser"/>.
+            </summary>
+            <returns>
+            a <see cref="T:ThinkSharp.FormulaParsing.IFormulaParserBuilder"/>.
+            </returns>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IConfigureConstants.Add(System.String,System.Double)">
+            <summary>
+            Adds a constant.
+            </summary>
+            <param name="name">
+            The name of the constant to add.
+            </param>
+            <param name="value">
+            The value of the constant.
+            </param>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IConfigureConstants.RemoveAll">
+            <summary>
+            Removes all configured functions.
+            </summary>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IConfigureConstants.Remove(System.String)">
+            <summary>
+            Removed the function with the specified name.
+            </summary>
+            <param name="name">
+            The name of the function to remove.
+            </param>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IConfigureFunctions.Add(System.String,System.Func{System.Double})">
+            <summary>
+            Adds a function with zero paramteter.
+            </summary>
+            <param name="name">
+            The name of the function.
+            </param>
+            <param name="function">
+            The function.
+            </param>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IConfigureFunctions.Add(System.String,System.Func{System.Double,System.Double})">
+            <summary>
+            Adds a function with one paramteter.
+            </summary>
+            <param name="name">
+            The name of the function.
+            </param>
+            <param name="function">
+            The function.
+            </param>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IConfigureFunctions.Add(System.String,System.Func{System.Double,System.Double,System.Double})">
+            <summary>
+            Adds a function with two paramteters.
+            </summary>
+            <param name="name">
+            The name of the function.
+            </param>
+            <param name="function">
+            The function.
+            </param>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IConfigureFunctions.Add(System.String,System.Func{System.Double,System.Double,System.Double,System.Double})">
+            <summary>
+            Adds a function with three paramteters.
+            </summary>
+            <param name="name">
+            The name of the function.
+            </param>
+            <param name="function">
+            The function.
+            </param>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IConfigureFunctions.Add(System.String,System.Func{System.Double,System.Double,System.Double,System.Double,System.Double})">
+            <summary>
+            Adds a function with four paramteters.
+            </summary>
+            <param name="name">
+            The name of the function.
+            </param>
+            <param name="function">
+            The function.
+            </param>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IConfigureFunctions.Add(System.String,System.Func{System.Double,System.Double,System.Double,System.Double,System.Double,System.Double})">
+            <summary>
+            Adds a function with five paramteters.
+            </summary>
+            <param name="name">
+            The name of the function.
+            </param>
+            <param name="function">
+            The function.
+            </param>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IConfigureFunctions.Add(System.String,System.Func{System.Double[],System.Double})">
+            <summary>
+            Adds a function with 2 to n paramteters.
+            </summary>
+            <param name="name">
+            The name of the function.
+            </param>
+            <param name="function">
+            The function.
+            </param>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IConfigureFunctions.RemoveAll">
+            <summary>
+            Removes all configured functions.
+            </summary>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IConfigureFunctions.Remove(System.String)">
+            <summary>
+            Removed the function with the specified name.
+            </summary>
+            <param name="name">
+            The name of the function to remove.
+            </param>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IConfigureSupportedFeatures.DisableScientificNotation">
+            <summary>
+            Prevents the usage of scientific notation (e.g. 2e3 = 4000)
+            </summary>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IConfigureSupportedFeatures.DisableBracket">
+            <summary>
+            Prevents the usage of brackets.
+            </summary>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IConfigureSupportedFeatures.DisablePow">
+            <summary>
+            Prevents the usage of pow (e.g. 3^2 = 9)
+            </summary>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IConfigureSupportedFeatures.DisableVariables">
+            <summary>
+            Ptevents the usage of variables.
+            </summary>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IConfigureSupportedFeatures.DisableFunctions">
+            <summary>
+            Prevents the usage of functions.
+            </summary>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IConfigureValidationBehavior.DisableVariableNameValidation">
+            <summary>
+            Diables the validation of variable names when creating a parsing tree.
+            </summary>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IConfigureValidationBehavior.DisableFunctionNameValidation">
+            <summary>
+            Diables the validation of functions names when creating a parsing tree.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:ThinkSharp.FormulaParsing.IFormulaParser.Evaluate(System.String)" -->
+        <!-- Badly formed XML comment ignored for member "M:ThinkSharp.FormulaParsing.IFormulaParser.Evaluate(System.String,System.Collections.Generic.IDictionary{System.String,System.Double})" -->
+        <!-- Badly formed XML comment ignored for member "M:ThinkSharp.FormulaParsing.IFormulaParser.Evaluate(ThinkSharp.FormulaParsing.Ast.Nodes.Node)" -->
+        <!-- Badly formed XML comment ignored for member "M:ThinkSharp.FormulaParsing.IFormulaParser.Evaluate(ThinkSharp.FormulaParsing.Ast.Nodes.Node,System.Collections.Generic.IDictionary{System.String,System.Double})" -->
+        <!-- Badly formed XML comment ignored for member "M:ThinkSharp.FormulaParsing.IFormulaParser.Parse(System.String)" -->
+        <!-- Badly formed XML comment ignored for member "M:ThinkSharp.FormulaParsing.IFormulaParser.Parse(System.String,System.Collections.Generic.IDictionary{System.String,System.Double})" -->
+        <!-- Badly formed XML comment ignored for member "M:ThinkSharp.FormulaParsing.IFormulaParser.RunVisitor``1(System.String,ThinkSharp.FormulaParsing.Ast.Visitors.INodeVisitor{``0})" -->
+        <!-- Badly formed XML comment ignored for member "M:ThinkSharp.FormulaParsing.IFormulaParser.RunVisitor``1(System.String,ThinkSharp.FormulaParsing.Ast.Visitors.INodeVisitor{``0},System.Collections.Generic.IDictionary{System.String,System.Double})" -->
+        <!-- Badly formed XML comment ignored for member "M:ThinkSharp.FormulaParsing.IFormulaParser.RunVisitor``1(ThinkSharp.FormulaParsing.Ast.Nodes.Node,ThinkSharp.FormulaParsing.Ast.Visitors.INodeVisitor{``0})" -->
+        <member name="M:ThinkSharp.FormulaParsing.IFormulaParserBuilder.ConfigureFunctions(System.Action{ThinkSharp.FormulaParsing.IConfigureFunctions})">
+            <summary>
+            Allows to configure functions of the <see cref="T:ThinkSharp.FormulaParsing.IFormulaParser"/>.
+            </summary>
+            <param name="functions">
+            The <see cref="T:ThinkSharp.FormulaParsing.IConfigureFunctions"/> object that provides methods for configuring functions of the formula parser.
+            </param>
+            <returns>
+            The <see cref="T:ThinkSharp.FormulaParsing.FormulaParserBuilder"/>.
+            </returns>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IFormulaParserBuilder.ConfigureConstats(System.Action{ThinkSharp.FormulaParsing.IConfigureConstants})">
+            <summary>
+            Allows to configure constants of the <see cref="T:ThinkSharp.FormulaParsing.IFormulaParser"/>.
+            </summary>
+            <param name="constants">
+            The <see cref="T:ThinkSharp.FormulaParsing.IConfigureConstants"/> object that provides methods for configuring constants of the formula parser.
+            </param>
+            <returns>
+            The <see cref="T:ThinkSharp.FormulaParsing.FormulaParserBuilder"/>.
+            </returns>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IFormulaParserBuilder.ConfigureSupportedFeatures(System.Action{ThinkSharp.FormulaParsing.IConfigureSupportedFeatures})">
+            <summary>
+            Allows to disable features of the <see cref="T:ThinkSharp.FormulaParsing.IFormulaParser"/>.
+            </summary>
+            <param name="constants">
+            The <see cref="T:ThinkSharp.FormulaParsing.IConfigureSupportedFeatures"/> object that provides methods for disabling features of the formula parser.
+            </param>
+            <returns>
+            The <see cref="T:ThinkSharp.FormulaParsing.IFormulaParserBuilder"/>.
+            </returns>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IFormulaParserBuilder.ConfigureValidationBehavior(System.Action{ThinkSharp.FormulaParsing.IConfigureValidationBehavior})">
+            <summary>
+            Allows to configure the validation behavior of the <see cref="T:ThinkSharp.FormulaParsing.IFormulaParser"/>.
+            </summary>
+            <remarks>
+            The default behavior is, that names of configured functions / provided variables are required. If the formula contains unknown
+            functions / variables, the parsing process fails with an appropriated error message.
+            This method allows to disable validation for variables / functions which may be useful for creating a parsing tree. 
+            </remarks>
+            <param name="parsingBehavior">
+            The <see cref="T:ThinkSharp.FormulaParsing.IConfigureValidationBehavior"/> object that provides methods for disabling features of the formula parser.
+            </param>
+            <returns>
+            The <see cref="T:ThinkSharp.FormulaParsing.IFormulaParserBuilder"/>.
+            </returns>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IFormulaParserBuilder.Build">
+            <summary>
+            Build the configured <see cref="T:ThinkSharp.FormulaParsing.IFormulaParser"/>.
+            </summary>
+            <returns>
+            The configured <see cref="T:ThinkSharp.FormulaParsing.IFormulaParser"/>.
+            </returns>
+        </member>
+        <member name="T:FormulaGrammerBaseListener">
+            <summary>
+            This class provides an empty implementation of <see cref="T:IFormulaGrammerListener"/>,
+            which can be extended to create a listener which only needs to handle a subset
+            of the available methods.
+            </summary>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.EnterFormula(FormulaGrammerParser.FormulaContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:FormulaGrammerParser.formula"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.ExitFormula(FormulaGrammerParser.FormulaContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:FormulaGrammerParser.formula"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.EnterExpression(FormulaGrammerParser.ExpressionContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:FormulaGrammerParser.expression"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.ExitExpression(FormulaGrammerParser.ExpressionContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:FormulaGrammerParser.expression"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.EnterMultiplyingExpression(FormulaGrammerParser.MultiplyingExpressionContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:FormulaGrammerParser.multiplyingExpression"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.ExitMultiplyingExpression(FormulaGrammerParser.MultiplyingExpressionContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:FormulaGrammerParser.multiplyingExpression"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.EnterPowExpression(FormulaGrammerParser.PowExpressionContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:FormulaGrammerParser.powExpression"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.ExitPowExpression(FormulaGrammerParser.PowExpressionContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:FormulaGrammerParser.powExpression"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.EnterPlusAtom(FormulaGrammerParser.PlusAtomContext)">
+            <summary>
+            Enter a parse tree produced by the <c>PlusAtom</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.ExitPlusAtom(FormulaGrammerParser.PlusAtomContext)">
+            <summary>
+            Exit a parse tree produced by the <c>PlusAtom</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.EnterNegativeAtom(FormulaGrammerParser.NegativeAtomContext)">
+            <summary>
+            Enter a parse tree produced by the <c>NegativeAtom</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.ExitNegativeAtom(FormulaGrammerParser.NegativeAtomContext)">
+            <summary>
+            Exit a parse tree produced by the <c>NegativeAtom</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.EnterFunction(FormulaGrammerParser.FunctionContext)">
+            <summary>
+            Enter a parse tree produced by the <c>Function</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.ExitFunction(FormulaGrammerParser.FunctionContext)">
+            <summary>
+            Exit a parse tree produced by the <c>Function</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.EnterUnsignedAtom(FormulaGrammerParser.UnsignedAtomContext)">
+            <summary>
+            Enter a parse tree produced by the <c>UnsignedAtom</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.ExitUnsignedAtom(FormulaGrammerParser.UnsignedAtomContext)">
+            <summary>
+            Exit a parse tree produced by the <c>UnsignedAtom</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.EnterAtom(FormulaGrammerParser.AtomContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:FormulaGrammerParser.atom"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.ExitAtom(FormulaGrammerParser.AtomContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:FormulaGrammerParser.atom"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.EnterScientificNumber(FormulaGrammerParser.ScientificNumberContext)">
+            <summary>
+            Enter a parse tree produced by the <c>ScientificNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.scientific"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.ExitScientificNumber(FormulaGrammerParser.ScientificNumberContext)">
+            <summary>
+            Exit a parse tree produced by the <c>ScientificNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.scientific"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.EnterFunc(FormulaGrammerParser.FuncContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:FormulaGrammerParser.func"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.ExitFunc(FormulaGrammerParser.FuncContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:FormulaGrammerParser.func"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.EnterVariable(FormulaGrammerParser.VariableContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:FormulaGrammerParser.variable"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.ExitVariable(FormulaGrammerParser.VariableContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:FormulaGrammerParser.variable"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.EnterEveryRule(Antlr4.Runtime.ParserRuleContext)">
+            <inheritdoc/>
+            <remarks>The default implementation does nothing.</remarks>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.ExitEveryRule(Antlr4.Runtime.ParserRuleContext)">
+            <inheritdoc/>
+            <remarks>The default implementation does nothing.</remarks>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.VisitTerminal(Antlr4.Runtime.Tree.ITerminalNode)">
+            <inheritdoc/>
+            <remarks>The default implementation does nothing.</remarks>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.VisitErrorNode(Antlr4.Runtime.Tree.IErrorNode)">
+            <inheritdoc/>
+            <remarks>The default implementation does nothing.</remarks>
+        </member>
+        <member name="T:FormulaGrammerBaseVisitor`1">
+            <summary>
+            This class provides an empty implementation of <see cref="T:IFormulaGrammerVisitor`1"/>,
+            which can be extended to create a visitor which only needs to handle a subset
+            of the available methods.
+            </summary>
+            <typeparam name="Result">The return type of the visit operation.</typeparam>
+        </member>
+        <member name="M:FormulaGrammerBaseVisitor`1.VisitFormula(FormulaGrammerParser.FormulaContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:FormulaGrammerParser.formula"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:FormulaGrammerBaseVisitor`1.VisitExpression(FormulaGrammerParser.ExpressionContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:FormulaGrammerParser.expression"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:FormulaGrammerBaseVisitor`1.VisitMultiplyingExpression(FormulaGrammerParser.MultiplyingExpressionContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:FormulaGrammerParser.multiplyingExpression"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:FormulaGrammerBaseVisitor`1.VisitPowExpression(FormulaGrammerParser.PowExpressionContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:FormulaGrammerParser.powExpression"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:FormulaGrammerBaseVisitor`1.VisitPlusAtom(FormulaGrammerParser.PlusAtomContext)">
+            <summary>
+            Visit a parse tree produced by the <c>PlusAtom</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:FormulaGrammerBaseVisitor`1.VisitNegativeAtom(FormulaGrammerParser.NegativeAtomContext)">
+            <summary>
+            Visit a parse tree produced by the <c>NegativeAtom</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:FormulaGrammerBaseVisitor`1.VisitFunction(FormulaGrammerParser.FunctionContext)">
+            <summary>
+            Visit a parse tree produced by the <c>Function</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:FormulaGrammerBaseVisitor`1.VisitUnsignedAtom(FormulaGrammerParser.UnsignedAtomContext)">
+            <summary>
+            Visit a parse tree produced by the <c>UnsignedAtom</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:FormulaGrammerBaseVisitor`1.VisitAtom(FormulaGrammerParser.AtomContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:FormulaGrammerParser.atom"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:FormulaGrammerBaseVisitor`1.VisitScientificNumber(FormulaGrammerParser.ScientificNumberContext)">
+            <summary>
+            Visit a parse tree produced by the <c>ScientificNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.scientific"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:FormulaGrammerBaseVisitor`1.VisitFunc(FormulaGrammerParser.FuncContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:FormulaGrammerParser.func"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:FormulaGrammerBaseVisitor`1.VisitVariable(FormulaGrammerParser.VariableContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:FormulaGrammerParser.variable"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="T:IFormulaGrammerListener">
+            <summary>
+            This interface defines a complete listener for a parse tree produced by
+            <see cref="T:FormulaGrammerParser"/>.
+            </summary>
+        </member>
+        <member name="M:IFormulaGrammerListener.EnterFormula(FormulaGrammerParser.FormulaContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:FormulaGrammerParser.formula"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.ExitFormula(FormulaGrammerParser.FormulaContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:FormulaGrammerParser.formula"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.EnterExpression(FormulaGrammerParser.ExpressionContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:FormulaGrammerParser.expression"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.ExitExpression(FormulaGrammerParser.ExpressionContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:FormulaGrammerParser.expression"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.EnterMultiplyingExpression(FormulaGrammerParser.MultiplyingExpressionContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:FormulaGrammerParser.multiplyingExpression"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.ExitMultiplyingExpression(FormulaGrammerParser.MultiplyingExpressionContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:FormulaGrammerParser.multiplyingExpression"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.EnterPowExpression(FormulaGrammerParser.PowExpressionContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:FormulaGrammerParser.powExpression"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.ExitPowExpression(FormulaGrammerParser.PowExpressionContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:FormulaGrammerParser.powExpression"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.EnterPlusAtom(FormulaGrammerParser.PlusAtomContext)">
+            <summary>
+            Enter a parse tree produced by the <c>PlusAtom</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.ExitPlusAtom(FormulaGrammerParser.PlusAtomContext)">
+            <summary>
+            Exit a parse tree produced by the <c>PlusAtom</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.EnterNegativeAtom(FormulaGrammerParser.NegativeAtomContext)">
+            <summary>
+            Enter a parse tree produced by the <c>NegativeAtom</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.ExitNegativeAtom(FormulaGrammerParser.NegativeAtomContext)">
+            <summary>
+            Exit a parse tree produced by the <c>NegativeAtom</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.EnterFunction(FormulaGrammerParser.FunctionContext)">
+            <summary>
+            Enter a parse tree produced by the <c>Function</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.ExitFunction(FormulaGrammerParser.FunctionContext)">
+            <summary>
+            Exit a parse tree produced by the <c>Function</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.EnterUnsignedAtom(FormulaGrammerParser.UnsignedAtomContext)">
+            <summary>
+            Enter a parse tree produced by the <c>UnsignedAtom</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.ExitUnsignedAtom(FormulaGrammerParser.UnsignedAtomContext)">
+            <summary>
+            Exit a parse tree produced by the <c>UnsignedAtom</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.EnterAtom(FormulaGrammerParser.AtomContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:FormulaGrammerParser.atom"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.ExitAtom(FormulaGrammerParser.AtomContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:FormulaGrammerParser.atom"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.EnterScientificNumber(FormulaGrammerParser.ScientificNumberContext)">
+            <summary>
+            Enter a parse tree produced by the <c>ScientificNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.scientific"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.ExitScientificNumber(FormulaGrammerParser.ScientificNumberContext)">
+            <summary>
+            Exit a parse tree produced by the <c>ScientificNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.scientific"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.EnterFunc(FormulaGrammerParser.FuncContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:FormulaGrammerParser.func"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.ExitFunc(FormulaGrammerParser.FuncContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:FormulaGrammerParser.func"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.EnterVariable(FormulaGrammerParser.VariableContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:FormulaGrammerParser.variable"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.ExitVariable(FormulaGrammerParser.VariableContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:FormulaGrammerParser.variable"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="T:IFormulaGrammerVisitor`1">
+            <summary>
+            This interface defines a complete generic visitor for a parse tree produced
+            by <see cref="T:FormulaGrammerParser"/>.
+            </summary>
+            <typeparam name="Result">The return type of the visit operation.</typeparam>
+        </member>
+        <member name="M:IFormulaGrammerVisitor`1.VisitFormula(FormulaGrammerParser.FormulaContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:FormulaGrammerParser.formula"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:IFormulaGrammerVisitor`1.VisitExpression(FormulaGrammerParser.ExpressionContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:FormulaGrammerParser.expression"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:IFormulaGrammerVisitor`1.VisitMultiplyingExpression(FormulaGrammerParser.MultiplyingExpressionContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:FormulaGrammerParser.multiplyingExpression"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:IFormulaGrammerVisitor`1.VisitPowExpression(FormulaGrammerParser.PowExpressionContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:FormulaGrammerParser.powExpression"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:IFormulaGrammerVisitor`1.VisitPlusAtom(FormulaGrammerParser.PlusAtomContext)">
+            <summary>
+            Visit a parse tree produced by the <c>PlusAtom</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:IFormulaGrammerVisitor`1.VisitNegativeAtom(FormulaGrammerParser.NegativeAtomContext)">
+            <summary>
+            Visit a parse tree produced by the <c>NegativeAtom</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:IFormulaGrammerVisitor`1.VisitFunction(FormulaGrammerParser.FunctionContext)">
+            <summary>
+            Visit a parse tree produced by the <c>Function</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:IFormulaGrammerVisitor`1.VisitUnsignedAtom(FormulaGrammerParser.UnsignedAtomContext)">
+            <summary>
+            Visit a parse tree produced by the <c>UnsignedAtom</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:IFormulaGrammerVisitor`1.VisitAtom(FormulaGrammerParser.AtomContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:FormulaGrammerParser.atom"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:IFormulaGrammerVisitor`1.VisitScientificNumber(FormulaGrammerParser.ScientificNumberContext)">
+            <summary>
+            Visit a parse tree produced by the <c>ScientificNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.scientific"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:IFormulaGrammerVisitor`1.VisitFunc(FormulaGrammerParser.FuncContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:FormulaGrammerParser.func"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:IFormulaGrammerVisitor`1.VisitVariable(FormulaGrammerParser.VariableContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:FormulaGrammerParser.variable"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+    </members>
+</doc>

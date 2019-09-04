@@ -8,6 +8,11 @@ using ThinkSharp.FormulaParsing.Ast.Visitors;
 
 namespace ThinkSharp.FormulaParsing
 {
+    /// <summary>
+    /// The <see cref="FormulaParser"/> class provides static methods for creating <see cref="IFormulaParser"/> instances.
+    /// Use the method <see cref="Create"/> to create a <see cref="IFormulaParser"/> with default configuration.
+    /// Use the method <see cref="CreateBuilder"/> to create a <see cref="IFormulaParserBuilder"/> that allows to configure the <see cref="IFormulaParser"/> instance.
+    /// </summary>
     public class FormulaParser : IFormulaParser
     {
         private readonly Configuration configuration;
@@ -20,8 +25,20 @@ namespace ThinkSharp.FormulaParsing
             this.configuration = configuration;
         }
 
+        /// <summary>
+        /// Creates a new <see cref="IFormulaParser"/> with its default configuration.
+        /// </summary>
+        /// <returns>
+        /// A new <see cref="IFormulaParser"/> with its default configuration.
+        /// </returns>
         public static IFormulaParser Create() => new FormulaParser();
 
+        /// <summary>
+        /// Creates a <see cref="IFormulaParserBuilder"/> that allows to configure the <see cref="IFormulaParser"/>.
+        /// </summary>
+        /// <returns>
+        /// a <see cref="IFormulaParserBuilder"/>.
+        /// </returns>
         public static IFormulaParserBuilder CreateBuilder() => new FormulaParserBuilder();
 
         public FormulaParserResult<double> Evaluate(string formula)

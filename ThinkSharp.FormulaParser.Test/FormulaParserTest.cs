@@ -100,7 +100,7 @@ namespace ThinkSharp.FormulaParsing.Test
         [TestMethod]
         public void Test_VariableNotExist()
         {
-            var parser = FormulaParser.CreateBuilder().ConfigureParsingBehavior(pb => pb.DisableVariableNameValidation()).Build();
+            var parser = FormulaParser.CreateBuilder().ConfigureValidationBehavior(pb => pb.DisableVariableNameValidation()).Build();
 
             var node = parser.Parse("2 * X").Value;
 

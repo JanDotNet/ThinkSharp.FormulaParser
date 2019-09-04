@@ -9,14 +9,19 @@
     <Company>ThinkSharp</Company>
     <Description>A formula parser with fluent API that allows parsing and evaluation of mathematically formulas. Features: functions, constants, variables, scientific numbers, focus on customization and flexibility.</Description>
     <Copyright>© 2019 Jan-Niklas Schäfer</Copyright>
-    <AssemblyVersion>0.1.0.0</AssemblyVersion>
-    <FileVersion>0.1.0.0</FileVersion>
+    <AssemblyVersion>0.2.0.0</AssemblyVersion>
+    <FileVersion>0.2.0.0</FileVersion>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <PackageReleaseNotes>0.1 Initial Version</PackageReleaseNotes>
+    <PackageReleaseNotes>Added comments
+Added function'sqrt'</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/JanDotNet/ThinkSharp.FormulaParser</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <PackageLicenseExpression></PackageLicenseExpression>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\Tachy\Projects\ThinkSharp\ThinkSharp.FormulaParser\ThinkSharp.FormulaParser\ThinkSharp.FormulaParser.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

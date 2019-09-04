@@ -10,7 +10,7 @@ using ThinkSharp.FormulaParsing.Ast.Visitors;
 namespace ThinkSharp.FormulaParsing.Test
 {
     [TestClass]
-    public class ConfigureParsingBehaviorTest
+    public class ConfigureValidationBehaviorTest
     {      
         [TestMethod]
         public void TestNotConfigured_InvalidVariable()
@@ -27,7 +27,7 @@ namespace ThinkSharp.FormulaParsing.Test
         {
             var parser = FormulaParser
                 .CreateBuilder()
-                .ConfigureParsingBehavior(parsingBehavior =>
+                .ConfigureValidationBehavior(parsingBehavior =>
                 {
                     parsingBehavior.DisableVariableNameValidation();
                 })
@@ -55,7 +55,7 @@ namespace ThinkSharp.FormulaParsing.Test
         {
             var parser = FormulaParser
                 .CreateBuilder()
-                .ConfigureParsingBehavior(parsingBehavior =>
+                .ConfigureValidationBehavior(parsingBehavior =>
                 {
                     parsingBehavior.DisableFunctionNameValidation();
                 })

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ThinkSharp.FormulaParsing
 {
-    internal class Configuration : IConfigureFunctions, IConfigureConstants, IConfigureSupportedFeatures, IConfigureParsingBehavior, IConfiguration, IConfigurationEvaluator
+    internal class Configuration : IConfigureFunctions, IConfigureConstants, IConfigureSupportedFeatures, IConfigureValidationBehavior, IConfiguration, IConfigurationEvaluator
     {
         private static readonly Random random = new Random();
 
@@ -273,11 +273,11 @@ namespace ThinkSharp.FormulaParsing
         void IConfigureSupportedFeatures.DisableVariables() => this.IsVariablesSupportDisabled = true;
         void IConfigureSupportedFeatures.DisableFunctions() => this.IsFunctionsSupportDisabled = true;
 
-        // IConfigureParsingBehavior
+        // IConfigureValidationBehavior
         // ////////////////////////////////////////////////////////////////////
 
-        void IConfigureParsingBehavior.DisableVariableNameValidation() => this.IsVariableNameValidationDisabled = true;
-        void IConfigureParsingBehavior.DisableFunctionNameValidation() => this.IsFunctionNameValidationDisabled = true;
+        void IConfigureValidationBehavior.DisableVariableNameValidation() => this.IsVariableNameValidationDisabled = true;
+        void IConfigureValidationBehavior.DisableFunctionNameValidation() => this.IsFunctionNameValidationDisabled = true;
 
         // Helper
         // ////////////////////////////////////////////////////////////////////

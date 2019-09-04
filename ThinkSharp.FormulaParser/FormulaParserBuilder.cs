@@ -21,7 +21,7 @@ namespace ThinkSharp.FormulaParsing
 
         public IFormulaParserBuilder ConfigureSupportedFeatures(Action<IConfigureSupportedFeatures> supportedFeatures) => Configure(supportedFeatures);
 
-        public IFormulaParserBuilder ConfigureParsingBehavior(Action<IConfigureParsingBehavior> parsingBehavior) => Configure(parsingBehavior);
+        public IFormulaParserBuilder ConfigureValidationBehavior(Action<IConfigureValidationBehavior> parsingBehavior) => Configure(parsingBehavior);
 
         private IFormulaParserBuilder Configure<TConfigure>(Action<TConfigure> action) where TConfigure : class
         {
