@@ -27,6 +27,11 @@
             a <see cref="T:ThinkSharp.FormulaParsing.IFormulaParserBuilder"/>.
             </returns>
         </member>
+        <member name="T:ThinkSharp.FormulaParsing.IConfigureConstants">
+            <summary>
+            Interface encapsulating the API for configuring constants.
+            </summary>
+        </member>
         <member name="M:ThinkSharp.FormulaParsing.IConfigureConstants.Add(System.String,System.Double)">
             <summary>
             Adds a constant.
@@ -40,20 +45,25 @@
         </member>
         <member name="M:ThinkSharp.FormulaParsing.IConfigureConstants.RemoveAll">
             <summary>
-            Removes all configured functions.
+            Removes all configured contants.
             </summary>
         </member>
         <member name="M:ThinkSharp.FormulaParsing.IConfigureConstants.Remove(System.String)">
             <summary>
-            Removed the function with the specified name.
+            Removes the constant with the specified name.
             </summary>
             <param name="name">
-            The name of the function to remove.
+            The name of the constant to remove.
             </param>
+        </member>
+        <member name="T:ThinkSharp.FormulaParsing.IConfigureFunctions">
+            <summary>
+            Interface encapsulating the API for configuring functions.
+            </summary>
         </member>
         <member name="M:ThinkSharp.FormulaParsing.IConfigureFunctions.Add(System.String,System.Func{System.Double})">
             <summary>
-            Adds a function with zero paramteter.
+            Adds a function with zero parameters.
             </summary>
             <param name="name">
             The name of the function.
@@ -75,7 +85,7 @@
         </member>
         <member name="M:ThinkSharp.FormulaParsing.IConfigureFunctions.Add(System.String,System.Func{System.Double,System.Double,System.Double})">
             <summary>
-            Adds a function with two paramteters.
+            Adds a function with two parameters.
             </summary>
             <param name="name">
             The name of the function.
@@ -86,7 +96,7 @@
         </member>
         <member name="M:ThinkSharp.FormulaParsing.IConfigureFunctions.Add(System.String,System.Func{System.Double,System.Double,System.Double,System.Double})">
             <summary>
-            Adds a function with three paramteters.
+            Adds a function with three parameters.
             </summary>
             <param name="name">
             The name of the function.
@@ -97,7 +107,7 @@
         </member>
         <member name="M:ThinkSharp.FormulaParsing.IConfigureFunctions.Add(System.String,System.Func{System.Double,System.Double,System.Double,System.Double,System.Double})">
             <summary>
-            Adds a function with four paramteters.
+            Adds a function with four parameters.
             </summary>
             <param name="name">
             The name of the function.
@@ -108,7 +118,7 @@
         </member>
         <member name="M:ThinkSharp.FormulaParsing.IConfigureFunctions.Add(System.String,System.Func{System.Double,System.Double,System.Double,System.Double,System.Double,System.Double})">
             <summary>
-            Adds a function with five paramteters.
+            Adds a function with five parameters.
             </summary>
             <param name="name">
             The name of the function.
@@ -119,7 +129,7 @@
         </member>
         <member name="M:ThinkSharp.FormulaParsing.IConfigureFunctions.Add(System.String,System.Func{System.Double[],System.Double})">
             <summary>
-            Adds a function with 2 to n paramteters.
+            Adds a function with 2 to n parameters.
             </summary>
             <param name="name">
             The name of the function.
@@ -135,15 +145,30 @@
         </member>
         <member name="M:ThinkSharp.FormulaParsing.IConfigureFunctions.Remove(System.String)">
             <summary>
-            Removed the function with the specified name.
+            Removes the function with the specified name.
             </summary>
             <param name="name">
             The name of the function to remove.
             </param>
         </member>
+        <member name="T:ThinkSharp.FormulaParsing.IConfigureSupportedFeatures">
+            <summary>
+            Interface encapsulating the API for configuring supported features.
+            </summary>
+        </member>
         <member name="M:ThinkSharp.FormulaParsing.IConfigureSupportedFeatures.DisableScientificNotation">
             <summary>
             Prevents the usage of scientific notation (e.g. 2e3 = 4000)
+            </summary>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IConfigureSupportedFeatures.DisableBinaryNumberNotation">
+            <summary>
+            Prevents the usage of binary notation (e.g. 0b101 = 5)
+            </summary>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IConfigureSupportedFeatures.DisableHexadecimalNumberNotation">
+            <summary>
+            Prevents the usage of hexadecimal notation (e.g. 0x20 = 32)
             </summary>
         </member>
         <member name="M:ThinkSharp.FormulaParsing.IConfigureSupportedFeatures.DisableBracket">
@@ -166,6 +191,11 @@
             Prevents the usage of functions.
             </summary>
         </member>
+        <member name="T:ThinkSharp.FormulaParsing.IConfigureValidationBehavior">
+            <summary>
+            Interface encapsulating the API for configuring validation behavior.
+            </summary>
+        </member>
         <member name="M:ThinkSharp.FormulaParsing.IConfigureValidationBehavior.DisableVariableNameValidation">
             <summary>
             Diables the validation of variable names when creating a parsing tree.
@@ -176,15 +206,135 @@
             Diables the validation of functions names when creating a parsing tree.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:ThinkSharp.FormulaParsing.IFormulaParser.Evaluate(System.String)" -->
-        <!-- Badly formed XML comment ignored for member "M:ThinkSharp.FormulaParsing.IFormulaParser.Evaluate(System.String,System.Collections.Generic.IDictionary{System.String,System.Double})" -->
-        <!-- Badly formed XML comment ignored for member "M:ThinkSharp.FormulaParsing.IFormulaParser.Evaluate(ThinkSharp.FormulaParsing.Ast.Nodes.Node)" -->
-        <!-- Badly formed XML comment ignored for member "M:ThinkSharp.FormulaParsing.IFormulaParser.Evaluate(ThinkSharp.FormulaParsing.Ast.Nodes.Node,System.Collections.Generic.IDictionary{System.String,System.Double})" -->
-        <!-- Badly formed XML comment ignored for member "M:ThinkSharp.FormulaParsing.IFormulaParser.Parse(System.String)" -->
-        <!-- Badly formed XML comment ignored for member "M:ThinkSharp.FormulaParsing.IFormulaParser.Parse(System.String,System.Collections.Generic.IDictionary{System.String,System.Double})" -->
-        <!-- Badly formed XML comment ignored for member "M:ThinkSharp.FormulaParsing.IFormulaParser.RunVisitor``1(System.String,ThinkSharp.FormulaParsing.Ast.Visitors.INodeVisitor{``0})" -->
-        <!-- Badly formed XML comment ignored for member "M:ThinkSharp.FormulaParsing.IFormulaParser.RunVisitor``1(System.String,ThinkSharp.FormulaParsing.Ast.Visitors.INodeVisitor{``0},System.Collections.Generic.IDictionary{System.String,System.Double})" -->
-        <!-- Badly formed XML comment ignored for member "M:ThinkSharp.FormulaParsing.IFormulaParser.RunVisitor``1(ThinkSharp.FormulaParsing.Ast.Nodes.Node,ThinkSharp.FormulaParsing.Ast.Visitors.INodeVisitor{``0})" -->
+        <member name="M:ThinkSharp.FormulaParsing.IFormulaParser.Evaluate(System.String)">
+            <summary>
+            Evaluates the provided formula to a numeric value.
+            </summary>
+            <param name="formula">
+            The formula to evaluate.
+            </param>
+            <returns>
+            The <see cref="T:ThinkSharp.FormulaParsing.FormulaParserResult`1"/> object that contains the evaluation result or an error.
+            </returns>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IFormulaParser.Evaluate(System.String,System.Collections.Generic.IDictionary{System.String,System.Double})">
+            <summary>
+            Evaluates the provided formula to a numeric value.
+            </summary>
+            <param name="formula">
+            The formula to evaluate.
+            </param>
+            <param name="variables">
+            A dictionary that provides variables to be used for evaluation.
+            </param>
+            <returns>
+            The <see cref="T:ThinkSharp.FormulaParsing.FormulaParserResult`1"/> object that contains the evaluation result or an error.
+            </returns>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IFormulaParser.Evaluate(ThinkSharp.FormulaParsing.Ast.Nodes.Node)">
+            <summary>
+            Evaluates the provided <see cref="T:ThinkSharp.FormulaParsing.Ast.Nodes.Node"/>.
+            </summary>
+            <param name="formulaNode">
+            The root node of the parsing tree to evaluate.
+            </param>
+            <returns>
+            The <see cref="T:ThinkSharp.FormulaParsing.FormulaParserResult`1"/> object that contains the evaluation result or an error.
+            </returns>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IFormulaParser.Evaluate(ThinkSharp.FormulaParsing.Ast.Nodes.Node,System.Collections.Generic.IDictionary{System.String,System.Double})">
+            <summary>
+            Evaluates the provided <see cref="T:ThinkSharp.FormulaParsing.Ast.Nodes.Node"/>.
+            </summary>
+            <param name="formulaNode">
+            The root node of the parsing tree to evaluate.
+            </param>
+            <param name="variables">
+            A dictionary that provides variables to be used for evaluation.
+            </param>
+            <returns>
+            The <see cref="T:ThinkSharp.FormulaParsing.FormulaParserResult`1"/> object that contains the evaluation result or an error.
+            </returns>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IFormulaParser.Parse(System.String)">
+            <summary>
+            Parses the provided formula to a parsing tree.
+            </summary>
+            <param name="formula">
+            The formula to parse.
+            </param>
+            <returns>
+            The <see cref="T:ThinkSharp.FormulaParsing.FormulaParserResult`1"/> object that contains the root node of the parsing tree or an error.
+            </returns>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IFormulaParser.Parse(System.String,System.Collections.Generic.IDictionary{System.String,System.Double})">
+            <summary>
+            Parses the provided formula to a parsing tree.
+            </summary>
+            <param name="formula">
+            The formula to parse.
+            </param>
+            <param name="variables">
+            A dictionary that provides variables to be used for evaluation.
+            </param>
+            <returns>
+            The <see cref="T:ThinkSharp.FormulaParsing.FormulaParserResult`1"/> object that contains the root node of the parsing tree or an error.
+            </returns>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IFormulaParser.RunVisitor``1(System.String,ThinkSharp.FormulaParsing.Ast.Visitors.INodeVisitor{``0})">
+            <summary>
+            Parses the formula and executes the visitor to the genereted parsing tree.
+            </summary>
+            <typeparam name="TResult">
+            The type of the visitors result.
+            </typeparam>
+            <param name="formula">
+            The formula to parse.
+            </param>
+            <param name="visitor">
+            The visitor to run on the parsing tree.
+            </param>
+            <returns>
+            The <see cref="T:ThinkSharp.FormulaParsing.FormulaParserResult`1"/> object that contains the result produced by the visitor or an error.
+            </returns>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IFormulaParser.RunVisitor``1(System.String,ThinkSharp.FormulaParsing.Ast.Visitors.INodeVisitor{``0},System.Collections.Generic.IDictionary{System.String,System.Double})">
+            <summary>
+            Parses the formula and executes the visitor to the genereted parsing tree.
+            </summary>
+            <typeparam name="TResult">
+            The type of the visitors result.
+            </typeparam>
+            <param name="formula">
+            The formula to parse.
+            </param>
+            <param name="visitor">
+            The visitor to run on the parsing tree.
+            </param>
+            <param name="variables">
+            A dictionary that provides variables to be used for evaluation.
+            </param>
+            <returns>
+            The <see cref="T:ThinkSharp.FormulaParsing.FormulaParserResult`1"/> object that contains the result produced by the visitor or an error.
+            </returns>
+        </member>
+        <member name="M:ThinkSharp.FormulaParsing.IFormulaParser.RunVisitor``1(ThinkSharp.FormulaParsing.Ast.Nodes.Node,ThinkSharp.FormulaParsing.Ast.Visitors.INodeVisitor{``0})">
+            <summary>
+            Executes the visitor to the provided parsing tree.
+            </summary>
+            <typeparam name="TResult">
+            The type of the visitors result.
+            </typeparam>
+            <param name="node">
+            The root node of the parsing tree to run the visitor on.
+            </param>
+            <param name="visitor">
+            The visitor to run on the parsing tree.
+            </param>
+            <returns>
+            The <see cref="T:ThinkSharp.FormulaParsing.FormulaParserResult`1"/> object that contains the result produced by the visitor or an error.
+            </returns>
+        </member>
         <member name="M:ThinkSharp.FormulaParsing.IFormulaParserBuilder.ConfigureFunctions(System.Action{ThinkSharp.FormulaParsing.IConfigureFunctions})">
             <summary>
             Allows to configure functions of the <see cref="T:ThinkSharp.FormulaParsing.IFormulaParser"/>.
@@ -386,7 +536,7 @@
         <member name="M:FormulaGrammerBaseListener.EnterScientificNumber(FormulaGrammerParser.ScientificNumberContext)">
             <summary>
             Enter a parse tree produced by the <c>ScientificNumber</c>
-            labeled alternative in <see cref="M:FormulaGrammerParser.scientific"/>.
+            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
             <para>The default implementation does nothing.</para>
             </summary>
             <param name="context">The parse tree.</param>
@@ -394,7 +544,55 @@
         <member name="M:FormulaGrammerBaseListener.ExitScientificNumber(FormulaGrammerParser.ScientificNumberContext)">
             <summary>
             Exit a parse tree produced by the <c>ScientificNumber</c>
-            labeled alternative in <see cref="M:FormulaGrammerParser.scientific"/>.
+            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.EnterDecimalNumber(FormulaGrammerParser.DecimalNumberContext)">
+            <summary>
+            Enter a parse tree produced by the <c>DecimalNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.ExitDecimalNumber(FormulaGrammerParser.DecimalNumberContext)">
+            <summary>
+            Exit a parse tree produced by the <c>DecimalNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.EnterBinaryNumber(FormulaGrammerParser.BinaryNumberContext)">
+            <summary>
+            Enter a parse tree produced by the <c>BinaryNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.ExitBinaryNumber(FormulaGrammerParser.BinaryNumberContext)">
+            <summary>
+            Exit a parse tree produced by the <c>BinaryNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.EnterHexadecimalNumber(FormulaGrammerParser.HexadecimalNumberContext)">
+            <summary>
+            Enter a parse tree produced by the <c>HexadecimalNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.ExitHexadecimalNumber(FormulaGrammerParser.HexadecimalNumberContext)">
+            <summary>
+            Exit a parse tree produced by the <c>HexadecimalNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
             <para>The default implementation does nothing.</para>
             </summary>
             <param name="context">The parse tree.</param>
@@ -557,7 +755,43 @@
         <member name="M:FormulaGrammerBaseVisitor`1.VisitScientificNumber(FormulaGrammerParser.ScientificNumberContext)">
             <summary>
             Visit a parse tree produced by the <c>ScientificNumber</c>
-            labeled alternative in <see cref="M:FormulaGrammerParser.scientific"/>.
+            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:FormulaGrammerBaseVisitor`1.VisitDecimalNumber(FormulaGrammerParser.DecimalNumberContext)">
+            <summary>
+            Visit a parse tree produced by the <c>DecimalNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:FormulaGrammerBaseVisitor`1.VisitBinaryNumber(FormulaGrammerParser.BinaryNumberContext)">
+            <summary>
+            Visit a parse tree produced by the <c>BinaryNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:FormulaGrammerBaseVisitor`1.VisitHexadecimalNumber(FormulaGrammerParser.HexadecimalNumberContext)">
+            <summary>
+            Visit a parse tree produced by the <c>HexadecimalNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
             <para>
             The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
             on <paramref name="context"/>.
@@ -713,14 +947,56 @@
         <member name="M:IFormulaGrammerListener.EnterScientificNumber(FormulaGrammerParser.ScientificNumberContext)">
             <summary>
             Enter a parse tree produced by the <c>ScientificNumber</c>
-            labeled alternative in <see cref="M:FormulaGrammerParser.scientific"/>.
+            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
             </summary>
             <param name="context">The parse tree.</param>
         </member>
         <member name="M:IFormulaGrammerListener.ExitScientificNumber(FormulaGrammerParser.ScientificNumberContext)">
             <summary>
             Exit a parse tree produced by the <c>ScientificNumber</c>
-            labeled alternative in <see cref="M:FormulaGrammerParser.scientific"/>.
+            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.EnterDecimalNumber(FormulaGrammerParser.DecimalNumberContext)">
+            <summary>
+            Enter a parse tree produced by the <c>DecimalNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.ExitDecimalNumber(FormulaGrammerParser.DecimalNumberContext)">
+            <summary>
+            Exit a parse tree produced by the <c>DecimalNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.EnterBinaryNumber(FormulaGrammerParser.BinaryNumberContext)">
+            <summary>
+            Enter a parse tree produced by the <c>BinaryNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.ExitBinaryNumber(FormulaGrammerParser.BinaryNumberContext)">
+            <summary>
+            Exit a parse tree produced by the <c>BinaryNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.EnterHexadecimalNumber(FormulaGrammerParser.HexadecimalNumberContext)">
+            <summary>
+            Enter a parse tree produced by the <c>HexadecimalNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.ExitHexadecimalNumber(FormulaGrammerParser.HexadecimalNumberContext)">
+            <summary>
+            Exit a parse tree produced by the <c>HexadecimalNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
             </summary>
             <param name="context">The parse tree.</param>
         </member>
@@ -825,7 +1101,31 @@
         <member name="M:IFormulaGrammerVisitor`1.VisitScientificNumber(FormulaGrammerParser.ScientificNumberContext)">
             <summary>
             Visit a parse tree produced by the <c>ScientificNumber</c>
-            labeled alternative in <see cref="M:FormulaGrammerParser.scientific"/>.
+            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:IFormulaGrammerVisitor`1.VisitDecimalNumber(FormulaGrammerParser.DecimalNumberContext)">
+            <summary>
+            Visit a parse tree produced by the <c>DecimalNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:IFormulaGrammerVisitor`1.VisitBinaryNumber(FormulaGrammerParser.BinaryNumberContext)">
+            <summary>
+            Visit a parse tree produced by the <c>BinaryNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:IFormulaGrammerVisitor`1.VisitHexadecimalNumber(FormulaGrammerParser.HexadecimalNumberContext)">
+            <summary>
+            Visit a parse tree produced by the <c>HexadecimalNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
             </summary>
             <param name="context">The parse tree.</param>
             <return>The visitor result.</return>

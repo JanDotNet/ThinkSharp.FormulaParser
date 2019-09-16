@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ThinkSharp.FormulaParsing
 {
+    /// <summary>
+    /// Interface encapsulating the API for configuring constants.
+    /// </summary>
     public interface IConfigureConstants
     {
         /// <summary>
@@ -20,15 +23,15 @@ namespace ThinkSharp.FormulaParsing
         void Add(string name, double value);
 
         /// <summary>
-        /// Removes all configured functions.
+        /// Removes all configured contants.
         /// </summary>
         void RemoveAll();
 
         /// <summary>
-        /// Removed the function with the specified name.
+        /// Removes the constant with the specified name.
         /// </summary>
         /// <param name="name">
-        /// The name of the function to remove.
+        /// The name of the constant to remove.
         /// </param>
         void Remove(string name);
     }

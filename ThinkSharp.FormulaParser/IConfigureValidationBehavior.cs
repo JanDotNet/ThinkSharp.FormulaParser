@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ThinkSharp.FormulaParsing
 {
+    /// <summary>
+    /// Interface encapsulating the API for configuring validation behavior.
+    /// </summary>
     public interface IConfigureValidationBehavior
     {
         /// <summary>

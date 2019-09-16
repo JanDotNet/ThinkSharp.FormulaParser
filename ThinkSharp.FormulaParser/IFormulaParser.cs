@@ -17,7 +17,7 @@ namespace ThinkSharp.FormulaParsing
         /// The formula to evaluate.
         /// </param>
         /// <returns>
-        /// The <see cref="FormulaParserResult<double>"/> object that contains the evaluation result or an error.
+        /// The <see cref="FormulaParserResult{T}"/> object that contains the evaluation result or an error.
         /// </returns>
         FormulaParserResult<double> Evaluate(string formula);
 
@@ -31,7 +31,7 @@ namespace ThinkSharp.FormulaParsing
         /// A dictionary that provides variables to be used for evaluation.
         /// </param>
         /// <returns>
-        /// The <see cref="FormulaParserResult<double>"/> object that contains the evaluation result or an error.
+        /// The <see cref="FormulaParserResult{T}"/> object that contains the evaluation result or an error.
         /// </returns>
         FormulaParserResult<double> Evaluate(string formula, IDictionary<string, double> variables);
 
@@ -42,7 +42,7 @@ namespace ThinkSharp.FormulaParsing
         /// The root node of the parsing tree to evaluate.
         /// </param>
         /// <returns>
-        /// The <see cref="FormulaParserResult<double>"/> object that contains the evaluation result or an error.
+        /// The <see cref="FormulaParserResult{T}"/> object that contains the evaluation result or an error.
         /// </returns>
         FormulaParserResult<double> Evaluate(Node formulaNode);
 
@@ -56,7 +56,7 @@ namespace ThinkSharp.FormulaParsing
         /// A dictionary that provides variables to be used for evaluation.
         /// </param>
         /// <returns>
-        /// The <see cref="FormulaParserResult<double>"/> object that contains the evaluation result or an error.
+        /// The <see cref="FormulaParserResult{T}"/> object that contains the evaluation result or an error.
         /// </returns>
         FormulaParserResult<double> Evaluate(Node formulaNode, IDictionary<string, double> variables);
 
@@ -67,7 +67,7 @@ namespace ThinkSharp.FormulaParsing
         /// The formula to parse.
         /// </param>
         /// <returns>
-        /// The <see cref="FormulaParserResult<Node>"/> object that contains the root node of the parsing tree or an error.
+        /// The <see cref="FormulaParserResult{T}"/> object that contains the root node of the parsing tree or an error.
         /// </returns>
         FormulaParserResult<Node> Parse(string formula);
 
@@ -81,7 +81,7 @@ namespace ThinkSharp.FormulaParsing
         /// A dictionary that provides variables to be used for evaluation.
         /// </param>
         /// <returns>
-        /// The <see cref="FormulaParserResult<Node>"/> object that contains the root node of the parsing tree or an error.
+        /// The <see cref="FormulaParserResult{T}"/> object that contains the root node of the parsing tree or an error.
         /// </returns>
         FormulaParserResult<Node> Parse(string formula, IDictionary<string, double> variables);
 
@@ -98,7 +98,7 @@ namespace ThinkSharp.FormulaParsing
         /// The visitor to run on the parsing tree.
         /// </param>
         /// <returns>
-        /// The <see cref="FormulaParserResult<TResult>"/> object that contains the result produced by the visitor or an error.
+        /// The <see cref="FormulaParserResult{T}"/> object that contains the result produced by the visitor or an error.
         /// </returns>
         FormulaParserResult<TResult> RunVisitor<TResult>(string formula, INodeVisitor<TResult> visitor);
 
@@ -118,7 +118,7 @@ namespace ThinkSharp.FormulaParsing
         /// A dictionary that provides variables to be used for evaluation.
         /// </param>
         /// <returns>
-        /// The <see cref="FormulaParserResult<TResult>"/> object that contains the result produced by the visitor or an error.
+        /// The <see cref="FormulaParserResult{T}"/> object that contains the result produced by the visitor or an error.
         /// </returns>
         FormulaParserResult<TResult> RunVisitor<TResult>(string formula, INodeVisitor<TResult> visitor, IDictionary<string, double> variables);
 
@@ -135,7 +135,7 @@ namespace ThinkSharp.FormulaParsing
         /// The visitor to run on the parsing tree.
         /// </param>
         /// <returns>
-        /// The <see cref="FormulaParserResult<TResult>"/> object that contains the result produced by the visitor or an error.
+        /// The <see cref="FormulaParserResult{T}"/> object that contains the result produced by the visitor or an error.
         /// </returns>
         FormulaParserResult<TResult> RunVisitor<TResult>(Node node, INodeVisitor<TResult> visitor);
     }
