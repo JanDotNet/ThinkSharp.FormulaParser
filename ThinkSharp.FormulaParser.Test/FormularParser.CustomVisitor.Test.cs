@@ -60,7 +60,7 @@ namespace ThinkSharp.FormulaParsing.Test
             {
                 if (node.Name == "x")
                 {
-                    return new NumberNode(2);
+                    return new NumberNode("2", 2);
                 }
 
                 throw new InvalidOperationException("Unknown Variable.");
@@ -71,7 +71,7 @@ namespace ThinkSharp.FormulaParsing.Test
                 return new FormulaNode(node.ChildNode.Visit(this), node.FormulaText);
             }
 
-            public override  Node Visit(NumberNode node) => new NumberNode(node.Value);
+            public override  Node Visit(NumberNode node) => node;
         }
     }
 }

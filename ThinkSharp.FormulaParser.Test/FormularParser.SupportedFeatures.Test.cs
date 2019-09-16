@@ -91,5 +91,35 @@ namespace ThinkSharp.FormulaParsing.Test
             Assert.IsFalse(result.Success);
             Assert.AreEqual("column 4: Invalid token '('.", (string)result.Error);
         }
+
+        [TestMethod]
+        public void TestDisableBinaryNumberNotation()
+        {
+            var parser = FormulaParser
+                .CreateBuilder()
+                .ConfigureSupportedFeatures(supportedFeatures =>
+                {
+                    supportedFeatures.DisableBinaryNumberNotation();
+                })
+                .Build();
+            var result = parser.Evaluate("0b101");
+            Assert.IsFalse(result.Success);
+            Assert.AreEqual("column 0: Invalid token '0b101'.", (string)result.Error);
+        }
+
+        [TestMethod]
+        public void TestDisableHexadecimalNumberNotation()
+        {
+            var parser = FormulaParser
+                .CreateBuilder()
+                .ConfigureSupportedFeatures(supportedFeatures =>
+                {
+                    supportedFeatures.DisableHexadecimalNumberNotation();
+                })
+                .Build();
+            var result = parser.Evaluate("0xABC");
+            Assert.IsFalse(result.Success);
+            Assert.AreEqual("column 0: Invalid token '0xABC'.", (string)result.Error);
+        }
     }
 }

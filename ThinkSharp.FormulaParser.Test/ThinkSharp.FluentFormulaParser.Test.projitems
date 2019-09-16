@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)BinaryOperatorTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FormulaParserTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FormularParser.NumberFormats.Test.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FormularParser.CustomVisitor.Test.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FormularParser.Configuration.Test.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FormularParser.ParsingBehavior.Test.cs" />
