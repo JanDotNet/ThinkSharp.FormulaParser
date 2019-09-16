@@ -9,14 +9,14 @@
     <Company>ThinkSharp</Company>
     <Description>A formula parser with fluent API that allows parsing and evaluation of mathematically formulas. Features: functions, constants, variables, scientific numbers, focus on customization and flexibility.</Description>
     <Copyright>© 2019 Jan-Niklas Schäfer</Copyright>
-    <AssemblyVersion>0.2.0.0</AssemblyVersion>
-    <FileVersion>0.2.0.0</FileVersion>
+    <AssemblyVersion>0.3.0.0</AssemblyVersion>
+    <FileVersion>0.3.0.0</FileVersion>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <PackageReleaseNotes>Added comments
-Added function'sqrt'</PackageReleaseNotes>
+    <PackageReleaseNotes>added support for binary (0x1001101) / hexadecimal (0x134A) number representations
+added helper methods for handling parsing result</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/JanDotNet/ThinkSharp.FormulaParser</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>0.2.0</Version>
+    <Version>0.3.0</Version>
     <PackageLicenseExpression></PackageLicenseExpression>
   </PropertyGroup>
 
