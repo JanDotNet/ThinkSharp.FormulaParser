@@ -45,5 +45,38 @@ namespace ThinkSharp.FormulaParsing
                                                     Environment.NewLine + this.Error);
             }
         }
+
+        public bool Handle(Action<TResult> onSuccess, Action<Error> onError)
+        {
+            if (onSuccess == null) throw new ArgumentNullException(nameof(onSuccess));
+            if (onError == null) throw new ArgumentNullException(nameof(onError));
+
+            if (this.Success)
+            {
+                onSuccess(this.Value);
+                return true;
+            }
+            else
+            {
+                onError(this.Error);
+                return false;
+            }
+        }
+
+        public bool Handle(Func<TResult, bool> onSuccess, Action<Error> onError)
+        {
+            if (onSuccess == null) throw new ArgumentNullException(nameof(onSuccess));
+            if (onError == null) throw new ArgumentNullException(nameof(onError));
+
+            if (this.Success)
+            {
+                return onSuccess(this.Value);
+            }
+            else
+            {
+                onError(this.Error);
+                return false;
+            }
+        }
     }
 }
