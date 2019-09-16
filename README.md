@@ -29,80 +29,88 @@ ThinkSharp.FormulaParser can be installed via [Nuget](https://www.nuget.org/pack
 
 ### Evaluating formulas
 
-    // The simples way to create a formula parser is the static method 'Create'. 
-    var parser = FormulaParser.Create();
+```csharp
+// The simples way to create a formula parser is the static method 'Create'. 
+var parser = FormulaParser.Create();
     
-    // Parsing a simple mathematical formula
-    var result1 = parser.Evaluate("1+1").Value; // result1 = 2.0
+// Parsing a simple mathematical formula
+var result1 = parser.Evaluate("1+1").Value; // result1 = 2.0
     
-    // Usage of variables
-    var variables = new Dictionary<string, double> { ["x"] = 2.0 };
-    var result2 = parser.Evaluate("1+x", variables).Value; // result2 = 3.0
+// Usage of variables
+var variables = new Dictionary<string, double> { ["x"] = 2.0 };
+var result2 = parser.Evaluate("1+x", variables).Value; // result2 = 3.0
     
-    // Usage of functions
-    var result3 = parser.Evaluate("1+min(3,4)").Value; // result2 = 4.0
+// Usage of functions
+var result3 = parser.Evaluate("1+min(3,4)").Value; // result2 = 4.0
     
-    // Handle errors
-    var parsingResult = parser.Evaluate("2*?");
-    if (!parsingResult.Success) Console.WriteLine(parsingResult.Error); // "column 2: token recognition error at: '?'"
+// Handle errors
+var parsingResult = parser.Evaluate("2*?");
+if (!parsingResult.Success)
+{
+    Console.WriteLine(parsingResult.Error); // "column 2: token recognition error at: '?'"
+}
+```
 
 #### Creating and evaluating a parsing tree
 
-    var parser = FormulaParser.Create();
-    var variables = new Dictionary<string, double> { ["x"] = 2.0 };
+```csharp
+var parser = FormulaParser.Create();
+var variables = new Dictionary<string, double> { ["x"] = 2.0 };
 
-    // Parsing a simple mathematical formula
-    var node1 = parser.Parse("1+x", variables).Value;
-    // |FormulaNode("1+x")
-    // |- Child: BinaryOperatorNode(+)
-    //           |- LeftNode:  NumericNode(1.0)
-    //           |- RightNode: VariableNode("x")
-    var result1 = parser.Evaluate(node1, variables).Value; // result = 3.0
+// Parsing a simple mathematical formula
+var node1 = parser.Parse("1+x", variables).Value;
+// |FormulaNode("1+x")
+// |- Child: BinaryOperatorNode(+)
+//           |- LeftNode:  NumericNode(1.0)
+//           |- RightNode: VariableNode("x")
+var result1 = parser.Evaluate(node1, variables).Value; // result = 3.0
 
 
-    var node2 = parser.Parse("pi * sqrt(3*x)", variables).Value;
-    // |FormulaNode("pi * sqrt(3*x)")
-    // |- Child: BinaryOperatorNode(*)
-    //           |- LeftNode:  ConstantNode("pi")
-    //           |- RightNode: FunctionNode("sqrt")
-    //                         |- Parameters: [BinaryOperationNode(*)]
-    //                                         |- LeftNode:  Numeric(3.0)
-    //                                         |- RightNode: VariableNode("x")                       
-    var result2 = parser.Evaluate(node2, variables).Value; // result = 7.695...
-    
+var node2 = parser.Parse("pi * sqrt(3*x)", variables).Value;
+// |FormulaNode("pi * sqrt(3*x)")
+// |- Child: BinaryOperatorNode(*)
+//           |- LeftNode:  ConstantNode("pi")
+//           |- RightNode: FunctionNode("sqrt")
+//                         |- Parameters: [BinaryOperationNode(*)]
+//                                         |- LeftNode:  Numeric(3.0)
+//                                         |- RightNode: VariableNode("x")                       
+var result2 = parser.Evaluate(node2, variables).Value; // result = 7.695...
+```
+
 #### Configure custom functions / constants
 
-    var parser = FormulaParser
-        .CreateBuilder()
-        .ConfigureConstats(constants =>
-        {
-            // constants.RemoveAll()    for removing all default constants
-            // constants.Remove("pi")   for removing constants by name
+```csharp
+var parser = FormulaParser
+    .CreateBuilder()
+    .ConfigureConstats(constants =>
+    {
+        // constants.RemoveAll()    for removing all default constants
+        // constants.Remove("pi")   for removing constants by name
             
-            constants.Add("h", 6.62607015e-34);
-        })
-        .ConfigureFunctions(functions =>
-        {
-            // functions.RemoveAll()    for removing all default functions
-            // functions.Remove("sum")  for removing function by name
+        constants.Add("h", 6.62607015e-34);
+    })
+    .ConfigureFunctions(functions =>
+    {
+        // functions.RemoveAll()    for removing all default functions
+        // functions.Remove("sum")  for removing function by name
+        // define function with 2 to n number of parameters (typeof(nums) = double[])
+        functions.Add("product", nums => nums.Aggregate((p1, p2) => p1 * p2));
 
-            // define function with 2 to n number of parameters (typeof(nums) = double[])
-            functions.Add("product", nums => nums.Aggregate((p1, p2) => p1 * p2));
+        // define functions with specified number of parameters (1-5 parameters are supported)
+        functions.Add("celsiusToFarenheit", celsius => celsius * 1.8 + 32);
+        functions.Add("fahrenheitToCelsius", fahrenheit => (fahrenheit - 32) * 5 / 9);
+        functions.Add("p1_plus_p2_plus_p3", (p1, p2, p3) => p1 + p2 + p3);
+    }).Build();
 
-            // define functions with specified number of parameters (1-5 parameters are supported)
-            functions.Add("celsiusToFarenheit", celsius => celsius * 1.8 + 32);
-            functions.Add("fahrenheitToCelsius", fahrenheit => (fahrenheit - 32) * 5 / 9);
-            functions.Add("p1_plus_p2_plus_p3", (p1, p2, p3) => p1 + p2 + p3);
-        }).Build();
+var poolTemperatureInCelsius = parser.Evaluate("celsiusToFarenheit(fahrenheitToCelsius(30))").Value; // poolTemperatureInCelsius = 30
+var result2 = parser.Evaluate("product(2, 2, 2, 2, 2, 2, 2)").Value;    // result2 = 2^6 = 128
+var result3 = parser.Evaluate("p1_plus_p2_plus_p3(1, 2, 3)").Value;     // result3 = 6
 
-    var poolTemperatureInCelsius = parser.Evaluate("celsiusToFarenheit(fahrenheitToCelsius(30))").Value; // poolTemperatureInCelsius = 30
-    var result2 = parser.Evaluate("product(2, 2, 2, 2, 2, 2, 2)").Value;    // result2 = 2^6 = 128
-    var result3 = parser.Evaluate("p1_plus_p2_plus_p3(1, 2, 3)").Value;     // result3 = 6
-
-    string error1 = parser.Evaluate("celsiusToFarenheit(1, 2)").Error;      // column 0: There is no function 'celsiusToFarenheit' that takes 2 argument(s).
+string error1 = parser.Evaluate("celsiusToFarenheit(1, 2)").Error;      // column 0: There is no function 'celsiusToFarenheit' that takes 2 argument(s).
     string error2 = parser.Evaluate("product()").Error;                     // column 0: There is no function 'product' that takes 0 argument(s).
-    string error3 = parser.Evaluate("p1_plus_p2_plus_p3(1, 2)").Error;      // column 0: There is no function 'p1_plus_p2_plus_p3' that takes 2 argument(s).
-          
+string error3 = parser.Evaluate("p1_plus_p2_plus_p3(1, 2)").Error;      // column 0: There is no function 'p1_plus_p2_plus_p3' that takes 2 argument(s).
+```
+
 ## License
 
 ThinkSharp.FormulaParser is released under [The MIT license (MIT)](LICENSE.TXT)
