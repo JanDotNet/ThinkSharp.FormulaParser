@@ -1,11 +1,24 @@
 ﻿namespace ThinkSharp.FormulaParsing
 {
+    /// <summary>
+    /// Interface encapsulating the API for configuring supported features.
+    /// </summary>
     public interface IConfigureSupportedFeatures
     {
         /// <summary>
         /// Prevents the usage of scientific notation (e.g. 2e3 = 4000)
         /// </summary>
         void DisableScientificNotation();
+
+        /// <summary>
+        /// Prevents the usage of binary notation (e.g. 0b101 = 5)
+        /// </summary>
+        void DisableBinaryNumberNotation();
+
+        /// <summary>
+        /// Prevents the usage of hexadecimal notation (e.g. 0x20 = 32)
+        /// </summary>
+        void DisableHexadecimalNumberNotation();
 
         /// <summary>
         /// Prevents the usage of brackets.

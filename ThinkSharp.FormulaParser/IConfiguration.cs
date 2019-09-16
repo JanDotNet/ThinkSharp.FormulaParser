@@ -10,6 +10,10 @@ namespace ThinkSharp.FormulaParsing
     {
         bool IsScientificNotationSupportDisabled { get; }
 
+        bool IsBinaryNumberNotationSupportDisabled { get; }
+
+        bool IsHexadecimalNumberNotationSupportDisabled { get; }
+
         bool IsBracketSupportDisabled { get; }
 
         bool IsPowSupportDisabled { get; }

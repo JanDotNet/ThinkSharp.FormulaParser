@@ -31,6 +31,10 @@ namespace ThinkSharp.FormulaParsing
 
         public bool IsFunctionNameValidationDisabled => this.configuration.IsFunctionNameValidationDisabled;
 
+        public bool IsBinaryNumberNotationSupportDisabled => this.configuration.IsBinaryNumberNotationSupportDisabled;
+
+        public bool IsHexadecimalNumberNotationSupportDisabled => this.configuration.IsHexadecimalNumberNotationSupportDisabled;
+
         public bool HasConstant(string name) => this.configuration.HasConstant(name);
 
         public bool HasFunction(string name, int argumentCount) => this.configuration.HasFunction(name, argumentCount);

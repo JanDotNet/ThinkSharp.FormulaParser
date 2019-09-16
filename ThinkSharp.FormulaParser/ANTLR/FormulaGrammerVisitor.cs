@@ -91,11 +91,32 @@ public interface IFormulaGrammerVisitor<Result> : IParseTreeVisitor<Result> {
 	Result VisitAtom([NotNull] FormulaGrammerParser.AtomContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>ScientificNumber</c>
-	/// labeled alternative in <see cref="FormulaGrammerParser.scientific"/>.
+	/// labeled alternative in <see cref="FormulaGrammerParser.number"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitScientificNumber([NotNull] FormulaGrammerParser.ScientificNumberContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>DecimalNumber</c>
+	/// labeled alternative in <see cref="FormulaGrammerParser.number"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDecimalNumber([NotNull] FormulaGrammerParser.DecimalNumberContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>BinaryNumber</c>
+	/// labeled alternative in <see cref="FormulaGrammerParser.number"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBinaryNumber([NotNull] FormulaGrammerParser.BinaryNumberContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>HexadecimalNumber</c>
+	/// labeled alternative in <see cref="FormulaGrammerParser.number"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitHexadecimalNumber([NotNull] FormulaGrammerParser.HexadecimalNumberContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="FormulaGrammerParser.func"/>.
 	/// </summary>

@@ -119,8 +119,37 @@ namespace ThinkSharp.FormulaParsing.ANTLR
                 ParsingException.ThrowInvalidTokenException(context.SCIENTIFIC_NUMBER().Symbol);
             }
 
-            var scientificNumber = context.SCIENTIFIC_NUMBER().Symbol.Text;
-            return new NumberNode(double.Parse(scientificNumber));
+            var token = context.SCIENTIFIC_NUMBER().Symbol.Text;
+            return new NumberNode(token, double.Parse(token));
+        }
+
+        public override Node VisitBinaryNumber([NotNull] FormulaGrammerParser.BinaryNumberContext context)
+        {
+            if (this.configuration.IsBinaryNumberNotationSupportDisabled)
+            {
+                ParsingException.ThrowInvalidTokenException(context.BINARY_NUMBER().Symbol);
+            }
+
+            var token = context.BINARY_NUMBER().Symbol.Text;
+            return new NumberNode(token, Convert.ToInt32(token.Substring(2), 2));
+        }
+
+        public override Node VisitDecimalNumber([NotNull] FormulaGrammerParser.DecimalNumberContext context)
+        {
+            var token = context.DECIMAL_NUMBER().Symbol.Text;
+            var hasPrefix = token.StartsWith("0D", StringComparison.InvariantCultureIgnoreCase);
+            return new NumberNode(token, double.Parse(hasPrefix ? token.Substring(2) : token));
+        }
+
+        public override Node VisitHexadecimalNumber([NotNull] FormulaGrammerParser.HexadecimalNumberContext context)
+        {
+            if (this.configuration.IsHexadecimalNumberNotationSupportDisabled)
+            {
+                ParsingException.ThrowInvalidTokenException(context.HEXADECIMAL_NUMBER().Symbol);
+            }
+
+            var token = context.HEXADECIMAL_NUMBER().Symbol.Text;
+            return new NumberNode(token, Convert.ToInt32(token.Substring(token[0] == '#' ? 1 : 2), 16));
         }
 
         public override Node VisitVariable([NotNull] FormulaGrammerParser.VariableContext context)

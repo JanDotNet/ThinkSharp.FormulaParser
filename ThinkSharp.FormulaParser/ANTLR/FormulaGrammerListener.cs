@@ -130,16 +130,52 @@ public interface IFormulaGrammerListener : IParseTreeListener {
 	void ExitAtom([NotNull] FormulaGrammerParser.AtomContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>ScientificNumber</c>
-	/// labeled alternative in <see cref="FormulaGrammerParser.scientific"/>.
+	/// labeled alternative in <see cref="FormulaGrammerParser.number"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void EnterScientificNumber([NotNull] FormulaGrammerParser.ScientificNumberContext context);
 	/// <summary>
 	/// Exit a parse tree produced by the <c>ScientificNumber</c>
-	/// labeled alternative in <see cref="FormulaGrammerParser.scientific"/>.
+	/// labeled alternative in <see cref="FormulaGrammerParser.number"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitScientificNumber([NotNull] FormulaGrammerParser.ScientificNumberContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>DecimalNumber</c>
+	/// labeled alternative in <see cref="FormulaGrammerParser.number"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDecimalNumber([NotNull] FormulaGrammerParser.DecimalNumberContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>DecimalNumber</c>
+	/// labeled alternative in <see cref="FormulaGrammerParser.number"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDecimalNumber([NotNull] FormulaGrammerParser.DecimalNumberContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>BinaryNumber</c>
+	/// labeled alternative in <see cref="FormulaGrammerParser.number"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterBinaryNumber([NotNull] FormulaGrammerParser.BinaryNumberContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>BinaryNumber</c>
+	/// labeled alternative in <see cref="FormulaGrammerParser.number"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitBinaryNumber([NotNull] FormulaGrammerParser.BinaryNumberContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>HexadecimalNumber</c>
+	/// labeled alternative in <see cref="FormulaGrammerParser.number"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterHexadecimalNumber([NotNull] FormulaGrammerParser.HexadecimalNumberContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>HexadecimalNumber</c>
+	/// labeled alternative in <see cref="FormulaGrammerParser.number"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitHexadecimalNumber([NotNull] FormulaGrammerParser.HexadecimalNumberContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="FormulaGrammerParser.func"/>.
 	/// </summary>

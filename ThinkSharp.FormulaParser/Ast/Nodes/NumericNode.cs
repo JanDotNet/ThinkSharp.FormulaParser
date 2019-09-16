@@ -9,10 +9,13 @@ namespace ThinkSharp.FormulaParsing.Ast.Nodes
 {
     public class NumberNode : Node
     {
-        public NumberNode(double value)
+        public NumberNode(string token, double value)
         {
+            this.Token = token;
             this.Value = value;
         }
+
+        public string Token { get; }
 
         public double Value { get; }
 

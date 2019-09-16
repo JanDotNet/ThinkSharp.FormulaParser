@@ -129,7 +129,7 @@ public partial class FormulaGrammerBaseVisitor<Result> : AbstractParseTreeVisito
 	public virtual Result VisitAtom([NotNull] FormulaGrammerParser.AtomContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by the <c>ScientificNumber</c>
-	/// labeled alternative in <see cref="FormulaGrammerParser.scientific"/>.
+	/// labeled alternative in <see cref="FormulaGrammerParser.number"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -138,6 +138,39 @@ public partial class FormulaGrammerBaseVisitor<Result> : AbstractParseTreeVisito
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	public virtual Result VisitScientificNumber([NotNull] FormulaGrammerParser.ScientificNumberContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>DecimalNumber</c>
+	/// labeled alternative in <see cref="FormulaGrammerParser.number"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitDecimalNumber([NotNull] FormulaGrammerParser.DecimalNumberContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>BinaryNumber</c>
+	/// labeled alternative in <see cref="FormulaGrammerParser.number"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitBinaryNumber([NotNull] FormulaGrammerParser.BinaryNumberContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>HexadecimalNumber</c>
+	/// labeled alternative in <see cref="FormulaGrammerParser.number"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitHexadecimalNumber([NotNull] FormulaGrammerParser.HexadecimalNumberContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="FormulaGrammerParser.func"/>.
 	/// <para>
