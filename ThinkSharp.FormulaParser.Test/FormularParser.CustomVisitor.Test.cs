@@ -68,7 +68,7 @@ namespace ThinkSharp.FormulaParsing.Test
 
             public override Node Visit(FormulaNode node)
             {
-                return new FormulaNode(node.ChildNode.Visit(this), node.FormulaText);
+                return new FormulaNode(node.ChildNode.Visit(this));
             }
 
             public override  Node Visit(NumberNode node) => node;

@@ -144,15 +144,6 @@ namespace ThinkSharp.FormulaParsing.Test
         }
 
         [TestMethod]
-        public void Test_FormulatText()
-        {
-            var parser = FormulaParser.Create();
-
-            var result = parser.Parse("2 * pi").Value as FormulaNode;
-            Assert.AreEqual("2 * pi", result.FormulaText);
-        }
-
-        [TestMethod]
         public void TestComplexFormulas()
         {
             AsserEval(1053542.88171, "(1+1)*5/3.4*2 +32 - 234 * 54 + ((233*4323-23/432 * 234 -34 +32) +3234)/324 * 343 - 3234 + (3-2-4-3) * 5*3*4");
