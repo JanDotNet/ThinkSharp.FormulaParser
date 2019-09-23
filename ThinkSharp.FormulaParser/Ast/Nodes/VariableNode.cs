@@ -9,7 +9,7 @@ namespace ThinkSharp.FormulaParsing.Ast.Nodes
 {
     public class VariableNode : Node
     {
-        internal VariableNode(string name)
+        public VariableNode(string name)
         {
             this.Name = name;
         }

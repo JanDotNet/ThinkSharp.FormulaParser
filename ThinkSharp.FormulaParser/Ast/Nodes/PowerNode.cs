@@ -9,7 +9,7 @@ namespace ThinkSharp.FormulaParsing.Ast.Nodes
 {
     public class PowerNode : Node
     {
-        internal PowerNode(Node baseNode, Node exponentNode)
+        public PowerNode(Node baseNode, Node exponentNode)
         {
             this.BaseNode = baseNode ?? throw new ArgumentNullException(nameof(baseNode));
             this.ExponentNode = exponentNode ?? throw new ArgumentNullException(nameof(exponentNode));

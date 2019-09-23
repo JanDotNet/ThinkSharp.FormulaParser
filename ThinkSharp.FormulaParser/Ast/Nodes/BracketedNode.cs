@@ -9,7 +9,7 @@ namespace ThinkSharp.FormulaParsing.Ast.Nodes
 {
     public class BracketedNode : Node
     {
-        internal BracketedNode(Node childNode)
+        public BracketedNode(Node childNode)
         {
             this.ChildNode = childNode ?? throw new ArgumentNullException(nameof(childNode));
         }

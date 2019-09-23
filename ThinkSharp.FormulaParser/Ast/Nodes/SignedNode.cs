@@ -11,7 +11,7 @@ namespace ThinkSharp.FormulaParsing.Ast.Nodes
 
     public class SignedNode : Node
     {
-        internal SignedNode(Sign sign, Node node)
+        public SignedNode(Sign sign, Node node)
         {
             this.Sign = sign;
             this.Node = node ?? throw new ArgumentNullException(nameof(node));

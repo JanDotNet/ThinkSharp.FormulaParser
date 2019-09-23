@@ -9,7 +9,7 @@ namespace ThinkSharp.FormulaParsing.Ast.Nodes
 {
     public class ConstantNode : Node
     {
-        internal ConstantNode(string name)
+        public ConstantNode(string name)
         {
             this.Name = name;
         }

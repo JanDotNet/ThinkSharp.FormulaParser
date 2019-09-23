@@ -9,7 +9,7 @@ namespace ThinkSharp.FormulaParsing.Ast.Nodes
 {
     public class FunctionNode : Node
     {
-        internal FunctionNode(string functionName, params Node[] parameters)
+        public FunctionNode(string functionName, params Node[] parameters)
         {
             this.FunctionName = functionName ?? throw new ArgumentNullException(nameof(functionName));
             this.Parameters = parameters ?? new Node[0];

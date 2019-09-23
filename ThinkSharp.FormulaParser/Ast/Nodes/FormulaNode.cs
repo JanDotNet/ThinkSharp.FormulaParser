@@ -9,13 +9,10 @@ namespace ThinkSharp.FormulaParsing.Ast.Nodes
 {
     public class FormulaNode : Node
     {
-        public FormulaNode(Node childNode, string formularText)
+        public FormulaNode(Node childNode)
         {
             this.ChildNode = childNode ?? throw new ArgumentNullException(nameof(childNode));
-            this.FormulaText = formularText;
         }
-
-        public string FormulaText { get; }
 
         public Node ChildNode { get; }
 
