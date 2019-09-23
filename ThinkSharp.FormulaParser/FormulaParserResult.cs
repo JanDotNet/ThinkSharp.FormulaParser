@@ -46,6 +46,20 @@ namespace ThinkSharp.FormulaParsing
             }
         }
 
+        public TResult HandleError(Func<Error, Exception> onError)
+        {
+            if (onError == null) throw new ArgumentNullException(nameof(onError));
+
+            if (this.Success)
+            {            
+                return Value;
+            }
+            else
+            {
+                throw onError(this.Error);
+            }
+        }
+
         public bool Handle(Action<TResult> onSuccess, Action<Error> onError)
         {
             if (onSuccess == null) throw new ArgumentNullException(nameof(onSuccess));
