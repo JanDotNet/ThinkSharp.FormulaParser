@@ -20,7 +20,7 @@ namespace ThinkSharp.FormulaParsing.ANTLR
         {
             var node = base.Visit(context.expression());
 
-            return new FormulaNode(node, formulaText);
+            return new FormulaNode(node);
         }
 
         public override Node VisitExpression([NotNull] FormulaGrammerParser.ExpressionContext context)
