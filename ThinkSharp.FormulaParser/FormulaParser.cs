@@ -46,7 +46,7 @@ namespace ThinkSharp.FormulaParsing
             return this.Evaluate(formula, null);
         }
 
-        public FormulaParserResult<double> Evaluate(string formula, IDictionary<string, double> variables)
+        public FormulaParserResult<double> Evaluate(string formula, IReadOnlyDictionary<string, double> variables)
         {
             return WrapWithExceptionHandling(() =>
             {
@@ -63,7 +63,7 @@ namespace ThinkSharp.FormulaParsing
             return this.Evaluate(formulaNode, null);
         }
 
-        public FormulaParserResult<double> Evaluate(Node formulaNode, IDictionary<string, double> variables)
+        public FormulaParserResult<double> Evaluate(Node formulaNode, IReadOnlyDictionary<string, double> variables)
         {
             return WrapWithExceptionHandling(() =>
             {
@@ -76,7 +76,7 @@ namespace ThinkSharp.FormulaParsing
 
         public FormulaParserResult<Node> Parse(string formula) => this.Parse(formula, null);
 
-        public FormulaParserResult<Node> Parse(string formula, IDictionary<string, double> variables)
+        public FormulaParserResult<Node> Parse(string formula, IReadOnlyDictionary<string, double> variables)
         {
             return WrapWithExceptionHandling(() =>
             {
@@ -87,7 +87,7 @@ namespace ThinkSharp.FormulaParsing
 
         public FormulaParserResult<TResult> RunVisitor<TResult>(string formula, INodeVisitor<TResult> visitor) => RunVisitor(formula, visitor, null);
 
-        public FormulaParserResult<TResult> RunVisitor<TResult>(string formula, INodeVisitor<TResult> visitor, IDictionary<string, double> variables)
+        public FormulaParserResult<TResult> RunVisitor<TResult>(string formula, INodeVisitor<TResult> visitor, IReadOnlyDictionary<string, double> variables)
         {
             return WrapWithExceptionHandling(() =>
             {
@@ -134,7 +134,7 @@ namespace ThinkSharp.FormulaParsing
 
         }
 
-        private Node ParseFormula(string formula, IDictionary<string, double> variables)
+        private Node ParseFormula(string formula, IReadOnlyDictionary<string, double> variables)
         {
             var inputStream = new AntlrInputStream(formula);            
             var lexer = new FormulaGrammerLexer(inputStream);

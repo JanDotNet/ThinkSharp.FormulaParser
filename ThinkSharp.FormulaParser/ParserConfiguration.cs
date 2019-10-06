@@ -11,7 +11,7 @@ namespace ThinkSharp.FormulaParsing
         private readonly IConfiguration configuration;
         private readonly HashSet<string> varialeNames;
 
-        public ParserConfiguration(IConfiguration configuration, IDictionary<string, double> variables)
+        public ParserConfiguration(IConfiguration configuration, IReadOnlyDictionary<string, double> variables)
         {
             this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             this.varialeNames = new HashSet<string>(variables?.Keys ?? Enumerable.Empty<string>());

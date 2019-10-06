@@ -33,7 +33,7 @@ namespace ThinkSharp.FormulaParsing
         /// <returns>
         /// The <see cref="FormulaParserResult{T}"/> object that contains the evaluation result or an error.
         /// </returns>
-        FormulaParserResult<double> Evaluate(string formula, IDictionary<string, double> variables);
+        FormulaParserResult<double> Evaluate(string formula, IReadOnlyDictionary<string, double> variables);
 
         /// <summary>
         /// Evaluates the provided <see cref="Node"/>.
@@ -58,7 +58,7 @@ namespace ThinkSharp.FormulaParsing
         /// <returns>
         /// The <see cref="FormulaParserResult{T}"/> object that contains the evaluation result or an error.
         /// </returns>
-        FormulaParserResult<double> Evaluate(Node formulaNode, IDictionary<string, double> variables);
+        FormulaParserResult<double> Evaluate(Node formulaNode, IReadOnlyDictionary<string, double> variables);
 
         /// <summary>
         /// Parses the provided formula to a parsing tree.
@@ -83,7 +83,7 @@ namespace ThinkSharp.FormulaParsing
         /// <returns>
         /// The <see cref="FormulaParserResult{T}"/> object that contains the root node of the parsing tree or an error.
         /// </returns>
-        FormulaParserResult<Node> Parse(string formula, IDictionary<string, double> variables);
+        FormulaParserResult<Node> Parse(string formula, IReadOnlyDictionary<string, double> variables);
 
         /// <summary>
         /// Parses the formula and executes the visitor to the genereted parsing tree.
@@ -120,7 +120,7 @@ namespace ThinkSharp.FormulaParsing
         /// <returns>
         /// The <see cref="FormulaParserResult{T}"/> object that contains the result produced by the visitor or an error.
         /// </returns>
-        FormulaParserResult<TResult> RunVisitor<TResult>(string formula, INodeVisitor<TResult> visitor, IDictionary<string, double> variables);
+        FormulaParserResult<TResult> RunVisitor<TResult>(string formula, INodeVisitor<TResult> visitor, IReadOnlyDictionary<string, double> variables);
 
         /// <summary>
         /// Executes the visitor to the provided parsing tree.

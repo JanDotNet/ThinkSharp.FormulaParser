@@ -103,7 +103,7 @@ BINARY_NUMBER
    ;
 
 HEXADECIMAL_NUMBER
-   : (PREFIX_HEX | NUMBER_HEX2) NUMBER_HEX
+   : PREFIX_HEX NUMBER_HEX
    ;
 
 SCIENTIFIC_NUMBER
@@ -111,7 +111,7 @@ SCIENTIFIC_NUMBER
    ;
 
 fragment VALID_ID_START
-   : ('a' .. 'z') | ('A' .. 'Z') | '_'
+   : ('a' .. 'z') | ('A' .. 'Z') | '_' | '$'
    ;
    
 fragment VALID_ID_CHAR
@@ -138,9 +138,6 @@ fragment PREFIX_HEX
    : '0' ('X' | 'x')
    ;
 
-fragment NUMBER_HEX2
-   : '#'
-   ;
 
 fragment NUMBER_HEX
    : (('0' .. '9') | ('A' .. 'F') | ('a' .. 'f')) +

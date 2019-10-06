@@ -9,17 +9,16 @@
     <Company>ThinkSharp</Company>
     <Description>A formula parser with fluent API that allows parsing and evaluation of mathematically formulas. Features: functions, constants, variables, scientific numbers, focus on customization and flexibility.</Description>
     <Copyright>© 2019 Jan-Niklas Schäfer</Copyright>
-    <AssemblyVersion>0.4.0.0</AssemblyVersion>
-    <FileVersion>0.4.0.0</FileVersion>
+    <AssemblyVersion>0.5.0.0</AssemblyVersion>
+    <FileVersion>0.5.0.0</FileVersion>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <PackageReleaseNotes>added another handle method for simlifying the handling of parsing / evaluation results.
-added helper class for validating identifier names
-added visitor for cloning a parsing tree
-changed .ctor access modifier from internal to public for node types
-removed formula text from formula node</PackageReleaseNotes>
+    <PackageReleaseNotes>changed variables API from IDictionary to IReadOnlyDictionary
+added '$' as valid character for variables
+removed support for alternative hex number notation: '#&lt;hexnumber&gt;'. Note that the main notation '0x&lt;hexnumber' is still supported.
+</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/JanDotNet/ThinkSharp.FormulaParser</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>0.4.0</Version>
+    <Version>0.5.0</Version>
     <PackageLicenseExpression></PackageLicenseExpression>
   </PropertyGroup>
 

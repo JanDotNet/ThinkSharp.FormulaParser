@@ -10,9 +10,9 @@ namespace ThinkSharp.FormulaParsing.Ast.Visitors
         private readonly IDictionary<string, double> variables;
         private readonly IConfigurationEvaluator configuration;
 
-        public EvaluateAstVisitor(IConfigurationEvaluator configurationEvaluation, IDictionary<string, double> variables = null)
+        public EvaluateAstVisitor(IConfigurationEvaluator configurationEvaluation, IReadOnlyDictionary<string, double> variables = null)
         {
-            this.variables = new Dictionary<string, double>(variables ?? new Dictionary<string, double>());
+            this.variables = variables?.ToDictionary(x => x.Key, x => x.Value) ?? new Dictionary<string, double>();
             this.configuration = configurationEvaluation ?? throw new ArgumentNullException(nameof(configurationEvaluation));
 
             foreach (var constant in configurationEvaluation.EnumerateConstantes())

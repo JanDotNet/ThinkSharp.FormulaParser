@@ -34,7 +34,6 @@ namespace ThinkSharp.FormulaParsing.Test
 
             Assert.AreEqual(477580.0, parser.Evaluate("0x7498C").Value);
             Assert.AreEqual(477580.0, parser.Evaluate("0X7498C").Value);
-            Assert.AreEqual(477580.0, parser.Evaluate("#7498C").Value);
 
             Assert.AreEqual(100.0, parser.Evaluate("0xA * 0Xa").Value);
         }
