@@ -217,7 +217,7 @@
             The <see cref="T:ThinkSharp.FormulaParsing.FormulaParserResult`1"/> object that contains the evaluation result or an error.
             </returns>
         </member>
-        <member name="M:ThinkSharp.FormulaParsing.IFormulaParser.Evaluate(System.String,System.Collections.Generic.IDictionary{System.String,System.Double})">
+        <member name="M:ThinkSharp.FormulaParsing.IFormulaParser.Evaluate(System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,System.Double})">
             <summary>
             Evaluates the provided formula to a numeric value.
             </summary>
@@ -242,7 +242,7 @@
             The <see cref="T:ThinkSharp.FormulaParsing.FormulaParserResult`1"/> object that contains the evaluation result or an error.
             </returns>
         </member>
-        <member name="M:ThinkSharp.FormulaParsing.IFormulaParser.Evaluate(ThinkSharp.FormulaParsing.Ast.Nodes.Node,System.Collections.Generic.IDictionary{System.String,System.Double})">
+        <member name="M:ThinkSharp.FormulaParsing.IFormulaParser.Evaluate(ThinkSharp.FormulaParsing.Ast.Nodes.Node,System.Collections.Generic.IReadOnlyDictionary{System.String,System.Double})">
             <summary>
             Evaluates the provided <see cref="T:ThinkSharp.FormulaParsing.Ast.Nodes.Node"/>.
             </summary>
@@ -267,7 +267,7 @@
             The <see cref="T:ThinkSharp.FormulaParsing.FormulaParserResult`1"/> object that contains the root node of the parsing tree or an error.
             </returns>
         </member>
-        <member name="M:ThinkSharp.FormulaParsing.IFormulaParser.Parse(System.String,System.Collections.Generic.IDictionary{System.String,System.Double})">
+        <member name="M:ThinkSharp.FormulaParsing.IFormulaParser.Parse(System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,System.Double})">
             <summary>
             Parses the provided formula to a parsing tree.
             </summary>
@@ -298,7 +298,7 @@
             The <see cref="T:ThinkSharp.FormulaParsing.FormulaParserResult`1"/> object that contains the result produced by the visitor or an error.
             </returns>
         </member>
-        <member name="M:ThinkSharp.FormulaParsing.IFormulaParser.RunVisitor``1(System.String,ThinkSharp.FormulaParsing.Ast.Visitors.INodeVisitor{``0},System.Collections.Generic.IDictionary{System.String,System.Double})">
+        <member name="M:ThinkSharp.FormulaParsing.IFormulaParser.RunVisitor``1(System.String,ThinkSharp.FormulaParsing.Ast.Visitors.INodeVisitor{``0},System.Collections.Generic.IReadOnlyDictionary{System.String,System.Double})">
             <summary>
             Parses the formula and executes the visitor to the genereted parsing tree.
             </summary>

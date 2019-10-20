@@ -40,4 +40,13 @@ removed support for alternative hex number notation: '#&lt;hexnumber&gt;'. Note 
     <PackageReference Include="Antlr4.Runtime.Standard" Version="4.7.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>$(MSBuildProjectName).Test.Core</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>$(MSBuildProjectName).Test.Net461</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
 </Project>

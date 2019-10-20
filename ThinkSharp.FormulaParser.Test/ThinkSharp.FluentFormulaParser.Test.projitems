@@ -17,5 +17,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)FormularParser.Configuration.Test.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FormularParser.ParsingBehavior.Test.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FormularParser.SupportedFeatures.Test.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\NodesToFormulaTextVisitor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\TermTimesOrDividedByMinusOneIsMinusTermRuleTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\TermTimesOrDividedByOneIsTermRuleTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\TermPlusOrMinusZeroIsTermRuleTest.cs" />
   </ItemGroup>
 </Project>
