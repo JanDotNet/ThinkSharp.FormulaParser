@@ -7,7 +7,7 @@ using ThinkSharp.FormulaParsing.Ast.Visitors;
 
 namespace ThinkSharp.FormulaParsing.TermRewriting.Rules
 {
-    public class MoveOuterSignedToInnerTerm : Rule
+    public class MoveOuterMinusToInnerTerm : Rule
     {
         private class SwitchSignWithinBracketsVisitor : INodeVisitor<Node>
         {
@@ -86,14 +86,14 @@ namespace ThinkSharp.FormulaParsing.TermRewriting.Rules
                 var targetNode = signNode.Node;
                 if (targetNode is BracketedNode targetBracketedNode)
                 {
-                    var newBracketedContentNode = targetBracketedNode.Visit(new SwitchSignWithinBracketsVisitor());
+                    var newBracketedContentNode = targetBracketedNode.ChildNode.Visit(new SwitchSignWithinBracketsVisitor());
                     return new SignedNode(Sign.Minus, newBracketedContentNode);
                 }
 
-                var binOpQueue = new Queue<BinaryOperatorNode>();
+                var binOpStack = new Stack<BinaryOperatorNode>();
                 while (targetNode is BinaryOperatorNode binaryOperationNode)
                 {
-                    binOpQueue.Enqueue(binaryOperationNode);
+                    binOpStack.Push(binaryOperationNode);
                     targetNode = binaryOperationNode.LeftNode;
                 }
 
@@ -102,9 +102,9 @@ namespace ThinkSharp.FormulaParsing.TermRewriting.Rules
                 if (transformedNode != null)
                 {
                     Node leftNode = transformedNode;
-                    while (binOpQueue.Count > 0)
+                    while (binOpStack.Count > 0)
                     {
-                        var binOpFromQueue = binOpQueue.Dequeue();
+                        var binOpFromQueue = binOpStack.Pop();
                         leftNode = new BinaryOperatorNode(binOpFromQueue.BinaryOperator, leftNode, binOpFromQueue.RightNode);
                     }
                     return leftNode;
