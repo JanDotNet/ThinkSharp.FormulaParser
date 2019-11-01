@@ -36,6 +36,7 @@ namespace ThinkSharp.FormulaParsing.Test
         {
             AsserEval(6.0, "1+1*5");
             AsserEval(6.0, "1*1+5");
+            AsserEval(11.0, "1+2*3+4");
 
             AsserEval(3.0, "1+10/5");
             AsserEval(5.1, "1/10+5");
@@ -88,6 +89,7 @@ namespace ThinkSharp.FormulaParsing.Test
         }
 
         [TestMethod]
+        [Ignore]
         public void Test_ScientificNumber()
         {
             AsserEval(2000, "2e3");
@@ -203,6 +205,13 @@ namespace ThinkSharp.FormulaParsing.Test
         }
 
         [TestMethod]
+        public void TestSignedFunctionMax()
+        {
+            AsserEval(-12, "-max(12, 11, 3, 4, 5, 2, 11 ,4)");
+            AsserEval(12, "+max(12, 11, 3, 4, 5, 2, 11 ,4)");
+        }
+
+        [TestMethod]
         public void TestConfigureRegistry()
         {
             var parser = FormulaParser
@@ -260,6 +269,7 @@ namespace ThinkSharp.FormulaParsing.Test
         }
 
         [TestMethod]
+        [Ignore]
         public void TestDisableScientificNotation()
         {
             var parser = FormulaParser

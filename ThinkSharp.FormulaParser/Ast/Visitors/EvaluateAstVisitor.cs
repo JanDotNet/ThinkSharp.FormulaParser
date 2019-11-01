@@ -26,7 +26,12 @@ namespace ThinkSharp.FormulaParsing.Ast.Visitors
             }
         }
 
-        public override double Visit(NumberNode node)
+        public override double Visit(DecimalNode node)
+        {
+            return node.Value;
+        }
+
+        public override double Visit(IntegerNode node)
         {
             return node.Value;
         }

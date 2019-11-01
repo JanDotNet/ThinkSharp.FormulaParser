@@ -13,7 +13,9 @@ namespace ThinkSharp.FormulaParsing.Ast.Visitors
 
         public virtual TResult Visit(BracketedNode node) => node.ChildNode.Visit(this);
 
-        public virtual TResult Visit(NumberNode node) => DefaultResult();
+        public virtual TResult Visit(DecimalNode node) => DefaultResult();
+
+        public virtual TResult Visit(IntegerNode node) => DefaultResult();
 
         public virtual TResult Visit(VariableNode node) => DefaultResult();
 

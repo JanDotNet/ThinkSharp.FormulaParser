@@ -27,6 +27,7 @@ namespace ThinkSharp.FormulaParsing.Test
         }
 
         [TestMethod]
+        [Ignore]
         public void TestDisableScientificNotation()
         {
             var parser = FormulaParser

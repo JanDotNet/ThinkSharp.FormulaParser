@@ -12,7 +12,20 @@ namespace ThinkSharp.FormulaParsing.TermRewriting
         public static ITermRewritingSystem Create()
         {
             var system = new TermRewritingSystem();
+            system.rules.Add(new RemoveBracketsInTermPlusMinusBrackets());
+            system.rules.Add(new RemoveBracketsInTermPlusMinusBracketsPlusMinusTerm());
+            system.rules.Add(new RemoveNegativeSignFromNumber());
+            system.rules.Add(new RemoveNegativeSignInFrontOfBrackets());
+            system.rules.Add(new RemoveNegativeSignInInSubtract());
+            system.rules.Add(new RemoveNegativeSignInInSum());
+            system.rules.Add(new RemoveNegativeSignTimesNegatieSign());
+            system.rules.Add(new RemoveNestedBrackets());
+            system.rules.Add(new RemovePositiveSign());
+            system.rules.Add(new RemoveRootBrackets());
+            system.rules.Add(new TermDividesByTermIsOne());
             system.rules.Add(new TermPlusOrMinusZeroIsTermRule());
+            system.rules.Add(new TermTimesOrDividedByMinusOneIsMinusTerm());
+            system.rules.Add(new TermTimesOrDividedByOneIsTerm());
             return system;
         }
 

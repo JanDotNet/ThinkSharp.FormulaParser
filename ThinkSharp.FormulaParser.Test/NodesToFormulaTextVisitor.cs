@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using ThinkSharp.FormulaParsing.Ast.Nodes;
 using ThinkSharp.FormulaParsing.Ast.Visitors;
 
-namespace ThinkSharp.FormulaParsing.Test.TermRewriting
+namespace ThinkSharp.FormulaParsing.Test
 {
     internal class NodesToFormulaTextVisitor : INodeVisitor<string>
     {
@@ -16,7 +17,7 @@ namespace ThinkSharp.FormulaParsing.Test.TermRewriting
 
         public string Visit(BracketedNode node) => $"({node.ChildNode.Visit(this)})";
 
-        public string Visit(NumberNode node) => node.Token;
+        public string Visit(DecimalNode node) => node.Value.ToString("0.00", CultureInfo.InvariantCulture);
 
         public string Visit(VariableNode node) => node.Name;
 
@@ -29,5 +30,7 @@ namespace ThinkSharp.FormulaParsing.Test.TermRewriting
         public string Visit(SignedNode node) => (node.Sign == Sign.Minus ? "-" : "") + node.Node.Visit(this);
 
         public string Visit(FunctionNode node) => $"{node.FunctionName}({string.Join(", ", node.Parameters.Select(p => p.Visit(this)))})";
+
+        public string Visit(IntegerNode node) => node.Value.ToString();
     }
 }

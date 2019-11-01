@@ -8,14 +8,14 @@ namespace ThinkSharp.FormulaParsing.TermRewriting.Rules
 {
     public class TermDividesByTermIsOne : Rule
     {
-        public override bool Match(Node node)
+        protected override bool MatchInternal(Node node, Node Parent)
         {
             if (node is BinaryOperatorNode opNode)
             {
                 if (opNode.BinaryOperator.Symbol == "+" ||
                     opNode.BinaryOperator.Symbol == "-")
                 {
-                    if (opNode.LeftNode is NumberNode leftNumNode)
+                    if (opNode.LeftNode is DecimalNode leftNumNode)
                     {
                         if (leftNumNode.Value == 0.0)
                         {
@@ -23,7 +23,7 @@ namespace ThinkSharp.FormulaParsing.TermRewriting.Rules
                         }
                     }
 
-                    if (opNode.RightNode is NumberNode rightNumNode)
+                    if (opNode.RightNode is DecimalNode rightNumNode)
                     {
                         if (rightNumNode.Value == 0.0)
                         {
@@ -36,7 +36,7 @@ namespace ThinkSharp.FormulaParsing.TermRewriting.Rules
             return false;
         }
 
-        public override Node Rewrite(Node node)
+        protected override Node RewriteInternal(Node node, Node Parent)
         {
             if (node is BinaryOperatorNode opNode)
             {
@@ -45,7 +45,7 @@ namespace ThinkSharp.FormulaParsing.TermRewriting.Rules
 
                 if (isAddOperation || isSubOperation)
                 {
-                    if (opNode.LeftNode is NumberNode leftNumNode)
+                    if (opNode.LeftNode is DecimalNode leftNumNode)
                     {
                         if (leftNumNode.Value == 0.0)
                         {
@@ -55,7 +55,7 @@ namespace ThinkSharp.FormulaParsing.TermRewriting.Rules
                         }
                     }
 
-                    if (opNode.RightNode is NumberNode rightNumNode)
+                    if (opNode.RightNode is DecimalNode rightNumNode)
                     {
                         if (rightNumNode.Value == 0.0)
                         {

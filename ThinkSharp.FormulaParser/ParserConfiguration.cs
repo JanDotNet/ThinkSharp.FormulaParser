@@ -35,6 +35,8 @@ namespace ThinkSharp.FormulaParsing
 
         public bool IsHexadecimalNumberNotationSupportDisabled => this.configuration.IsHexadecimalNumberNotationSupportDisabled;
 
+        public bool IsOctalNumberNotationSupportDisabled => this.configuration.IsOctalNumberNotationSupportDisabled;
+
         public bool HasConstant(string name) => this.configuration.HasConstant(name);
 
         public bool HasFunction(string name, int argumentCount) => this.configuration.HasFunction(name, argumentCount);

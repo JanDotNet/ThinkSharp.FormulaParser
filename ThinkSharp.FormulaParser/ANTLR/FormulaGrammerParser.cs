@@ -37,15 +37,16 @@ public partial class FormulaGrammerParser : Parser {
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
 		LPAREN=1, RPAREN=2, PLUS=3, MINUS=4, TIMES=5, DIV=6, COMMA=7, POINT=8, 
-		POW=9, IDENTIFIER=10, DECIMAL_NUMBER=11, BINARY_NUMBER=12, HEXADECIMAL_NUMBER=13, 
-		SCIENTIFIC_NUMBER=14, WS=15;
+		POW=9, IDENTIFIER=10, DECIMAL_NUMBER=11, INTEGER_NUMBER=12, PREFIX_BIN_NUMBER=13, 
+		PREFIX_HEX_NUMBER=14, PREFIX_INT_NUMBER=15, PREFIX_OCT_NUMBER=16, PREFIX_DEC_NUMBER=17, 
+		WS=18;
 	public const int
 		RULE_formula = 0, RULE_expression = 1, RULE_multiplyingExpression = 2, 
 		RULE_powExpression = 3, RULE_signedAtom = 4, RULE_atom = 5, RULE_number = 6, 
-		RULE_func = 7, RULE_variable = 8;
+		RULE_prefixedNumber = 7, RULE_func = 8, RULE_variable = 9;
 	public static readonly string[] ruleNames = {
 		"formula", "expression", "multiplyingExpression", "powExpression", "signedAtom", 
-		"atom", "number", "func", "variable"
+		"atom", "number", "prefixedNumber", "func", "variable"
 	};
 
 	private static readonly string[] _LiteralNames = {
@@ -53,8 +54,9 @@ public partial class FormulaGrammerParser : Parser {
 	};
 	private static readonly string[] _SymbolicNames = {
 		null, "LPAREN", "RPAREN", "PLUS", "MINUS", "TIMES", "DIV", "COMMA", "POINT", 
-		"POW", "IDENTIFIER", "DECIMAL_NUMBER", "BINARY_NUMBER", "HEXADECIMAL_NUMBER", 
-		"SCIENTIFIC_NUMBER", "WS"
+		"POW", "IDENTIFIER", "DECIMAL_NUMBER", "INTEGER_NUMBER", "PREFIX_BIN_NUMBER", 
+		"PREFIX_HEX_NUMBER", "PREFIX_INT_NUMBER", "PREFIX_OCT_NUMBER", "PREFIX_DEC_NUMBER", 
+		"WS"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -120,8 +122,8 @@ public partial class FormulaGrammerParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 18; expression();
-			State = 19; Match(Eof);
+			State = 20; expression();
+			State = 21; Match(Eof);
 			}
 		}
 		catch (RecognitionException re) {
@@ -178,14 +180,14 @@ public partial class FormulaGrammerParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 21; multiplyingExpression();
-			State = 26;
+			State = 23; multiplyingExpression();
+			State = 28;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			while (_la==PLUS || _la==MINUS) {
 				{
 				{
-				State = 22;
+				State = 24;
 				_la = TokenStream.LA(1);
 				if ( !(_la==PLUS || _la==MINUS) ) {
 				ErrorHandler.RecoverInline(this);
@@ -194,10 +196,10 @@ public partial class FormulaGrammerParser : Parser {
 					ErrorHandler.ReportMatch(this);
 				    Consume();
 				}
-				State = 23; multiplyingExpression();
+				State = 25; multiplyingExpression();
 				}
 				}
-				State = 28;
+				State = 30;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
@@ -257,14 +259,14 @@ public partial class FormulaGrammerParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 29; powExpression();
-			State = 34;
+			State = 31; powExpression();
+			State = 36;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			while (_la==TIMES || _la==DIV) {
 				{
 				{
-				State = 30;
+				State = 32;
 				_la = TokenStream.LA(1);
 				if ( !(_la==TIMES || _la==DIV) ) {
 				ErrorHandler.RecoverInline(this);
@@ -273,10 +275,10 @@ public partial class FormulaGrammerParser : Parser {
 					ErrorHandler.ReportMatch(this);
 				    Consume();
 				}
-				State = 31; powExpression();
+				State = 33; powExpression();
 				}
 				}
-				State = 36;
+				State = 38;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
@@ -332,18 +334,18 @@ public partial class FormulaGrammerParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 37; signedAtom();
-			State = 42;
+			State = 39; signedAtom();
+			State = 44;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			while (_la==POW) {
 				{
 				{
-				State = 38; Match(POW);
-				State = 39; signedAtom();
+				State = 40; Match(POW);
+				State = 41; signedAtom();
 				}
 				}
-				State = 44;
+				State = 46;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
@@ -392,25 +394,6 @@ public partial class FormulaGrammerParser : Parser {
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class FunctionContext : SignedAtomContext {
-		public FuncContext func() {
-			return GetRuleContext<FuncContext>(0);
-		}
-		public FunctionContext(SignedAtomContext context) { CopyFrom(context); }
-		public override void EnterRule(IParseTreeListener listener) {
-			IFormulaGrammerListener typedListener = listener as IFormulaGrammerListener;
-			if (typedListener != null) typedListener.EnterFunction(this);
-		}
-		public override void ExitRule(IParseTreeListener listener) {
-			IFormulaGrammerListener typedListener = listener as IFormulaGrammerListener;
-			if (typedListener != null) typedListener.ExitFunction(this);
-		}
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IFormulaGrammerVisitor<TResult> typedVisitor = visitor as IFormulaGrammerVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFunction(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
 	public partial class PlusAtomContext : SignedAtomContext {
 		public ITerminalNode PLUS() { return GetToken(FormulaGrammerParser.PLUS, 0); }
 		public AtomContext atom() {
@@ -456,39 +439,42 @@ public partial class FormulaGrammerParser : Parser {
 		SignedAtomContext _localctx = new SignedAtomContext(Context, State);
 		EnterRule(_localctx, 8, RULE_signedAtom);
 		try {
-			State = 51;
+			State = 52;
 			ErrorHandler.Sync(this);
-			switch ( Interpreter.AdaptivePredict(TokenStream,3,Context) ) {
-			case 1:
+			switch (TokenStream.LA(1)) {
+			case PLUS:
 				_localctx = new PlusAtomContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 45; Match(PLUS);
-				State = 46; atom();
-				}
-				break;
-			case 2:
-				_localctx = new NegativeAtomContext(_localctx);
-				EnterOuterAlt(_localctx, 2);
-				{
-				State = 47; Match(MINUS);
+				State = 47; Match(PLUS);
 				State = 48; atom();
 				}
 				break;
-			case 3:
-				_localctx = new FunctionContext(_localctx);
-				EnterOuterAlt(_localctx, 3);
+			case MINUS:
+				_localctx = new NegativeAtomContext(_localctx);
+				EnterOuterAlt(_localctx, 2);
 				{
-				State = 49; func();
-				}
-				break;
-			case 4:
-				_localctx = new UnsignedAtomContext(_localctx);
-				EnterOuterAlt(_localctx, 4);
-				{
+				State = 49; Match(MINUS);
 				State = 50; atom();
 				}
 				break;
+			case LPAREN:
+			case IDENTIFIER:
+			case DECIMAL_NUMBER:
+			case INTEGER_NUMBER:
+			case PREFIX_BIN_NUMBER:
+			case PREFIX_HEX_NUMBER:
+			case PREFIX_INT_NUMBER:
+			case PREFIX_OCT_NUMBER:
+			case PREFIX_DEC_NUMBER:
+				_localctx = new UnsignedAtomContext(_localctx);
+				EnterOuterAlt(_localctx, 3);
+				{
+				State = 51; atom();
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -506,6 +492,9 @@ public partial class FormulaGrammerParser : Parser {
 		public NumberContext number() {
 			return GetRuleContext<NumberContext>(0);
 		}
+		public PrefixedNumberContext prefixedNumber() {
+			return GetRuleContext<PrefixedNumberContext>(0);
+		}
 		public VariableContext variable() {
 			return GetRuleContext<VariableContext>(0);
 		}
@@ -514,6 +503,9 @@ public partial class FormulaGrammerParser : Parser {
 			return GetRuleContext<ExpressionContext>(0);
 		}
 		public ITerminalNode RPAREN() { return GetToken(FormulaGrammerParser.RPAREN, 0); }
+		public FuncContext func() {
+			return GetRuleContext<FuncContext>(0);
+		}
 		public AtomContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -539,34 +531,41 @@ public partial class FormulaGrammerParser : Parser {
 		AtomContext _localctx = new AtomContext(Context, State);
 		EnterRule(_localctx, 10, RULE_atom);
 		try {
-			State = 59;
+			State = 62;
 			ErrorHandler.Sync(this);
-			switch (TokenStream.LA(1)) {
-			case DECIMAL_NUMBER:
-			case BINARY_NUMBER:
-			case HEXADECIMAL_NUMBER:
-			case SCIENTIFIC_NUMBER:
+			switch ( Interpreter.AdaptivePredict(TokenStream,4,Context) ) {
+			case 1:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 53; number();
+				State = 54; number();
 				}
 				break;
-			case IDENTIFIER:
+			case 2:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 54; variable();
+				State = 55; prefixedNumber();
 				}
 				break;
-			case LPAREN:
+			case 3:
 				EnterOuterAlt(_localctx, 3);
 				{
-				State = 55; Match(LPAREN);
-				State = 56; expression();
-				State = 57; Match(RPAREN);
+				State = 56; variable();
 				}
 				break;
-			default:
-				throw new NoViableAltException(this);
+			case 4:
+				EnterOuterAlt(_localctx, 4);
+				{
+				State = 57; Match(LPAREN);
+				State = 58; expression();
+				State = 59; Match(RPAREN);
+				}
+				break;
+			case 5:
+				EnterOuterAlt(_localctx, 5);
+				{
+				State = 61; func();
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -609,54 +608,20 @@ public partial class FormulaGrammerParser : Parser {
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class BinaryNumberContext : NumberContext {
-		public ITerminalNode BINARY_NUMBER() { return GetToken(FormulaGrammerParser.BINARY_NUMBER, 0); }
-		public BinaryNumberContext(NumberContext context) { CopyFrom(context); }
+	public partial class IntgerNumberContext : NumberContext {
+		public ITerminalNode INTEGER_NUMBER() { return GetToken(FormulaGrammerParser.INTEGER_NUMBER, 0); }
+		public IntgerNumberContext(NumberContext context) { CopyFrom(context); }
 		public override void EnterRule(IParseTreeListener listener) {
 			IFormulaGrammerListener typedListener = listener as IFormulaGrammerListener;
-			if (typedListener != null) typedListener.EnterBinaryNumber(this);
+			if (typedListener != null) typedListener.EnterIntgerNumber(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
 			IFormulaGrammerListener typedListener = listener as IFormulaGrammerListener;
-			if (typedListener != null) typedListener.ExitBinaryNumber(this);
+			if (typedListener != null) typedListener.ExitIntgerNumber(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IFormulaGrammerVisitor<TResult> typedVisitor = visitor as IFormulaGrammerVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBinaryNumber(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
-	public partial class ScientificNumberContext : NumberContext {
-		public ITerminalNode SCIENTIFIC_NUMBER() { return GetToken(FormulaGrammerParser.SCIENTIFIC_NUMBER, 0); }
-		public ScientificNumberContext(NumberContext context) { CopyFrom(context); }
-		public override void EnterRule(IParseTreeListener listener) {
-			IFormulaGrammerListener typedListener = listener as IFormulaGrammerListener;
-			if (typedListener != null) typedListener.EnterScientificNumber(this);
-		}
-		public override void ExitRule(IParseTreeListener listener) {
-			IFormulaGrammerListener typedListener = listener as IFormulaGrammerListener;
-			if (typedListener != null) typedListener.ExitScientificNumber(this);
-		}
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IFormulaGrammerVisitor<TResult> typedVisitor = visitor as IFormulaGrammerVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitScientificNumber(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
-	public partial class HexadecimalNumberContext : NumberContext {
-		public ITerminalNode HEXADECIMAL_NUMBER() { return GetToken(FormulaGrammerParser.HEXADECIMAL_NUMBER, 0); }
-		public HexadecimalNumberContext(NumberContext context) { CopyFrom(context); }
-		public override void EnterRule(IParseTreeListener listener) {
-			IFormulaGrammerListener typedListener = listener as IFormulaGrammerListener;
-			if (typedListener != null) typedListener.EnterHexadecimalNumber(this);
-		}
-		public override void ExitRule(IParseTreeListener listener) {
-			IFormulaGrammerListener typedListener = listener as IFormulaGrammerListener;
-			if (typedListener != null) typedListener.ExitHexadecimalNumber(this);
-		}
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IFormulaGrammerVisitor<TResult> typedVisitor = visitor as IFormulaGrammerVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHexadecimalNumber(this);
+			if (typedVisitor != null) return typedVisitor.VisitIntgerNumber(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
@@ -666,35 +631,177 @@ public partial class FormulaGrammerParser : Parser {
 		NumberContext _localctx = new NumberContext(Context, State);
 		EnterRule(_localctx, 12, RULE_number);
 		try {
-			State = 65;
+			State = 66;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
-			case SCIENTIFIC_NUMBER:
-				_localctx = new ScientificNumberContext(_localctx);
-				EnterOuterAlt(_localctx, 1);
-				{
-				State = 61; Match(SCIENTIFIC_NUMBER);
-				}
-				break;
 			case DECIMAL_NUMBER:
 				_localctx = new DecimalNumberContext(_localctx);
+				EnterOuterAlt(_localctx, 1);
+				{
+				State = 64; Match(DECIMAL_NUMBER);
+				}
+				break;
+			case INTEGER_NUMBER:
+				_localctx = new IntgerNumberContext(_localctx);
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 62; Match(DECIMAL_NUMBER);
+				State = 65; Match(INTEGER_NUMBER);
 				}
 				break;
-			case BINARY_NUMBER:
-				_localctx = new BinaryNumberContext(_localctx);
+			default:
+				throw new NoViableAltException(this);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class PrefixedNumberContext : ParserRuleContext {
+		public PrefixedNumberContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_prefixedNumber; } }
+	 
+		public PrefixedNumberContext() { }
+		public virtual void CopyFrom(PrefixedNumberContext context) {
+			base.CopyFrom(context);
+		}
+	}
+	public partial class PrefixedOctNumberContext : PrefixedNumberContext {
+		public ITerminalNode PREFIX_OCT_NUMBER() { return GetToken(FormulaGrammerParser.PREFIX_OCT_NUMBER, 0); }
+		public PrefixedOctNumberContext(PrefixedNumberContext context) { CopyFrom(context); }
+		public override void EnterRule(IParseTreeListener listener) {
+			IFormulaGrammerListener typedListener = listener as IFormulaGrammerListener;
+			if (typedListener != null) typedListener.EnterPrefixedOctNumber(this);
+		}
+		public override void ExitRule(IParseTreeListener listener) {
+			IFormulaGrammerListener typedListener = listener as IFormulaGrammerListener;
+			if (typedListener != null) typedListener.ExitPrefixedOctNumber(this);
+		}
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFormulaGrammerVisitor<TResult> typedVisitor = visitor as IFormulaGrammerVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitPrefixedOctNumber(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class PrefixedHexNumberContext : PrefixedNumberContext {
+		public ITerminalNode PREFIX_HEX_NUMBER() { return GetToken(FormulaGrammerParser.PREFIX_HEX_NUMBER, 0); }
+		public PrefixedHexNumberContext(PrefixedNumberContext context) { CopyFrom(context); }
+		public override void EnterRule(IParseTreeListener listener) {
+			IFormulaGrammerListener typedListener = listener as IFormulaGrammerListener;
+			if (typedListener != null) typedListener.EnterPrefixedHexNumber(this);
+		}
+		public override void ExitRule(IParseTreeListener listener) {
+			IFormulaGrammerListener typedListener = listener as IFormulaGrammerListener;
+			if (typedListener != null) typedListener.ExitPrefixedHexNumber(this);
+		}
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFormulaGrammerVisitor<TResult> typedVisitor = visitor as IFormulaGrammerVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitPrefixedHexNumber(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class PrefixedDecNumberContext : PrefixedNumberContext {
+		public ITerminalNode PREFIX_DEC_NUMBER() { return GetToken(FormulaGrammerParser.PREFIX_DEC_NUMBER, 0); }
+		public PrefixedDecNumberContext(PrefixedNumberContext context) { CopyFrom(context); }
+		public override void EnterRule(IParseTreeListener listener) {
+			IFormulaGrammerListener typedListener = listener as IFormulaGrammerListener;
+			if (typedListener != null) typedListener.EnterPrefixedDecNumber(this);
+		}
+		public override void ExitRule(IParseTreeListener listener) {
+			IFormulaGrammerListener typedListener = listener as IFormulaGrammerListener;
+			if (typedListener != null) typedListener.ExitPrefixedDecNumber(this);
+		}
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFormulaGrammerVisitor<TResult> typedVisitor = visitor as IFormulaGrammerVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitPrefixedDecNumber(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class PrefixedIntNumberContext : PrefixedNumberContext {
+		public ITerminalNode PREFIX_INT_NUMBER() { return GetToken(FormulaGrammerParser.PREFIX_INT_NUMBER, 0); }
+		public PrefixedIntNumberContext(PrefixedNumberContext context) { CopyFrom(context); }
+		public override void EnterRule(IParseTreeListener listener) {
+			IFormulaGrammerListener typedListener = listener as IFormulaGrammerListener;
+			if (typedListener != null) typedListener.EnterPrefixedIntNumber(this);
+		}
+		public override void ExitRule(IParseTreeListener listener) {
+			IFormulaGrammerListener typedListener = listener as IFormulaGrammerListener;
+			if (typedListener != null) typedListener.ExitPrefixedIntNumber(this);
+		}
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFormulaGrammerVisitor<TResult> typedVisitor = visitor as IFormulaGrammerVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitPrefixedIntNumber(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class PrefixedBinNumberContext : PrefixedNumberContext {
+		public ITerminalNode PREFIX_BIN_NUMBER() { return GetToken(FormulaGrammerParser.PREFIX_BIN_NUMBER, 0); }
+		public PrefixedBinNumberContext(PrefixedNumberContext context) { CopyFrom(context); }
+		public override void EnterRule(IParseTreeListener listener) {
+			IFormulaGrammerListener typedListener = listener as IFormulaGrammerListener;
+			if (typedListener != null) typedListener.EnterPrefixedBinNumber(this);
+		}
+		public override void ExitRule(IParseTreeListener listener) {
+			IFormulaGrammerListener typedListener = listener as IFormulaGrammerListener;
+			if (typedListener != null) typedListener.ExitPrefixedBinNumber(this);
+		}
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFormulaGrammerVisitor<TResult> typedVisitor = visitor as IFormulaGrammerVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitPrefixedBinNumber(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public PrefixedNumberContext prefixedNumber() {
+		PrefixedNumberContext _localctx = new PrefixedNumberContext(Context, State);
+		EnterRule(_localctx, 14, RULE_prefixedNumber);
+		try {
+			State = 73;
+			ErrorHandler.Sync(this);
+			switch (TokenStream.LA(1)) {
+			case PREFIX_DEC_NUMBER:
+				_localctx = new PrefixedDecNumberContext(_localctx);
+				EnterOuterAlt(_localctx, 1);
+				{
+				State = 68; Match(PREFIX_DEC_NUMBER);
+				}
+				break;
+			case PREFIX_INT_NUMBER:
+				_localctx = new PrefixedIntNumberContext(_localctx);
+				EnterOuterAlt(_localctx, 2);
+				{
+				State = 69; Match(PREFIX_INT_NUMBER);
+				}
+				break;
+			case PREFIX_BIN_NUMBER:
+				_localctx = new PrefixedBinNumberContext(_localctx);
 				EnterOuterAlt(_localctx, 3);
 				{
-				State = 63; Match(BINARY_NUMBER);
+				State = 70; Match(PREFIX_BIN_NUMBER);
 				}
 				break;
-			case HEXADECIMAL_NUMBER:
-				_localctx = new HexadecimalNumberContext(_localctx);
+			case PREFIX_OCT_NUMBER:
+				_localctx = new PrefixedOctNumberContext(_localctx);
 				EnterOuterAlt(_localctx, 4);
 				{
-				State = 64; Match(HEXADECIMAL_NUMBER);
+				State = 71; Match(PREFIX_OCT_NUMBER);
+				}
+				break;
+			case PREFIX_HEX_NUMBER:
+				_localctx = new PrefixedHexNumberContext(_localctx);
+				EnterOuterAlt(_localctx, 5);
+				{
+				State = 72; Match(PREFIX_HEX_NUMBER);
 				}
 				break;
 			default:
@@ -749,37 +856,37 @@ public partial class FormulaGrammerParser : Parser {
 	[RuleVersion(0)]
 	public FuncContext func() {
 		FuncContext _localctx = new FuncContext(Context, State);
-		EnterRule(_localctx, 14, RULE_func);
+		EnterRule(_localctx, 16, RULE_func);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 67; Match(IDENTIFIER);
-			State = 68; Match(LPAREN);
-			State = 77;
+			State = 75; Match(IDENTIFIER);
+			State = 76; Match(LPAREN);
+			State = 85;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAREN) | (1L << PLUS) | (1L << MINUS) | (1L << IDENTIFIER) | (1L << DECIMAL_NUMBER) | (1L << BINARY_NUMBER) | (1L << HEXADECIMAL_NUMBER) | (1L << SCIENTIFIC_NUMBER))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAREN) | (1L << PLUS) | (1L << MINUS) | (1L << IDENTIFIER) | (1L << DECIMAL_NUMBER) | (1L << INTEGER_NUMBER) | (1L << PREFIX_BIN_NUMBER) | (1L << PREFIX_HEX_NUMBER) | (1L << PREFIX_INT_NUMBER) | (1L << PREFIX_OCT_NUMBER) | (1L << PREFIX_DEC_NUMBER))) != 0)) {
 				{
-				State = 69; expression();
-				State = 74;
+				State = 77; expression();
+				State = 82;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==COMMA) {
 					{
 					{
-					State = 70; Match(COMMA);
-					State = 71; expression();
+					State = 78; Match(COMMA);
+					State = 79; expression();
 					}
 					}
-					State = 76;
+					State = 84;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
 				}
 			}
 
-			State = 79; Match(RPAREN);
+			State = 87; Match(RPAREN);
 			}
 		}
 		catch (RecognitionException re) {
@@ -818,11 +925,11 @@ public partial class FormulaGrammerParser : Parser {
 	[RuleVersion(0)]
 	public VariableContext variable() {
 		VariableContext _localctx = new VariableContext(Context, State);
-		EnterRule(_localctx, 16, RULE_variable);
+		EnterRule(_localctx, 18, RULE_variable);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 81; Match(IDENTIFIER);
+			State = 89; Match(IDENTIFIER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -838,74 +945,81 @@ public partial class FormulaGrammerParser : Parser {
 
 	private static char[] _serializedATN = {
 		'\x3', '\x608B', '\xA72A', '\x8133', '\xB9ED', '\x417C', '\x3BE7', '\x7786', 
-		'\x5964', '\x3', '\x11', 'V', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', 
+		'\x5964', '\x3', '\x14', '^', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', 
 		'\t', '\x3', '\x4', '\x4', '\t', '\x4', '\x4', '\x5', '\t', '\x5', '\x4', 
 		'\x6', '\t', '\x6', '\x4', '\a', '\t', '\a', '\x4', '\b', '\t', '\b', 
-		'\x4', '\t', '\t', '\t', '\x4', '\n', '\t', '\n', '\x3', '\x2', '\x3', 
-		'\x2', '\x3', '\x2', '\x3', '\x3', '\x3', '\x3', '\x3', '\x3', '\a', '\x3', 
-		'\x1B', '\n', '\x3', '\f', '\x3', '\xE', '\x3', '\x1E', '\v', '\x3', '\x3', 
-		'\x4', '\x3', '\x4', '\x3', '\x4', '\a', '\x4', '#', '\n', '\x4', '\f', 
-		'\x4', '\xE', '\x4', '&', '\v', '\x4', '\x3', '\x5', '\x3', '\x5', '\x3', 
-		'\x5', '\a', '\x5', '+', '\n', '\x5', '\f', '\x5', '\xE', '\x5', '.', 
-		'\v', '\x5', '\x3', '\x6', '\x3', '\x6', '\x3', '\x6', '\x3', '\x6', '\x3', 
-		'\x6', '\x3', '\x6', '\x5', '\x6', '\x36', '\n', '\x6', '\x3', '\a', '\x3', 
-		'\a', '\x3', '\a', '\x3', '\a', '\x3', '\a', '\x3', '\a', '\x5', '\a', 
-		'>', '\n', '\a', '\x3', '\b', '\x3', '\b', '\x3', '\b', '\x3', '\b', '\x5', 
-		'\b', '\x44', '\n', '\b', '\x3', '\t', '\x3', '\t', '\x3', '\t', '\x3', 
-		'\t', '\x3', '\t', '\a', '\t', 'K', '\n', '\t', '\f', '\t', '\xE', '\t', 
-		'N', '\v', '\t', '\x5', '\t', 'P', '\n', '\t', '\x3', '\t', '\x3', '\t', 
-		'\x3', '\n', '\x3', '\n', '\x3', '\n', '\x2', '\x2', '\v', '\x2', '\x4', 
-		'\x6', '\b', '\n', '\f', '\xE', '\x10', '\x12', '\x2', '\x4', '\x3', '\x2', 
-		'\x5', '\x6', '\x3', '\x2', '\a', '\b', '\x2', 'Y', '\x2', '\x14', '\x3', 
-		'\x2', '\x2', '\x2', '\x4', '\x17', '\x3', '\x2', '\x2', '\x2', '\x6', 
-		'\x1F', '\x3', '\x2', '\x2', '\x2', '\b', '\'', '\x3', '\x2', '\x2', '\x2', 
-		'\n', '\x35', '\x3', '\x2', '\x2', '\x2', '\f', '=', '\x3', '\x2', '\x2', 
-		'\x2', '\xE', '\x43', '\x3', '\x2', '\x2', '\x2', '\x10', '\x45', '\x3', 
-		'\x2', '\x2', '\x2', '\x12', 'S', '\x3', '\x2', '\x2', '\x2', '\x14', 
-		'\x15', '\x5', '\x4', '\x3', '\x2', '\x15', '\x16', '\a', '\x2', '\x2', 
-		'\x3', '\x16', '\x3', '\x3', '\x2', '\x2', '\x2', '\x17', '\x1C', '\x5', 
-		'\x6', '\x4', '\x2', '\x18', '\x19', '\t', '\x2', '\x2', '\x2', '\x19', 
-		'\x1B', '\x5', '\x6', '\x4', '\x2', '\x1A', '\x18', '\x3', '\x2', '\x2', 
-		'\x2', '\x1B', '\x1E', '\x3', '\x2', '\x2', '\x2', '\x1C', '\x1A', '\x3', 
-		'\x2', '\x2', '\x2', '\x1C', '\x1D', '\x3', '\x2', '\x2', '\x2', '\x1D', 
-		'\x5', '\x3', '\x2', '\x2', '\x2', '\x1E', '\x1C', '\x3', '\x2', '\x2', 
-		'\x2', '\x1F', '$', '\x5', '\b', '\x5', '\x2', ' ', '!', '\t', '\x3', 
-		'\x2', '\x2', '!', '#', '\x5', '\b', '\x5', '\x2', '\"', ' ', '\x3', '\x2', 
-		'\x2', '\x2', '#', '&', '\x3', '\x2', '\x2', '\x2', '$', '\"', '\x3', 
-		'\x2', '\x2', '\x2', '$', '%', '\x3', '\x2', '\x2', '\x2', '%', '\a', 
-		'\x3', '\x2', '\x2', '\x2', '&', '$', '\x3', '\x2', '\x2', '\x2', '\'', 
-		',', '\x5', '\n', '\x6', '\x2', '(', ')', '\a', '\v', '\x2', '\x2', ')', 
-		'+', '\x5', '\n', '\x6', '\x2', '*', '(', '\x3', '\x2', '\x2', '\x2', 
-		'+', '.', '\x3', '\x2', '\x2', '\x2', ',', '*', '\x3', '\x2', '\x2', '\x2', 
-		',', '-', '\x3', '\x2', '\x2', '\x2', '-', '\t', '\x3', '\x2', '\x2', 
-		'\x2', '.', ',', '\x3', '\x2', '\x2', '\x2', '/', '\x30', '\a', '\x5', 
-		'\x2', '\x2', '\x30', '\x36', '\x5', '\f', '\a', '\x2', '\x31', '\x32', 
-		'\a', '\x6', '\x2', '\x2', '\x32', '\x36', '\x5', '\f', '\a', '\x2', '\x33', 
-		'\x36', '\x5', '\x10', '\t', '\x2', '\x34', '\x36', '\x5', '\f', '\a', 
-		'\x2', '\x35', '/', '\x3', '\x2', '\x2', '\x2', '\x35', '\x31', '\x3', 
-		'\x2', '\x2', '\x2', '\x35', '\x33', '\x3', '\x2', '\x2', '\x2', '\x35', 
-		'\x34', '\x3', '\x2', '\x2', '\x2', '\x36', '\v', '\x3', '\x2', '\x2', 
-		'\x2', '\x37', '>', '\x5', '\xE', '\b', '\x2', '\x38', '>', '\x5', '\x12', 
-		'\n', '\x2', '\x39', ':', '\a', '\x3', '\x2', '\x2', ':', ';', '\x5', 
-		'\x4', '\x3', '\x2', ';', '<', '\a', '\x4', '\x2', '\x2', '<', '>', '\x3', 
-		'\x2', '\x2', '\x2', '=', '\x37', '\x3', '\x2', '\x2', '\x2', '=', '\x38', 
-		'\x3', '\x2', '\x2', '\x2', '=', '\x39', '\x3', '\x2', '\x2', '\x2', '>', 
-		'\r', '\x3', '\x2', '\x2', '\x2', '?', '\x44', '\a', '\x10', '\x2', '\x2', 
-		'@', '\x44', '\a', '\r', '\x2', '\x2', '\x41', '\x44', '\a', '\xE', '\x2', 
-		'\x2', '\x42', '\x44', '\a', '\xF', '\x2', '\x2', '\x43', '?', '\x3', 
-		'\x2', '\x2', '\x2', '\x43', '@', '\x3', '\x2', '\x2', '\x2', '\x43', 
-		'\x41', '\x3', '\x2', '\x2', '\x2', '\x43', '\x42', '\x3', '\x2', '\x2', 
-		'\x2', '\x44', '\xF', '\x3', '\x2', '\x2', '\x2', '\x45', '\x46', '\a', 
-		'\f', '\x2', '\x2', '\x46', 'O', '\a', '\x3', '\x2', '\x2', 'G', 'L', 
-		'\x5', '\x4', '\x3', '\x2', 'H', 'I', '\a', '\t', '\x2', '\x2', 'I', 'K', 
-		'\x5', '\x4', '\x3', '\x2', 'J', 'H', '\x3', '\x2', '\x2', '\x2', 'K', 
-		'N', '\x3', '\x2', '\x2', '\x2', 'L', 'J', '\x3', '\x2', '\x2', '\x2', 
-		'L', 'M', '\x3', '\x2', '\x2', '\x2', 'M', 'P', '\x3', '\x2', '\x2', '\x2', 
-		'N', 'L', '\x3', '\x2', '\x2', '\x2', 'O', 'G', '\x3', '\x2', '\x2', '\x2', 
-		'O', 'P', '\x3', '\x2', '\x2', '\x2', 'P', 'Q', '\x3', '\x2', '\x2', '\x2', 
-		'Q', 'R', '\a', '\x4', '\x2', '\x2', 'R', '\x11', '\x3', '\x2', '\x2', 
-		'\x2', 'S', 'T', '\a', '\f', '\x2', '\x2', 'T', '\x13', '\x3', '\x2', 
-		'\x2', '\x2', '\n', '\x1C', '$', ',', '\x35', '=', '\x43', 'L', 'O',
+		'\x4', '\t', '\t', '\t', '\x4', '\n', '\t', '\n', '\x4', '\v', '\t', '\v', 
+		'\x3', '\x2', '\x3', '\x2', '\x3', '\x2', '\x3', '\x3', '\x3', '\x3', 
+		'\x3', '\x3', '\a', '\x3', '\x1D', '\n', '\x3', '\f', '\x3', '\xE', '\x3', 
+		' ', '\v', '\x3', '\x3', '\x4', '\x3', '\x4', '\x3', '\x4', '\a', '\x4', 
+		'%', '\n', '\x4', '\f', '\x4', '\xE', '\x4', '(', '\v', '\x4', '\x3', 
+		'\x5', '\x3', '\x5', '\x3', '\x5', '\a', '\x5', '-', '\n', '\x5', '\f', 
+		'\x5', '\xE', '\x5', '\x30', '\v', '\x5', '\x3', '\x6', '\x3', '\x6', 
+		'\x3', '\x6', '\x3', '\x6', '\x3', '\x6', '\x5', '\x6', '\x37', '\n', 
+		'\x6', '\x3', '\a', '\x3', '\a', '\x3', '\a', '\x3', '\a', '\x3', '\a', 
+		'\x3', '\a', '\x3', '\a', '\x3', '\a', '\x5', '\a', '\x41', '\n', '\a', 
+		'\x3', '\b', '\x3', '\b', '\x5', '\b', '\x45', '\n', '\b', '\x3', '\t', 
+		'\x3', '\t', '\x3', '\t', '\x3', '\t', '\x3', '\t', '\x5', '\t', 'L', 
+		'\n', '\t', '\x3', '\n', '\x3', '\n', '\x3', '\n', '\x3', '\n', '\x3', 
+		'\n', '\a', '\n', 'S', '\n', '\n', '\f', '\n', '\xE', '\n', 'V', '\v', 
+		'\n', '\x5', '\n', 'X', '\n', '\n', '\x3', '\n', '\x3', '\n', '\x3', '\v', 
+		'\x3', '\v', '\x3', '\v', '\x2', '\x2', '\f', '\x2', '\x4', '\x6', '\b', 
+		'\n', '\f', '\xE', '\x10', '\x12', '\x14', '\x2', '\x4', '\x3', '\x2', 
+		'\x5', '\x6', '\x3', '\x2', '\a', '\b', '\x2', '\x63', '\x2', '\x16', 
+		'\x3', '\x2', '\x2', '\x2', '\x4', '\x19', '\x3', '\x2', '\x2', '\x2', 
+		'\x6', '!', '\x3', '\x2', '\x2', '\x2', '\b', ')', '\x3', '\x2', '\x2', 
+		'\x2', '\n', '\x36', '\x3', '\x2', '\x2', '\x2', '\f', '@', '\x3', '\x2', 
+		'\x2', '\x2', '\xE', '\x44', '\x3', '\x2', '\x2', '\x2', '\x10', 'K', 
+		'\x3', '\x2', '\x2', '\x2', '\x12', 'M', '\x3', '\x2', '\x2', '\x2', '\x14', 
+		'[', '\x3', '\x2', '\x2', '\x2', '\x16', '\x17', '\x5', '\x4', '\x3', 
+		'\x2', '\x17', '\x18', '\a', '\x2', '\x2', '\x3', '\x18', '\x3', '\x3', 
+		'\x2', '\x2', '\x2', '\x19', '\x1E', '\x5', '\x6', '\x4', '\x2', '\x1A', 
+		'\x1B', '\t', '\x2', '\x2', '\x2', '\x1B', '\x1D', '\x5', '\x6', '\x4', 
+		'\x2', '\x1C', '\x1A', '\x3', '\x2', '\x2', '\x2', '\x1D', ' ', '\x3', 
+		'\x2', '\x2', '\x2', '\x1E', '\x1C', '\x3', '\x2', '\x2', '\x2', '\x1E', 
+		'\x1F', '\x3', '\x2', '\x2', '\x2', '\x1F', '\x5', '\x3', '\x2', '\x2', 
+		'\x2', ' ', '\x1E', '\x3', '\x2', '\x2', '\x2', '!', '&', '\x5', '\b', 
+		'\x5', '\x2', '\"', '#', '\t', '\x3', '\x2', '\x2', '#', '%', '\x5', '\b', 
+		'\x5', '\x2', '$', '\"', '\x3', '\x2', '\x2', '\x2', '%', '(', '\x3', 
+		'\x2', '\x2', '\x2', '&', '$', '\x3', '\x2', '\x2', '\x2', '&', '\'', 
+		'\x3', '\x2', '\x2', '\x2', '\'', '\a', '\x3', '\x2', '\x2', '\x2', '(', 
+		'&', '\x3', '\x2', '\x2', '\x2', ')', '.', '\x5', '\n', '\x6', '\x2', 
+		'*', '+', '\a', '\v', '\x2', '\x2', '+', '-', '\x5', '\n', '\x6', '\x2', 
+		',', '*', '\x3', '\x2', '\x2', '\x2', '-', '\x30', '\x3', '\x2', '\x2', 
+		'\x2', '.', ',', '\x3', '\x2', '\x2', '\x2', '.', '/', '\x3', '\x2', '\x2', 
+		'\x2', '/', '\t', '\x3', '\x2', '\x2', '\x2', '\x30', '.', '\x3', '\x2', 
+		'\x2', '\x2', '\x31', '\x32', '\a', '\x5', '\x2', '\x2', '\x32', '\x37', 
+		'\x5', '\f', '\a', '\x2', '\x33', '\x34', '\a', '\x6', '\x2', '\x2', '\x34', 
+		'\x37', '\x5', '\f', '\a', '\x2', '\x35', '\x37', '\x5', '\f', '\a', '\x2', 
+		'\x36', '\x31', '\x3', '\x2', '\x2', '\x2', '\x36', '\x33', '\x3', '\x2', 
+		'\x2', '\x2', '\x36', '\x35', '\x3', '\x2', '\x2', '\x2', '\x37', '\v', 
+		'\x3', '\x2', '\x2', '\x2', '\x38', '\x41', '\x5', '\xE', '\b', '\x2', 
+		'\x39', '\x41', '\x5', '\x10', '\t', '\x2', ':', '\x41', '\x5', '\x14', 
+		'\v', '\x2', ';', '<', '\a', '\x3', '\x2', '\x2', '<', '=', '\x5', '\x4', 
+		'\x3', '\x2', '=', '>', '\a', '\x4', '\x2', '\x2', '>', '\x41', '\x3', 
+		'\x2', '\x2', '\x2', '?', '\x41', '\x5', '\x12', '\n', '\x2', '@', '\x38', 
+		'\x3', '\x2', '\x2', '\x2', '@', '\x39', '\x3', '\x2', '\x2', '\x2', '@', 
+		':', '\x3', '\x2', '\x2', '\x2', '@', ';', '\x3', '\x2', '\x2', '\x2', 
+		'@', '?', '\x3', '\x2', '\x2', '\x2', '\x41', '\r', '\x3', '\x2', '\x2', 
+		'\x2', '\x42', '\x45', '\a', '\r', '\x2', '\x2', '\x43', '\x45', '\a', 
+		'\xE', '\x2', '\x2', '\x44', '\x42', '\x3', '\x2', '\x2', '\x2', '\x44', 
+		'\x43', '\x3', '\x2', '\x2', '\x2', '\x45', '\xF', '\x3', '\x2', '\x2', 
+		'\x2', '\x46', 'L', '\a', '\x13', '\x2', '\x2', 'G', 'L', '\a', '\x11', 
+		'\x2', '\x2', 'H', 'L', '\a', '\xF', '\x2', '\x2', 'I', 'L', '\a', '\x12', 
+		'\x2', '\x2', 'J', 'L', '\a', '\x10', '\x2', '\x2', 'K', '\x46', '\x3', 
+		'\x2', '\x2', '\x2', 'K', 'G', '\x3', '\x2', '\x2', '\x2', 'K', 'H', '\x3', 
+		'\x2', '\x2', '\x2', 'K', 'I', '\x3', '\x2', '\x2', '\x2', 'K', 'J', '\x3', 
+		'\x2', '\x2', '\x2', 'L', '\x11', '\x3', '\x2', '\x2', '\x2', 'M', 'N', 
+		'\a', '\f', '\x2', '\x2', 'N', 'W', '\a', '\x3', '\x2', '\x2', 'O', 'T', 
+		'\x5', '\x4', '\x3', '\x2', 'P', 'Q', '\a', '\t', '\x2', '\x2', 'Q', 'S', 
+		'\x5', '\x4', '\x3', '\x2', 'R', 'P', '\x3', '\x2', '\x2', '\x2', 'S', 
+		'V', '\x3', '\x2', '\x2', '\x2', 'T', 'R', '\x3', '\x2', '\x2', '\x2', 
+		'T', 'U', '\x3', '\x2', '\x2', '\x2', 'U', 'X', '\x3', '\x2', '\x2', '\x2', 
+		'V', 'T', '\x3', '\x2', '\x2', '\x2', 'W', 'O', '\x3', '\x2', '\x2', '\x2', 
+		'W', 'X', '\x3', '\x2', '\x2', '\x2', 'X', 'Y', '\x3', '\x2', '\x2', '\x2', 
+		'Y', 'Z', '\a', '\x4', '\x2', '\x2', 'Z', '\x13', '\x3', '\x2', '\x2', 
+		'\x2', '[', '\\', '\a', '\f', '\x2', '\x2', '\\', '\x15', '\x3', '\x2', 
+		'\x2', '\x2', '\v', '\x1E', '&', '.', '\x36', '@', '\x44', 'K', 'T', 'W',
 	};
 
 	public static readonly ATN _ATN =

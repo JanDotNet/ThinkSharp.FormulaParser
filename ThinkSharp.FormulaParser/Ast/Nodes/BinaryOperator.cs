@@ -7,13 +7,28 @@ namespace ThinkSharp.FormulaParsing.Ast.Nodes
     public sealed class BinaryOperator
     {
         readonly Func<double, double, double> evaluation;
-        private static readonly IEnumerable<BinaryOperator> allBinaryOperators = new[]
+        private static readonly BinaryOperator[] allBinaryOperators;
+        
+        public static BinaryOperator Plus { get; }
+        public static BinaryOperator Minus { get; }
+        public static BinaryOperator Times { get; }
+        public static BinaryOperator DividedBy { get; }
+
+        static BinaryOperator()
         {
-            new BinaryOperator("+", (x, y) => x + y),
-            new BinaryOperator( "-", (x, y) => x - y),
-            new BinaryOperator( "/", (x, y) => x / y),
-            new BinaryOperator("*", (x, y) => x* y),
-        };
+            Plus = new BinaryOperator("+", (x, y) => x + y);
+            Minus = new BinaryOperator("-", (x, y) => x - y);
+            Times = new BinaryOperator("*", (x, y) => x * y);
+            DividedBy = new BinaryOperator("/", (x, y) => x / y);
+
+            allBinaryOperators = new[]
+            {
+                Plus,
+                Minus,
+                Times,
+                DividedBy
+            };
+        }
 
         private BinaryOperator(string symbol, Func<double, double, double> evaluation)
         {

@@ -13,7 +13,9 @@ namespace ThinkSharp.FormulaParsing.Ast.Visitors
 
         TReturn Visit(BracketedNode node);
 
-        TReturn Visit(NumberNode node);
+        TReturn Visit(DecimalNode node);
+
+        TReturn Visit(IntegerNode node);
 
         TReturn Visit(VariableNode node);
 

@@ -9,6 +9,7 @@
     <Import_RootNamespace>ThinkSharp.FluentFormulaParser.Test</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AST\ParsingHelperTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BinaryOperatorTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FormulaParserTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FormularParser.VariableNames.Test.cs" />
@@ -17,10 +18,22 @@
     <Compile Include="$(MSBuildThisFileDirectory)FormularParser.Configuration.Test.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FormularParser.ParsingBehavior.Test.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FormularParser.SupportedFeatures.Test.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\NodesToFormulaTextVisitor.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\MoveOuterMinusToInnerTermRuleTest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\TermTimesOrDividedByMinusOneIsMinusTermRuleTest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\TermTimesOrDividedByOneIsTermRuleTest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\TermPlusOrMinusZeroIsTermRuleTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NodesToFormulaTextVisitor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\Rules\RemoveBracketsInTermPlusMinusBracketsPlusMinusTermTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\Rules\RemoveNegativeSignInInSubtractTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\Rules\RemoveNegativeSignInInSumTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\Rules\RemoveNegativeSignInFrontOfBracketsTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\Rules\RemoveNegativSignFromNumberTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\Rules\RemoveNegativeSignTimesNegatieSignTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\Rules\RemoveRootBracketsTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\Rules\RemoveBracketsInTermPlusMinusBracketsTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\Rules\RemoveNestedBracketsTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\Rules\TermTimesOrDividedByOneIsTermTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\Rules\TermTimesOrDividedByMinusOneIsMinusTermTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\Rules\TermPlusOrMinusZeroIsTermTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\Rules\RemovePositiveSignTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\Rules\RuleTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\TermWritingSystemTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\BinaryOperatorTest.cs" />
   </ItemGroup>
 </Project>

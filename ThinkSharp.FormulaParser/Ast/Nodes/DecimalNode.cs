@@ -7,15 +7,12 @@ using ThinkSharp.FormulaParsing.Ast.Visitors;
 
 namespace ThinkSharp.FormulaParsing.Ast.Nodes
 {
-    public class NumberNode : Node
+    public class DecimalNode : Node
     {
-        public NumberNode(string token, double value)
+        public DecimalNode(double value)
         {
-            this.Token = token;
             this.Value = value;
         }
-
-        public string Token { get; }
 
         public double Value { get; }
 

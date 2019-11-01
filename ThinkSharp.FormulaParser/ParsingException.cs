@@ -27,6 +27,8 @@ namespace ThinkSharp.FormulaParsing
 
         internal static void ThrowInvalidTokenException(IToken token) => ThrowException(token.Line, token.Column, token.Text, $"Invalid token '{token.Text}'.");
 
+        internal static void ThrowInvalidScientificNumberException(IToken token) => ThrowException(token.Line, token.Column, token.Text, $"Invalid scientific number: '{token.Text}'.");
+
         internal static void ThrowUnknownFunctionException(IToken token) => ThrowException(token.Line, token.Column, token.Text, $"Unknown function '{token.Text}'.");
 
         internal static void ThrowFunctionArgumentCountDoesNotExistException(IToken token, int argumentCount) => ThrowException(token.Line, token.Column, token.Text, $"There is no function '{token.Text}' that takes {argumentCount} argument(s).");

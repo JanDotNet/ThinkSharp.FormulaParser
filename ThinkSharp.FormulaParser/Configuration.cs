@@ -65,6 +65,8 @@ namespace ThinkSharp.FormulaParsing
 
         public bool IsHexadecimalNumberNotationSupportDisabled { get; private set; } = false;
 
+        public bool IsOctalNumberNotationSupportDisabled { get; private set; } = false;
+
         bool IConfiguration.HasFunction(string name, int argumentCount)
         {
             if (this.MatchFunction0To5(name, argumentCount))
@@ -274,6 +276,7 @@ namespace ThinkSharp.FormulaParsing
         void IConfigureSupportedFeatures.DisableScientificNotation() => this.IsScientificNotationSupportDisabled = true;
         void IConfigureSupportedFeatures.DisableBinaryNumberNotation() => this.IsBinaryNumberNotationSupportDisabled = true;
         void IConfigureSupportedFeatures.DisableHexadecimalNumberNotation() => this.IsHexadecimalNumberNotationSupportDisabled = true;
+        void IConfigureSupportedFeatures.DisableOctalNumberNotation() => this.IsOctalNumberNotationSupportDisabled = true;
         void IConfigureSupportedFeatures.DisableBracket() => this.IsBracketSupportDisabled = true;
         void IConfigureSupportedFeatures.DisablePow() => this.IsPowSupportDisabled = true;
         void IConfigureSupportedFeatures.DisableVariables() => this.IsVariablesSupportDisabled = true;

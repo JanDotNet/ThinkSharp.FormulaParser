@@ -171,6 +171,11 @@
             Prevents the usage of hexadecimal notation (e.g. 0x20 = 32)
             </summary>
         </member>
+        <member name="M:ThinkSharp.FormulaParsing.IConfigureSupportedFeatures.DisableOctalNumberNotation">
+            <summary>
+            Prevents the usage of octal notation (e.g. 0o10 = 8)
+            </summary>
+        </member>
         <member name="M:ThinkSharp.FormulaParsing.IConfigureSupportedFeatures.DisableBracket">
             <summary>
             Prevents the usage of brackets.
@@ -487,22 +492,6 @@
             </summary>
             <param name="context">The parse tree.</param>
         </member>
-        <member name="M:FormulaGrammerBaseListener.EnterFunction(FormulaGrammerParser.FunctionContext)">
-            <summary>
-            Enter a parse tree produced by the <c>Function</c>
-            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
-            <para>The default implementation does nothing.</para>
-            </summary>
-            <param name="context">The parse tree.</param>
-        </member>
-        <member name="M:FormulaGrammerBaseListener.ExitFunction(FormulaGrammerParser.FunctionContext)">
-            <summary>
-            Exit a parse tree produced by the <c>Function</c>
-            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
-            <para>The default implementation does nothing.</para>
-            </summary>
-            <param name="context">The parse tree.</param>
-        </member>
         <member name="M:FormulaGrammerBaseListener.EnterUnsignedAtom(FormulaGrammerParser.UnsignedAtomContext)">
             <summary>
             Enter a parse tree produced by the <c>UnsignedAtom</c>
@@ -533,22 +522,6 @@
             </summary>
             <param name="context">The parse tree.</param>
         </member>
-        <member name="M:FormulaGrammerBaseListener.EnterScientificNumber(FormulaGrammerParser.ScientificNumberContext)">
-            <summary>
-            Enter a parse tree produced by the <c>ScientificNumber</c>
-            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
-            <para>The default implementation does nothing.</para>
-            </summary>
-            <param name="context">The parse tree.</param>
-        </member>
-        <member name="M:FormulaGrammerBaseListener.ExitScientificNumber(FormulaGrammerParser.ScientificNumberContext)">
-            <summary>
-            Exit a parse tree produced by the <c>ScientificNumber</c>
-            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
-            <para>The default implementation does nothing.</para>
-            </summary>
-            <param name="context">The parse tree.</param>
-        </member>
         <member name="M:FormulaGrammerBaseListener.EnterDecimalNumber(FormulaGrammerParser.DecimalNumberContext)">
             <summary>
             Enter a parse tree produced by the <c>DecimalNumber</c>
@@ -565,34 +538,98 @@
             </summary>
             <param name="context">The parse tree.</param>
         </member>
-        <member name="M:FormulaGrammerBaseListener.EnterBinaryNumber(FormulaGrammerParser.BinaryNumberContext)">
+        <member name="M:FormulaGrammerBaseListener.EnterIntgerNumber(FormulaGrammerParser.IntgerNumberContext)">
             <summary>
-            Enter a parse tree produced by the <c>BinaryNumber</c>
+            Enter a parse tree produced by the <c>IntgerNumber</c>
             labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
             <para>The default implementation does nothing.</para>
             </summary>
             <param name="context">The parse tree.</param>
         </member>
-        <member name="M:FormulaGrammerBaseListener.ExitBinaryNumber(FormulaGrammerParser.BinaryNumberContext)">
+        <member name="M:FormulaGrammerBaseListener.ExitIntgerNumber(FormulaGrammerParser.IntgerNumberContext)">
             <summary>
-            Exit a parse tree produced by the <c>BinaryNumber</c>
+            Exit a parse tree produced by the <c>IntgerNumber</c>
             labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
             <para>The default implementation does nothing.</para>
             </summary>
             <param name="context">The parse tree.</param>
         </member>
-        <member name="M:FormulaGrammerBaseListener.EnterHexadecimalNumber(FormulaGrammerParser.HexadecimalNumberContext)">
+        <member name="M:FormulaGrammerBaseListener.EnterPrefixedDecNumber(FormulaGrammerParser.PrefixedDecNumberContext)">
             <summary>
-            Enter a parse tree produced by the <c>HexadecimalNumber</c>
-            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
+            Enter a parse tree produced by the <c>PrefixedDecNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
             <para>The default implementation does nothing.</para>
             </summary>
             <param name="context">The parse tree.</param>
         </member>
-        <member name="M:FormulaGrammerBaseListener.ExitHexadecimalNumber(FormulaGrammerParser.HexadecimalNumberContext)">
+        <member name="M:FormulaGrammerBaseListener.ExitPrefixedDecNumber(FormulaGrammerParser.PrefixedDecNumberContext)">
             <summary>
-            Exit a parse tree produced by the <c>HexadecimalNumber</c>
-            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
+            Exit a parse tree produced by the <c>PrefixedDecNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.EnterPrefixedIntNumber(FormulaGrammerParser.PrefixedIntNumberContext)">
+            <summary>
+            Enter a parse tree produced by the <c>PrefixedIntNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.ExitPrefixedIntNumber(FormulaGrammerParser.PrefixedIntNumberContext)">
+            <summary>
+            Exit a parse tree produced by the <c>PrefixedIntNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.EnterPrefixedBinNumber(FormulaGrammerParser.PrefixedBinNumberContext)">
+            <summary>
+            Enter a parse tree produced by the <c>PrefixedBinNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.ExitPrefixedBinNumber(FormulaGrammerParser.PrefixedBinNumberContext)">
+            <summary>
+            Exit a parse tree produced by the <c>PrefixedBinNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.EnterPrefixedOctNumber(FormulaGrammerParser.PrefixedOctNumberContext)">
+            <summary>
+            Enter a parse tree produced by the <c>PrefixedOctNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.ExitPrefixedOctNumber(FormulaGrammerParser.PrefixedOctNumberContext)">
+            <summary>
+            Exit a parse tree produced by the <c>PrefixedOctNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.EnterPrefixedHexNumber(FormulaGrammerParser.PrefixedHexNumberContext)">
+            <summary>
+            Enter a parse tree produced by the <c>PrefixedHexNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:FormulaGrammerBaseListener.ExitPrefixedHexNumber(FormulaGrammerParser.PrefixedHexNumberContext)">
+            <summary>
+            Exit a parse tree produced by the <c>PrefixedHexNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
             <para>The default implementation does nothing.</para>
             </summary>
             <param name="context">The parse tree.</param>
@@ -717,18 +754,6 @@
             <param name="context">The parse tree.</param>
             <return>The visitor result.</return>
         </member>
-        <member name="M:FormulaGrammerBaseVisitor`1.VisitFunction(FormulaGrammerParser.FunctionContext)">
-            <summary>
-            Visit a parse tree produced by the <c>Function</c>
-            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
-            <para>
-            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
-            on <paramref name="context"/>.
-            </para>
-            </summary>
-            <param name="context">The parse tree.</param>
-            <return>The visitor result.</return>
-        </member>
         <member name="M:FormulaGrammerBaseVisitor`1.VisitUnsignedAtom(FormulaGrammerParser.UnsignedAtomContext)">
             <summary>
             Visit a parse tree produced by the <c>UnsignedAtom</c>
@@ -752,18 +777,6 @@
             <param name="context">The parse tree.</param>
             <return>The visitor result.</return>
         </member>
-        <member name="M:FormulaGrammerBaseVisitor`1.VisitScientificNumber(FormulaGrammerParser.ScientificNumberContext)">
-            <summary>
-            Visit a parse tree produced by the <c>ScientificNumber</c>
-            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
-            <para>
-            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
-            on <paramref name="context"/>.
-            </para>
-            </summary>
-            <param name="context">The parse tree.</param>
-            <return>The visitor result.</return>
-        </member>
         <member name="M:FormulaGrammerBaseVisitor`1.VisitDecimalNumber(FormulaGrammerParser.DecimalNumberContext)">
             <summary>
             Visit a parse tree produced by the <c>DecimalNumber</c>
@@ -776,9 +789,9 @@
             <param name="context">The parse tree.</param>
             <return>The visitor result.</return>
         </member>
-        <member name="M:FormulaGrammerBaseVisitor`1.VisitBinaryNumber(FormulaGrammerParser.BinaryNumberContext)">
+        <member name="M:FormulaGrammerBaseVisitor`1.VisitIntgerNumber(FormulaGrammerParser.IntgerNumberContext)">
             <summary>
-            Visit a parse tree produced by the <c>BinaryNumber</c>
+            Visit a parse tree produced by the <c>IntgerNumber</c>
             labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
             <para>
             The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
@@ -788,10 +801,58 @@
             <param name="context">The parse tree.</param>
             <return>The visitor result.</return>
         </member>
-        <member name="M:FormulaGrammerBaseVisitor`1.VisitHexadecimalNumber(FormulaGrammerParser.HexadecimalNumberContext)">
+        <member name="M:FormulaGrammerBaseVisitor`1.VisitPrefixedDecNumber(FormulaGrammerParser.PrefixedDecNumberContext)">
             <summary>
-            Visit a parse tree produced by the <c>HexadecimalNumber</c>
-            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
+            Visit a parse tree produced by the <c>PrefixedDecNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:FormulaGrammerBaseVisitor`1.VisitPrefixedIntNumber(FormulaGrammerParser.PrefixedIntNumberContext)">
+            <summary>
+            Visit a parse tree produced by the <c>PrefixedIntNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:FormulaGrammerBaseVisitor`1.VisitPrefixedBinNumber(FormulaGrammerParser.PrefixedBinNumberContext)">
+            <summary>
+            Visit a parse tree produced by the <c>PrefixedBinNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:FormulaGrammerBaseVisitor`1.VisitPrefixedOctNumber(FormulaGrammerParser.PrefixedOctNumberContext)">
+            <summary>
+            Visit a parse tree produced by the <c>PrefixedOctNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:FormulaGrammerBaseVisitor`1.VisitPrefixedHexNumber(FormulaGrammerParser.PrefixedHexNumberContext)">
+            <summary>
+            Visit a parse tree produced by the <c>PrefixedHexNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
             <para>
             The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
             on <paramref name="context"/>.
@@ -904,20 +965,6 @@
             </summary>
             <param name="context">The parse tree.</param>
         </member>
-        <member name="M:IFormulaGrammerListener.EnterFunction(FormulaGrammerParser.FunctionContext)">
-            <summary>
-            Enter a parse tree produced by the <c>Function</c>
-            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
-            </summary>
-            <param name="context">The parse tree.</param>
-        </member>
-        <member name="M:IFormulaGrammerListener.ExitFunction(FormulaGrammerParser.FunctionContext)">
-            <summary>
-            Exit a parse tree produced by the <c>Function</c>
-            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
-            </summary>
-            <param name="context">The parse tree.</param>
-        </member>
         <member name="M:IFormulaGrammerListener.EnterUnsignedAtom(FormulaGrammerParser.UnsignedAtomContext)">
             <summary>
             Enter a parse tree produced by the <c>UnsignedAtom</c>
@@ -944,20 +991,6 @@
             </summary>
             <param name="context">The parse tree.</param>
         </member>
-        <member name="M:IFormulaGrammerListener.EnterScientificNumber(FormulaGrammerParser.ScientificNumberContext)">
-            <summary>
-            Enter a parse tree produced by the <c>ScientificNumber</c>
-            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
-            </summary>
-            <param name="context">The parse tree.</param>
-        </member>
-        <member name="M:IFormulaGrammerListener.ExitScientificNumber(FormulaGrammerParser.ScientificNumberContext)">
-            <summary>
-            Exit a parse tree produced by the <c>ScientificNumber</c>
-            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
-            </summary>
-            <param name="context">The parse tree.</param>
-        </member>
         <member name="M:IFormulaGrammerListener.EnterDecimalNumber(FormulaGrammerParser.DecimalNumberContext)">
             <summary>
             Enter a parse tree produced by the <c>DecimalNumber</c>
@@ -972,31 +1005,87 @@
             </summary>
             <param name="context">The parse tree.</param>
         </member>
-        <member name="M:IFormulaGrammerListener.EnterBinaryNumber(FormulaGrammerParser.BinaryNumberContext)">
+        <member name="M:IFormulaGrammerListener.EnterIntgerNumber(FormulaGrammerParser.IntgerNumberContext)">
             <summary>
-            Enter a parse tree produced by the <c>BinaryNumber</c>
+            Enter a parse tree produced by the <c>IntgerNumber</c>
             labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
             </summary>
             <param name="context">The parse tree.</param>
         </member>
-        <member name="M:IFormulaGrammerListener.ExitBinaryNumber(FormulaGrammerParser.BinaryNumberContext)">
+        <member name="M:IFormulaGrammerListener.ExitIntgerNumber(FormulaGrammerParser.IntgerNumberContext)">
             <summary>
-            Exit a parse tree produced by the <c>BinaryNumber</c>
+            Exit a parse tree produced by the <c>IntgerNumber</c>
             labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
             </summary>
             <param name="context">The parse tree.</param>
         </member>
-        <member name="M:IFormulaGrammerListener.EnterHexadecimalNumber(FormulaGrammerParser.HexadecimalNumberContext)">
+        <member name="M:IFormulaGrammerListener.EnterPrefixedDecNumber(FormulaGrammerParser.PrefixedDecNumberContext)">
             <summary>
-            Enter a parse tree produced by the <c>HexadecimalNumber</c>
-            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
+            Enter a parse tree produced by the <c>PrefixedDecNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
             </summary>
             <param name="context">The parse tree.</param>
         </member>
-        <member name="M:IFormulaGrammerListener.ExitHexadecimalNumber(FormulaGrammerParser.HexadecimalNumberContext)">
+        <member name="M:IFormulaGrammerListener.ExitPrefixedDecNumber(FormulaGrammerParser.PrefixedDecNumberContext)">
             <summary>
-            Exit a parse tree produced by the <c>HexadecimalNumber</c>
-            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
+            Exit a parse tree produced by the <c>PrefixedDecNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.EnterPrefixedIntNumber(FormulaGrammerParser.PrefixedIntNumberContext)">
+            <summary>
+            Enter a parse tree produced by the <c>PrefixedIntNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.ExitPrefixedIntNumber(FormulaGrammerParser.PrefixedIntNumberContext)">
+            <summary>
+            Exit a parse tree produced by the <c>PrefixedIntNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.EnterPrefixedBinNumber(FormulaGrammerParser.PrefixedBinNumberContext)">
+            <summary>
+            Enter a parse tree produced by the <c>PrefixedBinNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.ExitPrefixedBinNumber(FormulaGrammerParser.PrefixedBinNumberContext)">
+            <summary>
+            Exit a parse tree produced by the <c>PrefixedBinNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.EnterPrefixedOctNumber(FormulaGrammerParser.PrefixedOctNumberContext)">
+            <summary>
+            Enter a parse tree produced by the <c>PrefixedOctNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.ExitPrefixedOctNumber(FormulaGrammerParser.PrefixedOctNumberContext)">
+            <summary>
+            Exit a parse tree produced by the <c>PrefixedOctNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.EnterPrefixedHexNumber(FormulaGrammerParser.PrefixedHexNumberContext)">
+            <summary>
+            Enter a parse tree produced by the <c>PrefixedHexNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:IFormulaGrammerListener.ExitPrefixedHexNumber(FormulaGrammerParser.PrefixedHexNumberContext)">
+            <summary>
+            Exit a parse tree produced by the <c>PrefixedHexNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
             </summary>
             <param name="context">The parse tree.</param>
         </member>
@@ -1075,14 +1164,6 @@
             <param name="context">The parse tree.</param>
             <return>The visitor result.</return>
         </member>
-        <member name="M:IFormulaGrammerVisitor`1.VisitFunction(FormulaGrammerParser.FunctionContext)">
-            <summary>
-            Visit a parse tree produced by the <c>Function</c>
-            labeled alternative in <see cref="M:FormulaGrammerParser.signedAtom"/>.
-            </summary>
-            <param name="context">The parse tree.</param>
-            <return>The visitor result.</return>
-        </member>
         <member name="M:IFormulaGrammerVisitor`1.VisitUnsignedAtom(FormulaGrammerParser.UnsignedAtomContext)">
             <summary>
             Visit a parse tree produced by the <c>UnsignedAtom</c>
@@ -1098,14 +1179,6 @@
             <param name="context">The parse tree.</param>
             <return>The visitor result.</return>
         </member>
-        <member name="M:IFormulaGrammerVisitor`1.VisitScientificNumber(FormulaGrammerParser.ScientificNumberContext)">
-            <summary>
-            Visit a parse tree produced by the <c>ScientificNumber</c>
-            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
-            </summary>
-            <param name="context">The parse tree.</param>
-            <return>The visitor result.</return>
-        </member>
         <member name="M:IFormulaGrammerVisitor`1.VisitDecimalNumber(FormulaGrammerParser.DecimalNumberContext)">
             <summary>
             Visit a parse tree produced by the <c>DecimalNumber</c>
@@ -1114,18 +1187,50 @@
             <param name="context">The parse tree.</param>
             <return>The visitor result.</return>
         </member>
-        <member name="M:IFormulaGrammerVisitor`1.VisitBinaryNumber(FormulaGrammerParser.BinaryNumberContext)">
+        <member name="M:IFormulaGrammerVisitor`1.VisitIntgerNumber(FormulaGrammerParser.IntgerNumberContext)">
             <summary>
-            Visit a parse tree produced by the <c>BinaryNumber</c>
+            Visit a parse tree produced by the <c>IntgerNumber</c>
             labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
             </summary>
             <param name="context">The parse tree.</param>
             <return>The visitor result.</return>
         </member>
-        <member name="M:IFormulaGrammerVisitor`1.VisitHexadecimalNumber(FormulaGrammerParser.HexadecimalNumberContext)">
+        <member name="M:IFormulaGrammerVisitor`1.VisitPrefixedDecNumber(FormulaGrammerParser.PrefixedDecNumberContext)">
             <summary>
-            Visit a parse tree produced by the <c>HexadecimalNumber</c>
-            labeled alternative in <see cref="M:FormulaGrammerParser.number"/>.
+            Visit a parse tree produced by the <c>PrefixedDecNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:IFormulaGrammerVisitor`1.VisitPrefixedIntNumber(FormulaGrammerParser.PrefixedIntNumberContext)">
+            <summary>
+            Visit a parse tree produced by the <c>PrefixedIntNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:IFormulaGrammerVisitor`1.VisitPrefixedBinNumber(FormulaGrammerParser.PrefixedBinNumberContext)">
+            <summary>
+            Visit a parse tree produced by the <c>PrefixedBinNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:IFormulaGrammerVisitor`1.VisitPrefixedOctNumber(FormulaGrammerParser.PrefixedOctNumberContext)">
+            <summary>
+            Visit a parse tree produced by the <c>PrefixedOctNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:IFormulaGrammerVisitor`1.VisitPrefixedHexNumber(FormulaGrammerParser.PrefixedHexNumberContext)">
+            <summary>
+            Visit a parse tree produced by the <c>PrefixedHexNumber</c>
+            labeled alternative in <see cref="M:FormulaGrammerParser.prefixedNumber"/>.
             </summary>
             <param name="context">The parse tree.</param>
             <return>The visitor result.</return>

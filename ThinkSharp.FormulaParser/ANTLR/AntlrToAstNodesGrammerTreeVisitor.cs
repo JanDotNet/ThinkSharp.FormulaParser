@@ -112,44 +112,83 @@ namespace ThinkSharp.FormulaParsing.ANTLR
             return base.VisitAtom(context);
         }
         
-        public override Node VisitScientificNumber([NotNull] FormulaGrammerParser.ScientificNumberContext context)
-        {
-            if (this.configuration.IsScientificNotationSupportDisabled)
-            {
-                ParsingException.ThrowInvalidTokenException(context.SCIENTIFIC_NUMBER().Symbol);
-            }
+        //public override Node VisitScientificNumber([NotNull] FormulaGrammerParser.ScientificNumberContext context)
+        //{
+        //    //if (this.configuration.IsScientificNotationSupportDisabled)
+        //    //{
+        //    //    ParsingException.ThrowInvalidTokenException(context.E().Symbol);
+        //    //}
 
-            var token = context.SCIENTIFIC_NUMBER().Symbol.Text;
-            return new NumberNode(token, double.Parse(token));
+        //    var scientificNumber = context.SCIENTIFIC_NUMBER().Symbol.Text;
+        //    //var baseNumber = this.Visit();
+        //    //var exponentNumber = this.Visit(context.number(1));
+        //    //var isNegativ = context.MINUS() != null;
+
+        //    //if (isNegativ)
+        //    //{
+        //    //    exponentNumber = new SignedNode(Sign.Minus, exponentNumber);
+        //    //}
+
+        //    //var pow = new PowerNode(new IntegerNode("10", 10), exponentNumber);
+        //    //return new BinaryOperatorNode(BinaryOperator.BySymbol("*"), baseNumber, exponentNumber);
+        //    return new DecimalNode(scientificNumber, double.Parse(scientificNumber));
+        //}
+
+        public override Node VisitPrefixedIntNumber([NotNull] FormulaGrammerParser.PrefixedIntNumberContext context)
+        {
+            var token = context.PREFIX_INT_NUMBER().Symbol.Text;
+            return new IntegerNode(NumberFormat.Dec, long.Parse(token.Substring(2)));
         }
 
-        public override Node VisitBinaryNumber([NotNull] FormulaGrammerParser.BinaryNumberContext context)
+        public override Node VisitPrefixedBinNumber([NotNull] FormulaGrammerParser.PrefixedBinNumberContext context)
         {
             if (this.configuration.IsBinaryNumberNotationSupportDisabled)
             {
-                ParsingException.ThrowInvalidTokenException(context.BINARY_NUMBER().Symbol);
+                ParsingException.ThrowInvalidTokenException(context.PREFIX_BIN_NUMBER().Symbol);
             }
 
-            var token = context.BINARY_NUMBER().Symbol.Text;
-            return new NumberNode(token, Convert.ToInt32(token.Substring(2), 2));
+            var token = context.PREFIX_BIN_NUMBER().Symbol.Text;
+            return new IntegerNode(NumberFormat.Bin, Convert.ToInt64(token.Substring(2), 2));
+        }
+
+        public override Node VisitPrefixedDecNumber([NotNull] FormulaGrammerParser.PrefixedDecNumberContext context)
+        {
+            var token = context.PREFIX_DEC_NUMBER().Symbol.Text;
+            return new DecimalNode(double.Parse(token.Substring(2)));
+        }
+
+        public override Node VisitPrefixedHexNumber([NotNull] FormulaGrammerParser.PrefixedHexNumberContext context)
+        {
+            if (this.configuration.IsHexadecimalNumberNotationSupportDisabled)
+            {
+                ParsingException.ThrowInvalidTokenException(context.PREFIX_HEX_NUMBER().Symbol);
+            }
+
+            var token = context.PREFIX_HEX_NUMBER().Symbol.Text;
+            return new IntegerNode(NumberFormat.Hex, Convert.ToInt64(token.Substring(2), 16));
+        }
+
+        public override Node VisitPrefixedOctNumber([NotNull] FormulaGrammerParser.PrefixedOctNumberContext context)
+        {
+            if (this.configuration.IsOctalNumberNotationSupportDisabled)
+            {
+                ParsingException.ThrowInvalidTokenException(context.PREFIX_OCT_NUMBER().Symbol);
+            }
+
+            var token = context.PREFIX_OCT_NUMBER().Symbol.Text;
+            return new IntegerNode(NumberFormat.Oct, Convert.ToInt64(token.Substring(2), 8));
         }
 
         public override Node VisitDecimalNumber([NotNull] FormulaGrammerParser.DecimalNumberContext context)
         {
             var token = context.DECIMAL_NUMBER().Symbol.Text;
-            var hasPrefix = token.StartsWith("0D", StringComparison.InvariantCultureIgnoreCase);
-            return new NumberNode(token, double.Parse(hasPrefix ? token.Substring(2) : token));
+            return new DecimalNode(double.Parse(token));
         }
 
-        public override Node VisitHexadecimalNumber([NotNull] FormulaGrammerParser.HexadecimalNumberContext context)
+        public override Node VisitIntgerNumber([NotNull] FormulaGrammerParser.IntgerNumberContext context)
         {
-            if (this.configuration.IsHexadecimalNumberNotationSupportDisabled)
-            {
-                ParsingException.ThrowInvalidTokenException(context.HEXADECIMAL_NUMBER().Symbol);
-            }
-
-            var token = context.HEXADECIMAL_NUMBER().Symbol.Text;
-            return new NumberNode(token, Convert.ToInt32(token.Substring(token[0] == '#' ? 1 : 2), 16));
+            var token = context.INTEGER_NUMBER().Symbol.Text;
+            return new IntegerNode(NumberFormat.Dec, long.Parse(token));
         }
 
         public override Node VisitVariable([NotNull] FormulaGrammerParser.VariableContext context)

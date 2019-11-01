@@ -36,9 +36,14 @@ namespace ThinkSharp.FormulaParsing.Ast.Visitors
             return new FunctionNode(node.FunctionName, node.Parameters.Select(p => p.Visit(this)).ToArray());
         }
 
-        public override Node Visit(NumberNode node)
+        public override Node Visit(DecimalNode node)
         {
-            return new NumberNode(node.Token, node.Value);
+            return new DecimalNode(node.Value);
+        }
+
+        public override Node Visit(IntegerNode node)
+        {
+            return new IntegerNode(node.Format, node.Value);
         }
 
         public override Node Visit(PowerNode node)

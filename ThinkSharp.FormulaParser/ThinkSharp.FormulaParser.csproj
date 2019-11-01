@@ -49,4 +49,8 @@ removed support for alternative hex number notation: '#&lt;hexnumber&gt;'. Note 
     </AssemblyAttribute>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="TermRewriting\Helper\" />
+  </ItemGroup>
+
 </Project>

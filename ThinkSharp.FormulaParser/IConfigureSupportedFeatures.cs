@@ -21,6 +21,11 @@
         void DisableHexadecimalNumberNotation();
 
         /// <summary>
+        /// Prevents the usage of octal notation (e.g. 0o10 = 8)
+        /// </summary>
+        void DisableOctalNumberNotation();
+
+        /// <summary>
         /// Prevents the usage of brackets.
         /// </summary>
         void DisableBracket();

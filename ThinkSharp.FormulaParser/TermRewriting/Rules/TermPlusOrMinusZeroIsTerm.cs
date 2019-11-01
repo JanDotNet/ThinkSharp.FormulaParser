@@ -8,59 +8,39 @@ namespace ThinkSharp.FormulaParsing.TermRewriting.Rules
 {
     public class TermPlusOrMinusZeroIsTermRule : Rule
     {
-        public override bool Match(Node node)
+        protected override bool MatchInternal(Node node, Node Parent)
         {
             if (node is BinaryOperatorNode opNode)
             {
                 if (opNode.BinaryOperator.Symbol == "+" ||
                     opNode.BinaryOperator.Symbol == "-")
                 {
-                    if (opNode.LeftNode is NumberNode leftNumNode)
-                    {
-                        if (leftNumNode.Value == 0.0)
-                        {
-                            return true;
-                        }
-                    }
-
-                    if (opNode.RightNode is NumberNode rightNumNode)
-                    {
-                        if (rightNumNode.Value == 0.0)
-                        {
-                            return true;
-                        }
-                    }
+                    return opNode.LeftNode.EqualsNumber(0) || opNode.RightNode.EqualsNumber(0);
                 }
             }
 
             return false;
         }
 
-        public override Node Rewrite(Node node)
+        protected override Node RewriteInternal(Node node, Node Parent)
         {
             if (node is BinaryOperatorNode opNode)
             {
                 var isAddOperation = opNode.BinaryOperator.Symbol == "+";
-                var isSubOperation = opNode.BinaryOperator.Symbol == "-";
+                var isMinusOperation = opNode.BinaryOperator.Symbol == "-";
 
-                if (isAddOperation || isSubOperation)
+                if (isAddOperation || isMinusOperation)
                 {
-                    if (opNode.LeftNode is NumberNode leftNumNode)
+                    if (opNode.LeftNode.EqualsNumber(0))
                     {
-                        if (leftNumNode.Value == 0.0)
-                        {
-                            return isSubOperation
-                                ? new SignedNode(Sign.Minus, opNode.RightNode)
-                                : opNode.RightNode;
-                        }
+                        return isMinusOperation
+                            ? new SignedNode(Sign.Minus, opNode.RightNode)
+                            : opNode.RightNode;
                     }
 
-                    if (opNode.RightNode is NumberNode rightNumNode)
+                    if (opNode.RightNode.EqualsNumber(0))
                     {
-                        if (rightNumNode.Value == 0.0)
-                        {
-                            return opNode.LeftNode;
-                        }
+                        return opNode.LeftNode;
                     }
                 }
             }

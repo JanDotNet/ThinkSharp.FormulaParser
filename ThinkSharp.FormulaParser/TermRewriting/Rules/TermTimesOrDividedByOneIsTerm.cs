@@ -8,54 +8,42 @@ namespace ThinkSharp.FormulaParsing.TermRewriting.Rules
 {
     public class TermTimesOrDividedByOneIsTerm : Rule
     {
-        public override bool Match(Node node)
+        protected override bool MatchInternal(Node node, Node Parent)
         {
             if (node is BinaryOperatorNode opNode)
             {
                 var isTimes = opNode.BinaryOperator.Symbol == "*";
                 var isDividedBy = opNode.BinaryOperator.Symbol == "/";
                 
-                if (isTimes && opNode.LeftNode is NumberNode leftNumNode)
+                if (isTimes && opNode.LeftNode.EqualsNumber(1))
                 {
-                    if (leftNumNode.Value == 1.0)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
 
-                if ((isTimes || isDividedBy) && opNode.RightNode is NumberNode rightNumNode)
+                if ((isTimes || isDividedBy) && opNode.RightNode.EqualsNumber(1))
                 {
-                    if (rightNumNode.Value == 1.0)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
 
             return false;
         }
 
-        public override Node Rewrite(Node node)
+        protected override Node RewriteInternal(Node node, Node Parent)
         {
             if (node is BinaryOperatorNode opNode)
             {
                 var isTimes = opNode.BinaryOperator.Symbol == "*";
                 var isDividedBy = opNode.BinaryOperator.Symbol == "/";
 
-                if (isTimes && opNode.LeftNode is NumberNode leftNumNode)
+                if (isTimes && opNode.LeftNode.EqualsNumber(1))
                 {
-                    if (leftNumNode.Value == 1.0)
-                    {
-                        return opNode.RightNode;
-                    }
+                    return opNode.RightNode;
                 }
 
-                if ((isTimes || isDividedBy) && opNode.RightNode is NumberNode rightNumNode)
+                if ((isTimes || isDividedBy) && opNode.RightNode.EqualsNumber(1))
                 {
-                    if (rightNumNode.Value == 1.0)
-                    {
-                        return opNode.LeftNode;
-                    }
+                    return opNode.LeftNode;
                 }
             }
 

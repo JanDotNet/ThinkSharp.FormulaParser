@@ -8,73 +8,43 @@ namespace ThinkSharp.FormulaParsing.TermRewriting.Rules
 {
     public class TermTimesOrDividedByMinusOneIsMinusTerm : Rule
     {
-        public override bool Match(Node node)
+        protected override bool MatchInternal(Node node, Node Parent)
         {
             if (node is BinaryOperatorNode opNode)
             {
                 var isTimes = opNode.BinaryOperator.Symbol == "*";
                 var isDividedBy = opNode.BinaryOperator.Symbol == "/";
-                
-                if (isTimes && opNode.LeftNode is NumberNode leftNumNode)
-                {
-                    if (leftNumNode.Value == -1.0)
-                    {
-                        return true;
-                    }
-                }
 
-                if ((isTimes || isDividedBy) && opNode.RightNode is NumberNode rightNumNode)
-                {
-                    if (rightNumNode.Value == -1.0)
-                    {
-                        return true;
-                    }
-                }
+                return (isTimes || isDividedBy) &&
+                       (opNode.LeftNode.EqualsNumber(-1) || opNode.RightNode.EqualsNumber(-1));
             }
 
             return false;
         }
 
-        public override Node Rewrite(Node node)
+        protected override Node RewriteInternal(Node node, Node Parent)
         {
             if (node is BinaryOperatorNode opNode)
             {
                 var isTimes = opNode.BinaryOperator.Symbol == "*";
                 var isDividedBy = opNode.BinaryOperator.Symbol == "/";
 
-                if (isTimes && opNode.LeftNode is NumberNode leftNumNode)
+                if (isTimes && opNode.LeftNode.EqualsNumber(-1))
                 {
-                    if (leftNumNode.Value == -1.0)
-                    {
-                        if (opNode.RightNode is SignedNode rightSignedNode)
-                        {
-                            if (rightSignedNode.Sign == Sign.Minus)
-                            {
-                                return rightSignedNode.Node;
-                            }
-                            return new SignedNode(Sign.Minus, rightSignedNode.Node);
-                        }
-
-                        return new SignedNode(Sign.Minus, opNode.RightNode);
-                    }
+                    return opNode.RightNode.SwitchSign();
                 }
 
-                if ((isTimes || isDividedBy) && opNode.RightNode is NumberNode rightNumNode)
+                if (isDividedBy && opNode.LeftNode.EqualsNumber(-1))
                 {
-                    if (rightNumNode.Value == -1.0)
-                    {
-                        if (opNode.LeftNode is SignedNode leftSignedNode)
-                        {
-                            if (leftSignedNode.Sign == Sign.Minus)
-                            {
-                                return leftSignedNode.Node;
-                            }
+                    return new BinaryOperatorNode(
+                        opNode.BinaryOperator,
+                        new IntegerNode(1),
+                        opNode.RightNode.SwitchSign());
+                }
 
-                            return new SignedNode(Sign.Minus, leftSignedNode.Node);
-                        }
-
-                        return new SignedNode(Sign.Minus, opNode.LeftNode);
-                    }
+                if ((isTimes || isDividedBy) && opNode.RightNode.EqualsNumber(-1))
+                {
+                    return opNode.LeftNode.SwitchSign();
                 }
             }
 

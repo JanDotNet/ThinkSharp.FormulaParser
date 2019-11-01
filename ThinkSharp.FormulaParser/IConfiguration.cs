@@ -14,6 +14,8 @@ namespace ThinkSharp.FormulaParsing
 
         bool IsHexadecimalNumberNotationSupportDisabled { get; }
 
+        bool IsOctalNumberNotationSupportDisabled { get; }
+
         bool IsBracketSupportDisabled { get; }
 
         bool IsPowSupportDisabled { get; }
