@@ -23,8 +23,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\Rules\RemoveNegativeSignInInSubtractTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\Rules\RemoveNegativeSignInInSumTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\Rules\RemoveNegativeSignInFrontOfBracketsTest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\Rules\RemoveNegativSignFromNumberTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\Rules\RemoveNegativeSignTimesNegatieSignTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\Rules\RemoveNegativSignFromNumberTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\Rules\EvaluateIntegersTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\Rules\RemoveRootBracketsTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\Rules\RemoveBracketsInTermPlusMinusBracketsTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TermRewriting\Rules\RemoveNestedBracketsTest.cs" />

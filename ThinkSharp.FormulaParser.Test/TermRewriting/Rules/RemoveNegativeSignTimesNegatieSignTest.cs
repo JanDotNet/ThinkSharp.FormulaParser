@@ -36,12 +36,12 @@ namespace ThinkSharp.FluentFormulaParser.Test.TermRewriting.Rules
         [TestMethod]
         public void Test_MinusMinusATimesB() => AssertRewritten(
             new BinaryOperatorNode(
-                    BinaryOperator.Times,
+                    BinaryOperator.Multiply,
                     new VariableNode("a"),
                     new VariableNode("b")),
             new SignedNode(Sign.Minus,
                 new BinaryOperatorNode(
-                    BinaryOperator.Times,
+                    BinaryOperator.Multiply,
                     new SignedNode(Sign.Minus, new VariableNode("a")),
                     new VariableNode("b"))));
     }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using ThinkSharp.FormulaParsing.Ast.Nodes;
 using ThinkSharp.FormulaParsing.TermRewriting.Rules;
 
@@ -12,6 +11,7 @@ namespace ThinkSharp.FormulaParsing.TermRewriting
         public static ITermRewritingSystem Create()
         {
             var system = new TermRewritingSystem();
+            system.rules.Add(new EvaluateIntegers());
             system.rules.Add(new RemoveBracketsInTermPlusMinusBrackets());
             system.rules.Add(new RemoveBracketsInTermPlusMinusBracketsPlusMinusTerm());
             system.rules.Add(new RemoveNegativeSignFromNumber());

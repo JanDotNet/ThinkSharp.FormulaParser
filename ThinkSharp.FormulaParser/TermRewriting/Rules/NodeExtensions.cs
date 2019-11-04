@@ -82,9 +82,17 @@ namespace ThinkSharp.FormulaParsing.TermRewriting.Rules
 
         public static bool IsMinus(this BinaryOperatorNode node)
             => node.BinaryOperator.Symbol == "-";
+        public static bool IsMultipy(this BinaryOperatorNode node)
+    => node.BinaryOperator.Symbol == "*";
+
+        public static bool IsDividedBy(this BinaryOperatorNode node)
+            => node.BinaryOperator.Symbol == "/";
 
         public static bool IsPlusOrMinus(this BinaryOperatorNode node)
             => node.IsPlus() || node.IsMinus();
+
+        public static bool IsMultiplyOrDividedBy(this BinaryOperatorNode node)
+            => node.IsMultipy() || node.IsDividedBy();
 
         public static Node SwitchSign(this Node node)
             => node.Visit(new SwitchSignConcreteNodeVisitor());

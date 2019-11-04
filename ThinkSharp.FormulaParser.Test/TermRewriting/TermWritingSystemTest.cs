@@ -34,7 +34,7 @@ namespace ThinkSharp.FormulaParsing.Test.TermRewriting
         public void Test_ATimeBTimeCInBrackets() => AssertRewritten("-a*b*c", "-(a*b*c)");
 
         [TestMethod]
-        public void Test_ATimeBMinusCInBracketsPlus3Times4() => AssertRewritten("-a*b+c+3*4", "-(a*b-c)+3*4");
+        public void Test_ATimeBMinusCInBracketsPlus3Times4() => AssertRewritten("-a*b+c+12", "-(a*b-c)+3*4");
 
         [TestMethod]
         public void Test_MaxOneTwoInBackets() => AssertRewritten("-max(1, 2)", "-(max(1, 2))");
