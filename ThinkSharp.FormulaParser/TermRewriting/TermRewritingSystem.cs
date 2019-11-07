@@ -26,6 +26,7 @@ namespace ThinkSharp.FormulaParsing.TermRewriting
             system.rules.Add(new TermPlusOrMinusZeroIsTermRule());
             system.rules.Add(new TermTimesOrDividedByMinusOneIsMinusTerm());
             system.rules.Add(new TermTimesOrDividedByOneIsTerm());
+            system.rules.Add(new RearrangeIntegersInSum());
             return system;
         }
 

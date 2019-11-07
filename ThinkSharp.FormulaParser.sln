@@ -7,15 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThinkSharp.FormulaParser", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThinkSharp.FormulaParser.Test.Core", "ThinkSharp.FormulaParser.Test.Core\ThinkSharp.FormulaParser.Test.Core.csproj", "{1CAA5403-6EBB-4885-A51A-10533E673890}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ThinkSharp.FormulaParser.Test", "ThinkSharp.FormulaParser.Test\ThinkSharp.FormulaParser.Test.shproj", "{BC2373CA-32D9-4224-A1BB-831E0DBF839A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThinkSharp.FormulaParser.Test.Net461", "ThinkSharp.FormulaParser.Test.Net461\ThinkSharp.FormulaParser.Test.Net461.csproj", "{3BC319A0-E6A2-4667-A7E8-8C283ACDA823}"
-EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		ThinkSharp.FormulaParser.Test\ThinkSharp.FluentFormulaParser.Test.projitems*{3bc319a0-e6a2-4667-a7e8-8c283acda823}*SharedItemsImports = 4
-		ThinkSharp.FormulaParser.Test\ThinkSharp.FluentFormulaParser.Test.projitems*{bc2373ca-32d9-4224-a1bb-831e0dbf839a}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -29,10 +21,6 @@ Global
 		{1CAA5403-6EBB-4885-A51A-10533E673890}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CAA5403-6EBB-4885-A51A-10533E673890}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CAA5403-6EBB-4885-A51A-10533E673890}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3BC319A0-E6A2-4667-A7E8-8C283ACDA823}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3BC319A0-E6A2-4667-A7E8-8C283ACDA823}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3BC319A0-E6A2-4667-A7E8-8C283ACDA823}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3BC319A0-E6A2-4667-A7E8-8C283ACDA823}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

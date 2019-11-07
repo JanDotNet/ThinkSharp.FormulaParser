@@ -74,7 +74,10 @@ namespace ThinkSharp.FormulaParsing.Test.TermRewriting
 
         [TestMethod]
         public void Test_AManyTimeOneTimeADividedByOne() => AssertRewritten("a*a", "a*1*1*1*1*1*a/1");
-                
+
+        [TestMethod]
+        public void Test_TwoPluscPlus2() => AssertRewritten("4+c", "2+c+2");
+
 
         private void AssertRewritten(string expected, string forumla)
         {

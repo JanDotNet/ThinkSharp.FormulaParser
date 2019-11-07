@@ -19,7 +19,5 @@
   <ItemGroup>
     <ProjectReference Include="..\ThinkSharp.FormulaParser\ThinkSharp.FormulaParser.csproj" />
   </ItemGroup>
-
-  <Import Project="..\ThinkSharp.FormulaParser.Test\ThinkSharp.FluentFormulaParser.Test.projitems" Label="Shared" />
   
 </Project>
