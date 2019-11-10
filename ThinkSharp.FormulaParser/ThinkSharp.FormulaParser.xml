@@ -27,6 +27,11 @@
             a <see cref="T:ThinkSharp.FormulaParsing.IFormulaParserBuilder"/>.
             </returns>
         </member>
+        <member name="P:ThinkSharp.FormulaParsing.FormulaParser.Configuration">
+            <summary>
+            Gets the configuration for the parser.
+            </summary>
+        </member>
         <member name="T:ThinkSharp.FormulaParsing.IConfigureConstants">
             <summary>
             Interface encapsulating the API for configuring constants.

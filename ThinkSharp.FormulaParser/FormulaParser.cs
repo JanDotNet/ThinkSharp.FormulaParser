@@ -41,6 +41,11 @@ namespace ThinkSharp.FormulaParsing
         /// </returns>
         public static IFormulaParserBuilder CreateBuilder() => new FormulaParserBuilder();
 
+        /// <summary>
+        /// Gets the configuration for the parser.
+        /// </summary>
+        public IConfiguration Configuration => this.configuration;
+
         public FormulaParserResult<double> Evaluate(string formula)
         {
             return this.Evaluate(formula, null);

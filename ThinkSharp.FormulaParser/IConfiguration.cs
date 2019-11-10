@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ThinkSharp.FormulaParsing
 {
-    internal interface IConfiguration
+    public interface IConfiguration
     {
         bool IsScientificNotationSupportDisabled { get; }
 
