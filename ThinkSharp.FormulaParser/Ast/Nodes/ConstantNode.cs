@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using ThinkSharp.FormulaParsing.Ast.Visitors;
 
 namespace ThinkSharp.FormulaParsing.Ast.Nodes
 {
+    [DebuggerDisplay("{Name}")]
     public class ConstantNode : Node
     {
         public ConstantNode(string name)

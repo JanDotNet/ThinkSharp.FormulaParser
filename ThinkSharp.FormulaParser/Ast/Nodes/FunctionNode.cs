@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using ThinkSharp.FormulaParsing.Ast.Visitors;
 
 namespace ThinkSharp.FormulaParsing.Ast.Nodes
 {
+    [DebuggerDisplay("{Name}()")]
     public class FunctionNode : Node
     {
         public FunctionNode(string functionName, params Node[] parameters)

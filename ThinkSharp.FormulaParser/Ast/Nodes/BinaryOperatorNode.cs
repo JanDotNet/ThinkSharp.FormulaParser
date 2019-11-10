@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using ThinkSharp.FormulaParsing.Ast.Visitors;
 
 namespace ThinkSharp.FormulaParsing.Ast.Nodes
 {
+    [DebuggerDisplay("({LeftNode} {BinaryOperator.Symbol} {RightNode})")]
     public class BinaryOperatorNode : Node
     {
         public BinaryOperatorNode(BinaryOperator binaryOperator, Node leftNode, Node rightNode)

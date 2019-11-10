@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace ThinkSharp.FormulaParsing.Ast.Nodes
 {
     public enum Sign { Plus, Minus }
 
+    [DebuggerDisplay("{Sign} {Node}")]
     public class SignedNode : Node
     {
         public SignedNode(Sign sign, Node node)

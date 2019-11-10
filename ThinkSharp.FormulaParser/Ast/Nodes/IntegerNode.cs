@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using ThinkSharp.FormulaParsing.Ast.Visitors;
 
 namespace ThinkSharp.FormulaParsing.Ast.Nodes
 {
+    [DebuggerDisplay("{Value}")]
     public class IntegerNode : Node
     {
         public IntegerNode(long value) : this(NumberFormat.Dec, value)
