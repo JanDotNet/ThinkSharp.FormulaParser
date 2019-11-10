@@ -11,6 +11,11 @@ namespace ThinkSharp.FormulaParsing
     public interface IFormulaParser
     {
         /// <summary>
+        /// Gets the configuration for the parser.
+        /// </summary>
+        IConfiguration Configuration { get; }
+
+        /// <summary>
         /// Evaluates the provided formula to a numeric value.
         /// </summary>
         /// <param name="formula">
