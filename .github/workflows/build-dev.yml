@@ -19,5 +19,5 @@ jobs:
     - name: Run Tests
       run: dotnet test      
     - name: Build with dotnet
-      run: dotnet build --configuration Release
+      run: dotnet build .\ThinkSharp.FormulaParser\ThinkSharp.FormulaParser.csproj --configuration Release
     
