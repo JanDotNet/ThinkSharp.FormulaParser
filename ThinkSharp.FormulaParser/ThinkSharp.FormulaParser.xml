@@ -216,6 +216,11 @@
             Diables the validation of functions names when creating a parsing tree.
             </summary>
         </member>
+        <member name="P:ThinkSharp.FormulaParsing.IFormulaParser.Configuration">
+            <summary>
+            Gets the configuration for the parser.
+            </summary>
+        </member>
         <member name="M:ThinkSharp.FormulaParsing.IFormulaParser.Evaluate(System.String)">
             <summary>
             Evaluates the provided formula to a numeric value.

@@ -57,5 +57,15 @@ namespace ThinkSharp.FormulaParsing.TermRewriting
 
             return simlifiedNode;
         }
+
+        //private Node CollapseIdenticalNodes(Node node, IDictionary<string, Node> collapsedNodes)
+        //{
+
+        //}
+
+        //private Node ExpandCollapsedNodes(Node node, IDictionary<string, Node> collapsedNodes)
+        //{
+
+        //}
     }
 }

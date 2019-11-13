@@ -4,12 +4,15 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using ThinkSharp.FormulaParsing.Ast.Nodes;
+using ThinkSharp.FormulaParsing.TermRewriting;
+using ThinkSharp.FormulaParsing.TermRewriting.Rules;
 
 namespace ThinkSharp.FormulaParsing.Utils
 {
     public class NodeComparer : IEqualityComparer<Node>
     {
         private static NodeHashCodeVisitor hashCodeVisitor = new NodeHashCodeVisitor();
+        private static ITermRewritingSystem termRewriteSystem = TermRewritingSystem.Create();
 
         public bool Equals(Node x, Node y)
         {
@@ -96,13 +99,14 @@ namespace ThinkSharp.FormulaParsing.Utils
 
                         var summands1Left = GetSummands(bo1.LeftNode);
                         var summands1Right = GetSummands(bo1.RightNode);
-                        if (isMinus) summands1Right = summands1Right.WrapFirst(n => new SignedNode(Sign.Minus, n));
-                        var summands1 = summands1Left.Concat(summands1Right).ToList();
+                        if (isMinus) summands1Right = summands1Right.WrapFirst(n => n.SwitchSign());
+                        var summands1 = summands1Left.Concat(summands1Right).Select(termRewriteSystem.Simplify).ToList();
 
+                        isMinus = bo2.BinaryOperator.Symbol == "-";
                         var summands2Left = GetSummands(bo2.LeftNode);
                         var summands2Right = GetSummands(bo2.RightNode);
-                        if (isMinus) summands2Right = summands2Right.WrapFirst(n => new SignedNode(Sign.Minus, n));
-                        var summands2 = summands2Left.Concat(summands2Right).ToList();
+                        if (isMinus) summands2Right = summands2Right.WrapFirst(n => n.SwitchSign());
+                        var summands2 = summands2Left.Concat(summands2Right).Select(termRewriteSystem.Simplify).ToList();
 
                         if (summands1.Count != summands2.Count)
                         {

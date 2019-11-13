@@ -42,7 +42,7 @@ namespace ThinkSharp.FormulaParsing.Test
         public void TestCompareDividedByEquals()
             => AssertAreEqual("3*(a+b+c)/2*(f*d*s)", "(c+a+b)*3/2*(d*f*s)");
 
-        //[TestMethod]
+        [TestMethod]
         public void TestCompareMinusEquals()
         {
             AssertAreEqual("1-3", "-3+1");
