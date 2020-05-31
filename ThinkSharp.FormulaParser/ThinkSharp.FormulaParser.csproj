@@ -8,17 +8,15 @@
     <Authors>Jan-Niklas Schäfer</Authors>
     <Company>ThinkSharp</Company>
     <Description>A formula parser with fluent API that allows parsing and evaluation of mathematically formulas. Features: functions, constants, variables, scientific numbers, focus on customization and flexibility.</Description>
-    <Copyright>© 2019 Jan-Niklas Schäfer</Copyright>
-    <AssemblyVersion>0.6.4.0</AssemblyVersion>
-    <FileVersion>0.6.4.0</FileVersion>
+    <Copyright>© 2020 Jan-Niklas Schäfer</Copyright>
+    <AssemblyVersion>0.9.0.0</AssemblyVersion>
+    <FileVersion>0.9.0.0</FileVersion>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <PackageReleaseNotes>changed variables API from IDictionary to IReadOnlyDictionary
-added '$' as valid character for variables
-removed support for alternative hex number notation: '#&lt;hexnumber&gt;'. Note that the main notation '0x&lt;hexnumber' is still supported.
-</PackageReleaseNotes>
+    <PackageReleaseNotes>Removed term rewriting functionality (has been moved to its own project)
+    </PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/JanDotNet/ThinkSharp.FormulaParser</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>0.6.4</Version>
+    <Version>0.9.0</Version>
     <PackageLicenseExpression></PackageLicenseExpression>
   </PropertyGroup>
 
@@ -42,10 +40,10 @@ removed support for alternative hex number notation: '#&lt;hexnumber&gt;'. Note 
 
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
-      <_Parameter1>$(MSBuildProjectName).Test.Core</_Parameter1>
+      <_Parameter1>$(MSBuildProjectName).Test</_Parameter1>
     </AssemblyAttribute>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
-      <_Parameter1>$(MSBuildProjectName).Test.Net461</_Parameter1>
+      <_Parameter1>$(MSBuildProjectName).TermRewriting</_Parameter1>
     </AssemblyAttribute>
   </ItemGroup>
 

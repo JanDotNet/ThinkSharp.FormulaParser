@@ -8,7 +8,7 @@ using Antlr4.Runtime.Sharpen;
 using ThinkSharp.FormulaParsing.Ast.Nodes;
 using ThinkSharp.FormulaParsing.Ast.Visitors;
 
-namespace ThinkSharp.FormulaParsing.Test
+namespace ThinkSharp.FormulaParsing
 {
     [TestClass]
     public class FormularParserCustomVisitorTest

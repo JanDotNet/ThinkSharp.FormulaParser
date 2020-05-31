@@ -136,7 +136,6 @@ namespace ThinkSharp.FormulaParsing
             {
                 return new FormulaParserResult<TResult>(new Error(ex.Message));
             }
-
         }
 
         private Node ParseFormula(string formula, IReadOnlyDictionary<string, double> variables)

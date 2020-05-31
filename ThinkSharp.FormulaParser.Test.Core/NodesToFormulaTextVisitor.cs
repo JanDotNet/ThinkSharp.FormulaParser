@@ -6,9 +6,9 @@ using System.Text;
 using ThinkSharp.FormulaParsing.Ast.Nodes;
 using ThinkSharp.FormulaParsing.Ast.Visitors;
 
-namespace ThinkSharp.FormulaParsing.Test
+namespace ThinkSharp.FormulaParsing
 {
-    internal class NodesToFormulaTextVisitor : INodeVisitor<string>
+    public class NodesToFormulaTextVisitor : INodeVisitor<string>
     {
         public string Visit(FormulaNode node)
         {

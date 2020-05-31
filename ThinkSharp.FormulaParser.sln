@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThinkSharp.FormulaParser", "ThinkSharp.FormulaParser\ThinkSharp.FormulaParser.csproj", "{C69728F7-CDC0-4FA2-B805-E0DD6F498E9F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThinkSharp.FormulaParser.Test.Core", "ThinkSharp.FormulaParser.Test.Core\ThinkSharp.FormulaParser.Test.Core.csproj", "{1CAA5403-6EBB-4885-A51A-10533E673890}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThinkSharp.FormulaParser.Test", "ThinkSharp.FormulaParser.Test.Core\ThinkSharp.FormulaParser.Test.csproj", "{1CAA5403-6EBB-4885-A51A-10533E673890}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

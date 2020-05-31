@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ThinkSharp.FormulaParsing.Ast.Nodes;
 
-namespace ThinkSharp.FormulaParsing.Test
+namespace ThinkSharp.FormulaParsing
 {
     [TestClass]
     public class ParsingHelperTest

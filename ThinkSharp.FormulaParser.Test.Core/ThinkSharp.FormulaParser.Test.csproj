@@ -7,7 +7,7 @@
 
     <AssemblyName>ThinkSharp.FormulaParser.Test.Core</AssemblyName>
 
-    <RootNamespace>ThinkSharp.FormulaParsing.Test</RootNamespace>
+    <RootNamespace>ThinkSharp.FormulaParsing</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
