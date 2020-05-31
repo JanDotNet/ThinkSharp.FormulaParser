@@ -41,7 +41,7 @@ var variables = new Dictionary<string, double> { ["x"] = 2.0 };
 var result2 = parser.Evaluate("1+x", variables).Value; // result2 = 3.0
     
 // Usage of functions
-var result3 = parser.Evaluate("1+min(3,4)").Value; // result2 = 4.0
+var result3 = parser.Evaluate("1+min(3,4)").Value; // result3 = 4.0
     
 // Handle errors
 var parsingResult = parser.Evaluate("2*?");
@@ -93,17 +93,18 @@ var parser = FormulaParser
     {
         // functions.RemoveAll()    for removing all default functions
         // functions.Remove("sum")  for removing function by name
-        // define function with 2 to n number of parameters (typeof(nums) = double[])
-        functions.Add("product", nums => nums.Aggregate((p1, p2) => p1 * p2));
 
-        // define functions with specified number of parameters (1-5 parameters are supported)
+        // define functions with certain number of parameters (1-5 parameters are supported)
         functions.Add("celsiusToFarenheit", celsius => celsius * 1.8 + 32);
         functions.Add("fahrenheitToCelsius", fahrenheit => (fahrenheit - 32) * 5 / 9);
         functions.Add("p1_plus_p2_plus_p3", (p1, p2, p3) => p1 + p2 + p3);
+        
+        // define function with 2 to n number of parameters (typeof(nums) = double[])
+        functions.Add("product", nums => nums.Aggregate((p1, p2) => p1 * p2));
     }).Build();
 
 var poolTemperatureInCelsius = parser.Evaluate("celsiusToFarenheit(fahrenheitToCelsius(30))").Value; // poolTemperatureInCelsius = 30
-var result2 = parser.Evaluate("product(2, 2, 2, 2, 2, 2, 2)").Value;    // result2 = 2^6 = 128
+var result2 = parser.Evaluate("product(2, 2, 2, 2, 2, 2)").Value;    // result2 = 2^6 = 128
 var result3 = parser.Evaluate("p1_plus_p2_plus_p3(1, 2, 3)").Value;     // result3 = 6
 
 string error1 = parser.Evaluate("celsiusToFarenheit(1, 2)").Error;      // column 0: There is no function 'celsiusToFarenheit' that takes 2 argument(s).
